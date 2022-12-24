@@ -1,0 +1,24 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User alex@ajpkim.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.password-store/mbsync-fastmail.gpg"
+SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+Subfolders Verbatim
+Path ~/mail/
+Inbox ~/mail/Inbox
+
+Channel fastmail
+Near :fastmail-local:
+Far :fastmail-remote:
+Patterns *
+Create Both
+SyncState *
+Expunge none
+CopyArrivalDate yes
