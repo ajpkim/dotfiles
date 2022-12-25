@@ -113,6 +113,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 Bindsym $mod+9 workspace $ws9
+Bindsym $mod+0 workspace $ws10
 Bindsym $mod2+1 workspace $ws11
 Bindsym $mod2+2 workspace $ws12
 Bindsym $mod2+3 workspace $ws13
