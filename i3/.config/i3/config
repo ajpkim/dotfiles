@@ -157,9 +157,8 @@ bindsym $mod+Control+a exec anki
 bindsym $mod+Print exec flameshot gui
 
 ### Workspace Assignments ###
-assign [class="Discord"] 8
-assign [class="^Slack$"] 8
-assign [class="Anki"] 5
+assign [class="^Slack$"] 17
+assign [class="Anki"] 15
 
 # Transparency
 bindsym $mod+comma exec picom-trans -c -10

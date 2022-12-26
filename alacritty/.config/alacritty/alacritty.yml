@@ -35,7 +35,7 @@ font:
     family: DejaVu Sans Mono
     style: Bold Oblique
 
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 
 ##################################################
