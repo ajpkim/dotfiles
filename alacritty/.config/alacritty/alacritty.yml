@@ -1,147 +1,41 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-# Import additional configuration files
-#
-# These configuration files will be loaded in order, replacing values in files
-# loaded earlier with those loaded later in the chain. The file itself will
-# always be loaded last.
-#import:
-#  - /path/to/alacritty.yml
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
 env:
-  # TERM variable
-  #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
-
 window:
-  # Window dimensions (changes require restart)
-  #
-  # Number of lines/columns (not pixels) in the terminal. The number of columns
-  # must be at least `2`, while using a value of `0` for columns and lines will
-  # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
-
-  # Window position (changes require restart)
-  #
-  # Specified in number of pixels.
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
-
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 5
-    y: 5
+    x: 20
+    y: 20
 
-  # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  title: Alacritty
 
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  class:
+    instance: Alacritty
+    general: Alacritty
 
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  #startup_mode: Windowed
+scrolling:
+  history: 10000
+  multiplier: 3
 
-  # Window title
-  #title: Alacritty
-
-  # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
-
-  # Window class (Linux/BSD only):
-  #class:
-    # Application instance name
-    #instance: Alacritty
-    # General application class
-    #general: Alacritty
-
-  # GTK theme variant (Linux/BSD only)
-  #
-  # Override the variant of the GTK theme. Commonly supported values are `dark`
-  # and `light`. Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
-
-#scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  #history: 10000
-
-  # Scrolling distance multiplier.
-  #multiplier: 3
-
-# Font configuration
 font:
+  size: 18
   normal:
     family: DejaVu Sans Mono
     style: Regular
-
   bold:
     family: DejaVu Sans Mono
     style: Bold
-
   italic:
     family: DejaVu Sans Mono
     style: Oblique
-
   bold_italic:
     family: DejaVu Sans Mono
     style: Bold Oblique
 
-# Point size
-  size: 18.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought
-  # of as modifying the line spacing, and `offset.x` as modifying the letter
-  # spacing.
- #offset:
-   #x: 0
-   #y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the
-  # right, increasing `y` moves the glyph upward.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
-
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`.
-  #use_thin_strokes: true
-
-# If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 
 ##################################################
@@ -168,42 +62,34 @@ font:
   #
   # Allowed values are CellForeground and CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
-  #cursor:
+  # cursor:
   #  text: CellBackground
   #  cursor: CellForeground
 
-
-# Theme: modus-vivendi
-# Description: Alacritty port of modus-vivendi (Modus themes for Emacs)
-# Author: Protesilaos Stavrou, <https://protesilaos.com>
 colors:
   primary:
-    background: '#100b17'
-    foreground: '#ffffff'
+    background: '#161129'
+    foreground: '#e0e6f0'
   normal:
     black:   '#000000'
-    red:     '#100b17'  # originally '#ff8059', but this is bg for some reason... but need for things like git...
     red:     '#ff8059'
-    green:   '#44bc44'
-    yellow:  '#eecc00'
-    blue:    '#2fafff'
-    magenta: '#feacd0'
-    cyan:    '#00d3d0'
-    white:   '#bfbfbf'
+    green:   '#6ae4b9'
+    yellow:  '#cabf77'
+    blue:    '#82b0ec'
+    magenta: '#fbd6f4'
+    cyan:    '#00d8b4'
+    white:   '#e0e6f0'
   bright:
     black:   '#595959'
-    red:     '#f4923b'
-    green:   '#70c900'
-    yellow:  '#cfdf30'
+    red:     '#fe6060'
+    green:   '#00c06f'
+    yellow:  '#d0bc00'
     blue:    '#79a8ff'
-    magenta: '#b6a0ff'
-    cyan:    '#6ae4b9'
+    magenta: '#d5b1ff'
+    cyan:    '#00d3d0'
     white:   '#ffffff'
 
 ##################################################
-
-
-
 
   # Vi mode cursor colors
   #
@@ -386,21 +272,7 @@ colors:
 #  args:
 #    - --login
 
-# Startup directory
-#
-# Directory the shell is started in. If this is unset, or `None`, the working
-# directory of the parent process will be used.
-#working_directory: None
 
-# WinPTY backend (Windows only)
-#
-# Alacritty defaults to using the newer ConPTY backend if it is available,
-# since it resolves a lot of bugs and is quite a bit faster. If it is not
-# available, the WinPTY backend will be used instead.
-#
-# Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
-# even if the ConPTY backend is available.
-#winpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
@@ -750,24 +622,3 @@ key_bindings:
   #- { key: F,              mods: Command|Control,    action: ToggleFullscreen }
   #- { key: F,              mods: Command,            action: SearchForward    }
   #- { key: B,              mods: Command,            action: SearchBackward   }
-
-#debug:
-  # Display the time it takes to redraw each frame.
-  #render_timer: false
-
-  # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
-
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
-  #log_level: Warn
-
-  # Print all received window events.
-  #print_events: false
