@@ -22,6 +22,8 @@
 (require 'ak-text)
 (require 'ak-help)
 (require 'ak-olivetti)
+(require 'ak-files)
+(require 'ak-prog)
 
 ;; Quickly access and reload config
 (defun config-visit ()

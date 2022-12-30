@@ -166,7 +166,7 @@
     :custom
     ((doom-modeline-height 15)))
 #+end_src
-* Theme tweaks
+* DONE Theme tweaks
 *** Modus themes
 #+begin_src elisp
   (use-package modus-themes
@@ -284,7 +284,7 @@
     :config (setq aw-keys `(?a ?s ?d ?f ?j ?k ?l))
     :bind ("C-x o" . ace-window))
 #+END_SRC
-* Buffer shortcuts
+* DONE Buffer shortcuts
 #+begin_src emacs-lisp
   (defun my/file-shortcut (file)
     (interactive)
@@ -410,7 +410,7 @@
     (("M-p" . drag-stuff-up)
      ("M-n" . drag-stuff-down)))
 #+end_src
-* multiple-cursors
+* DONE multiple-cursors
 #+begin_src emacs-lisp
   (use-package multiple-cursors
     :ensure t
@@ -1037,7 +1037,7 @@
   ;;   :ensure t
   ;;   :after tree-sitter)
 #+end_src
-* editorconfig
+* DONE editorconfig
 #+begin_src emacs-lisp
   (use-package editorconfig
     :ensure t
