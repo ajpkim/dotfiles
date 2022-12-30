@@ -21,7 +21,7 @@ scrolling:
   multiplier: 3
 
 font:
-  size: 14
+  size: 10
   normal:
     family: DejaVu Sans Mono
     style: Regular
