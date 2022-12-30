@@ -150,7 +150,7 @@ bindsym $mod2+Shift+0 move container to workspace $ws20
 ### Applications ###
 
 bindsym $mod+Return exec alacritty
-bindsym $mod+d exec dmenu_run -nb '#fbd6f4' -nf '#161129' -sb '#79a8ff' -sf black -l 5
+bindsym $mod+d exec dmenu_run -c -fn 'DejaVu Sans Mono-18' -nb black -nf '#6ae4b9' -sb '#82b0ec' -sf black -l 8
 bindsym $mod+Control+e exec emacsclient --create-frame
 bindsym $mod+Control+f exec firefox
 bindsym $mod+Control+a exec anki
