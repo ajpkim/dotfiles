@@ -1,4 +1,7 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bootstrap use-package
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require `package)
 (setq package-enable-at-startup nil)
 (add-to-list `package-archives
@@ -9,13 +12,18 @@
   (package-refresh-contents)
   (package-install `use-package))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Put all the changes made by customize into a tmp file
 (setq custom-file (make-temp-file "emacs-custom"))
 
 ;; Add all my custom config dir to the load-path
 (add-to-list 'load-path "~/.emacs.d/config")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load all my configurations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'ak-base)
 (require 'ak-modus)
 (require 'ak-visual)
@@ -31,9 +39,13 @@
 (require 'ak-org-journal)
 (require 'ak-citations)
 
+;; Modes
+(require 'ak-focus-mode)
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quickly access and reload config
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun config-visit ()
   (interactive)
   (find-file "~/dotfiles/emacs/.emacs.d/init.el"))

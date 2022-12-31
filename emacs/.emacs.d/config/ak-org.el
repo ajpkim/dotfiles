@@ -1,4 +1,6 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Base Orgmode configuration
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'ak-org)
 
@@ -31,11 +33,6 @@
 
 ;; org-tempo enables expanding structs like code blocks from "<s + TAB"
 (require 'org-tempo)
-
-;; Prettify leading chars
-;; (font-lock-add-keywords `org-mode
-;;                         `(("^ 0\\([-]\\) "
-;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "·"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Maintain fixed pitch faces for specific faces in org mode.
@@ -82,7 +79,7 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
         ("c" "Task"
-	 entry (file+headline "~/org/todo.org" "Inbox")
+	 entry (file "~/org/todo.org")
          "* TODO %?\n"
          :prepend t)
 
@@ -117,17 +114,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-todo-keywords
-      '((sequence "PROJECT(p)" "TODO(t)" "ACTIVE(a)" "LATER(l)" "SOMEDAY(s)" "|" "DONE(d)")))
-
-;; #ffff66
-;; #79a8ff
-;; #f0ffff
-;; #ffbbff
-;; #f79a46
-;; #dfaa8e
-;; #ffccbc
-;; #79a8ff
-;; #adbce6
+      '((sequence "PROJECT(p)" "TODO(t)" "ACTIVE(a)" "LATER(l)" "|" "DONE(d)")))
 
 (setq org-todo-keyword-faces
       '(
@@ -136,10 +123,6 @@
         ("ACTIVE" . (:foreground "#44ddff" :weight bold))
         ("LATER" . (:foreground "#d3d3d3" :weight bold))
         ("DONE" . (:foreground "#6ae4b9" :weight bold))))
-
-
-;; (setq org-log-done 'time)
-;; (setq org-log-into-drawer "LOGBOOK")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org agenda
@@ -157,7 +140,6 @@
       )
 
 ;; (set-face-attribute 'org-agenda-calendar-event nil :foreground "#d6b0ff")
-
 
 (setq org-agenda-files '("~/org/todo.org"
 			 "~/org/shelf.org"
@@ -242,7 +224,7 @@
 ;; Functions for quicklky archiving all Done tasks in a tree or a file.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun my/org-archive-done-tasks-file ()
+(defun ak-org-archive-done-tasks-file ()
   (interactive)
   (org-map-entries
    (lambda ()
@@ -250,13 +232,16 @@
      (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
    "/DONE" 'file))
 
-(defun my/org-archive-done-tasks-tree ()
+(defun ak-org-archive-done-tasks-tree ()
   (interactive)
   (org-map-entries
    (lambda ()
      (org-archive-subtree)
      (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
    "/DONE" 'tree))
+
+(define-key org-mode-map (kbd "C-c C-x C-f") 'ak-org-archive-done-tasks-file)
+(define-key org-mode-map (kbd "C-c C-x C-t") 'ak-org-archive-done-tasks-tree)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Babel
@@ -279,6 +264,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ox-html)
+
 (use-package htmlize
   :ensure t
   :config
@@ -302,7 +288,14 @@
       org-html-head-include-scripts nil
       )
 
+(use-package toc-org
+  :ensure t
+  :config
+  (setq toc-org-max-depth 3
+        toc-org-hrefify-default "org"))  ;; Options are org or gh (github)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO
 ;; Org IDs
 ;; Have stable IDs for exporting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

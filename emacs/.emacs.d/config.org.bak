@@ -2,80 +2,551 @@
 #+STARTUP: overview
 #+SETUPFILE: ~/org/assets/org-export/org-html-default.org
 
-* WIP
-** tide
+* TODO ? web-mode
 #+begin_src emacs-lisp
-  ;; (use-package tide :ensure t)
-  ;; (use-package flycheck :ensure t)
+  ;; (use-package web-mode
+  ;;   :ensure t
+  ;;   :mode (("\\.js\\'" . web-mode)
+  ;;          ("\\.jsx\\'" . web-mode)
+  ;;          ("\\.ts\\'" . web-mode)
+  ;;          ("\\.tsx\\'" . web-mode)
+  ;;          ("\\.html\\'" . web-mode))
+  ;;   :commands web-mode)
 
-  ;; (defun setup-tide-mode ()
-  ;;   (interactive)
-  ;;   (tide-setup)
-  ;;   (flycheck-mode +1)
-  ;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  ;;   (eldoc-mode +1)
-  ;;   (tide-hl-identifier-mode +1)
-  ;;   ;; company is an optional dependency. You have to
-  ;;   ;; install it separately via package-install
-  ;;   ;; `M-x package-install [ret] company`
-  ;;   (company-mode +1))
+  ;; (add-hook 'web-mode-hook 'emmet-mode)
 
-  ;; ;; aligns annotation to the right hand side
-  ;; (setq company-tooltip-align-annotations t)
-
-  ;; ;; formats the buffer before saving
-  ;; (add-hook 'before-save-hook 'tide-format-before-save)
-
-  ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  ;; (setq web-mode-markup-indent-offset 2
+  ;;       web-mode-code-indent-offset 2
+  ;;       web-mode-css-indent-offset 2)
 #+end_src
-** tsx stuff
+* TODO ? prettier
 #+begin_src emacs-lisp
-  ;; (require 'web-mode)
+  ;; (use-package prettier-js
+  ;;   :ensure t)
 
-  ;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-  ;; (add-hook 'web-mode-hook
+  ;; (setq prettier-js-args '(
+  ;;   "--trailing-comma" "all"
+  ;;   "--bracket-spacing" "false"
+  ;; ))
+
+  ;; ;; Not working out of the box on save so using this workaround
+  ;; ;; (add-hook 'typescript-mode 'prettier-js-mode)
+  ;; ;; (add-hook 'javascript-mode 'prettier-js-mode)
+
+  ;; (add-hook 'typescript-mode-hook
   ;;           (lambda ()
-  ;;             (when (string-equal "tsx" (file-name-extension buffer-file-name))
-  ;;               (setup-tide-mode))))
+  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
 
-  ;; ;; enable typescript - tslint checker
-  ;; (flycheck-add-mode 'typescript-tslint 'web-mode) ;
+  ;; (add-hook 'javascript-mode-hook
+  ;;           (lambda ()
+  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
 #+end_src
-** idk
-- Custom org sort
-- This initial snippet taken from: https://emacs.stackexchange.com/questions/44756/org-mode-how-to-sort-entries
+* TODO JSX and TSX (Modularize correctly)
 #+begin_src emacs-lisp
-  ;; (defun org-page-sort ()
-  ;;   (interactive)
-  ;;   (mark-whole-buffer)
-  ;;   (org-sort-entries
-  ;;    nil ?f
-  ;;    (lambda ()
-  ;;      (let ((heading (nth 4 (org-heading-components))))
-  ;;        (if (string-match "page \\([0-9]+\\)" heading)
-  ;;            (string-to-number (match-string 1 heading))
-  ;;          1)))))
-#+end_src
+  ;; web-mode
+  (setq-default tab-width 2)
+  (setq indent-tabs-mode nil)
+  (defun my/webmode-hook ()
+          "Webmode hooks."
+          (setq web-mode-enable-comment-annotation t)
+          (setq web-mode-markup-indent-offset 2)
+          (setq web-mode-code-indent-offset 2)
+          (setq web-mode-css-indent-offset 2)
+          (setq web-mode-attr-indent-offset 0)
+          (setq web-mode-enable-auto-indentation t)
+          (setq web-mode-enable-auto-closing t)
+          (setq web-mode-enable-auto-pairing t)
+          (setq web-mode-enable-css-colorization t)
+  )
+  (use-package web-mode
+    :ensure t
+    :mode (("\\.jsx?\\'" . web-mode)
+           ("\\.tsx?\\'" . web-mode)
+           ("\\.html\\'" . web-mode))
+    :commands web-mode
+          :hook (web-mode . my/webmode-hook)
+  )
 
-- Parens matching
+  (defun enable-minor-mode (my-pair)
+    "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
+    (if (buffer-file-name)
+        (if (string-match (car my-pair) buffer-file-name)
+            (funcall (cdr my-pair)))))
+
+  (use-package prettier-js
+    :ensure t)
+  (add-hook 'web-mode-hook #'(lambda ()
+                               (enable-minor-mode
+                                '("\\.jsx?\\'" . prettier-js-mode))
+                               (enable-minor-mode
+                                '("\\.tsx?\\'" . prettier-js-mode))))
+
+  (eval-after-load 'web-mode
+    '(progn
+       (add-hook 'web-mode-hook #'prettier-js-mode)))
+#+end_src
+* Search completion framework (ivy, counsel, swiper)
 #+begin_src emacs-lisp
-  ;; ;; ---> This is accomplished with smart-paren-mode
-  ;; ;; Function for wrapping selection with correct symbol e.g. [ and ] or { and }
+  (use-package counsel  ;; Brings in ivy and swiper as dependencies
+    :ensure t
+    :bind
+    (("M-x" . counsel-M-x)
+     ("C-x b" . counsel-ibuffer)
+     ("C-x C-f" . counsel-find-file))
+    :init
+    (ivy-mode 1)
+    :config
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "%d/%d "))
 
-  ;; ;; This actually needs to match opening and closing braces!!!
-  ;; ;; Also, broken for multi character insertion symbols
-  ;; (defun foo (beg end &optional arg)
-  ;;   "Prompt user to enter a string, with input history support."
-  ;;   (interactive "r\nP")
-  ;;   (save-excursion
-  ;;     (let ((x (read-string "Symbol to wrap region with: ")))
-  ;;       (goto-char beg)
-  ;;       (insert x)
-  ;;       (goto-char (+ end 1))
-  ;;       (insert x))))
+  (use-package ivy-rich
+    :ensure t
+    :init (ivy-rich-mode 1))
+
+  (use-package ivy-posframe
+    :ensure t)
+#+end_src
+* Languages
+** Python
+#+begin_src emacs-lisp
+  (use-package anaconda-mode
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'anaconda-mode))
+
+  (use-package company-anaconda
+    :ensure t
+    :init (require 'rx)
+    :after (company)
+    :config
+    (add-to-list 'company-backends 'company-anaconda))
+
+  (add-hook 'python-mode-hook (lambda () (setq tab-width 4)))
+
+  ;; Jupyter notebooks
+  (use-package ein
+    :ensure t)
 
 #+end_src
-**
+** JavaScript
+#+begin_src emacs-lisp
+#+end_src
+** TypeScript
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t)
+  ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
+  ;; (use-package typescript-mode
+  ;;   :ensure t
+  ;;   :after tree-sitter
+  ;;   :config
+  ;;   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
+  ;;   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
+  ;;   (define-derived-mode typescriptreact-mode typescript-mode
+  ;;     "TypeScript TSX")
+
+  ;;   ;; use our derived mode for tsx files
+  ;;   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
+  ;;   ;; by default, typescript-mode is mapped to the treesitter typescript parser
+  ;;   ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
+  ;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
+
+  ;; ;; https://github.com/orzechowskid/tsi.el/
+  ;; ;; great tree-sitter-based indentation for typescript/tsx, css, json
+  ;; (use-package tsi
+  ;;   :after tree-sitter
+  ;;   :quelpa (tsi :fetcher github :repo "orzechowskid/tsi.el")
+  ;;   ;; define autoload definitions which when actually invoked will cause package to be loaded
+  ;;   :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode)
+  ;;   :init
+  ;;   (add-hook 'typescript-mode-hook (lambda () (tsi-typescript-mode 1)))
+  ;;   (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
+  ;;   (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
+  ;;   (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1))))
+#+end_src
+** JSON
+#+begin_src emacs-lisp
+  (use-package json-mode
+    :ensure t)
+#+end_src
+** Lisps
+#+begin_src emacs-lisp
+  (require 'xscheme)  ;; Scheme
+
+  (use-package geiser
+    :ensure t)
+
+  (use-package geiser-mit
+    :ensure t)
+
+#+end_src
+** Go
+#+begin_src emacs-lisp
+  (use-package ob-go
+    :ensure t)
+
+  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
+
+  (require 'lsp-mode)
+  (add-hook 'go-mode-hook #'lsp-deferred)
+
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  ;; Make sure you don't have other gofmt/goimports hooks enabled.
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+#+end_src
+** C#
+#+begin_src emacs-lisp
+  ;;;; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
+  ;; (defun my/csharp-mode-hook ()
+  ;;   (setq-local lsp-auto-guess-root t)
+  ;;   (lsp))
+
+  (setenv "FrameworkPathOverride" "/lib/mono/4.5")  ; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
+
+  (use-package csharp-mode
+    :ensure t
+    :mode "\\.cs\\'")
+
+#+end_src
+** CSV
+#+begin_src elisp
+  (use-package csv-mode
+    :ensure t)
+#+end_src
+** Docker
+#+begin_src emacs-lisp
+    (use-package dockerfile-mode
+      :ensure t)
+#+end_src
+** LaTeX
+#+begin_src elisp
+  (use-package auctex
+    :ensure t
+    :defer t
+    :hook (LaTeX-mode . display-line-numbers-mode))
+
+
+    ;; :hook (LaTeX-mode .
+    ;;                   (lambda ()
+    ;;                     (push (list 'output-pdf "Firefox")
+    ;;                           TeX-view-program-selection))))
+
+#+end_src
+
+#+RESULTS:
+
+** yaml
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+  ;; Mirror python-mode newline and indent behavior
+  (add-hook 'yaml-mode-hook
+      (lambda ()
+         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+#+end_src
+* emmet
+#+begin_src emacs-lisp
+  (use-package emmet-mode
+    :ensure t)
+#+end_src
+* LSP
+#+begin_src emacs-lisp
+  ;; Auto-complete backend (Language Server Protocol)
+  (use-package lsp-mode
+    :ensure t
+    :hook ((lsp-mode . lsp-enable-which-key-integration)
+           (csharp-mode . lsp))
+    :config (setq lsp-log-io nil
+                  lsp-restart 'auto-restart
+                  lsp-keymap-prefix "C-c v")
+    :commands (lsp-deferred))
+
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+  (use-package lsp-ivy
+      :ensure t
+      :commands lsp-ivy-workspace-symbol)
+
+  (use-package lsp-tailwindcss
+    :ensure t)
+
+#+end_src
+* company
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0
+          company-show-numbers t
+          company-minimum-prefix-length 1
+          company-selection-wrap-around t)
+    :init
+    (add-hook 'prog-mode-hook 'company-mode))
+#+end_src
+
+* magit
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t)
+#+end_src
+* projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :ensure t
+    ;; :diminish projectile-mode
+    ;; :config (projectile-mode)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :init
+    (when (file-directory-p "~/code")
+      (setq projectile-project-search-path '("~/code")))
+    (setq projectile-switch-project-action #'projectile-dired))
+#+end_src
+* gpg
+#+begin_src elisp
+  (use-package pinentry
+    :ensure t
+    :config
+    (setf epa-pinentry-mode 'loopback)
+    (pinentry-start))
+
+  (use-package pass
+    :ensure t
+    :config
+    (setf epa-pinentry-mode 'loopback))
+#+end_src
+* Email
+** mu4e
+#+begin_src elisp
+  (require 'mu4e)
+
+  (use-package mu4e
+    :ensure nil  ;; Installed via pacman
+    ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
+    :config
+    (require 'mu4e-org)
+    (setq mu4e-maildir "~/mail"
+          mu4e-get-mail-command "mbsync -a"
+          mu4e-change-filenames-when-moving t  ;; important
+          update-interval (* 10 60)
+          mu4e-compose-format-flowed t
+          message-kill-buffer-on-exit t
+          mu4e-compose-dont-reply-to-self t
+          mu4e-confirm-quit nil
+          mu4e-view-show-images t
+          ;; mu4e-context-policy 'pick-first
+          mu4e-attachment-dir "~/Downloads"
+
+          ;; user-mail-address "alex@ajpkim.com"
+          user-full-name "Alex Kim"
+          send-mail-function 'smtpmail-send-it
+          smtpmail-default-smtp-server "smtp.fastmail.com"
+          smtpmail-smtp-server "smtp.fastmail.com"
+          smtpmail-smtp-service 465
+          smtpmail-stream-type  'ssl
+
+          mu4e-drafts-folder "/Drafts"
+          mu4e-refile-folder "/Archive"
+          mu4e-sent-folder "/Sent"
+          mu4e-trash-folder "/Trash"
+
+          mu4e-maildir-shortcuts
+          '(("/Inbox" . ?i)
+            ("/Sent" . ?s)
+            ("/accounts" . ?a)
+            ("/Drafts" . ?d)
+            ("/fin" . ?f)
+            ("/travel" . ?t)
+            ("/health" . ?h)
+            ("/orgs" . ?o)
+            ("/me" . ?m)))
+    :bind
+    ("C-x m" . mu4e)
+    ("C-x M" . mu4e-compose-new))
+  ;; Convenient capture in mu4e ("a" brings up quick action menu in mu4e)
+  (defun my-capture-mail (msg)
+    (interactive)
+    (org-capture nil "e"))
+
+  (add-to-list 'mu4e-headers-actions
+               '("org capture mail" . my-capture-mail) t)
+  (add-to-list 'mu4e-view-actions
+               '("org capture email" . my-capture-mail) t)
+#+end_src
+
+** org-mime
+- For creating HTML formatted mail
+- Uses org html export options (can also override)
+  - We can write custom CSS (i.e. code block background, etc.)
+#+begin_src elisp
+  (use-package org-mime
+    :ensure t)
+#+end_src
+* anki-editor
+Sources:
+- [[https://yiufung.net/post/anki-org/][blog]]
+- [[https://github.com/yiufung/dot-emacs/blob/master/init.el][yiufung init.el]]
+#+begin_src elisp
+  (use-package anki-editor
+    :ensure t
+    :bind (:map org-mode-map
+                ("<f12>" . anki-editor-cloze-region-dont-incr)
+                ("<f11>" . anki-editor-cloze-region-auto-incr)
+                ("<f10>" . anki-editor-reset-cloze-number)
+                ("<f9>"  . anki-editor-push-tree))
+    :hook (org-capture-after-finalize . anki-editor-reset-cloze-number) ; Reset cloze-number after each capture.
+    :config (setq anki-editor-create-decks t
+                  anki-editor-org-tags-as-anki-tags t
+                  anki-editor-ignored-org-tags '("anki")))
+
+  (defun anki-editor-cloze-region-auto-incr (&optional arg)
+    "Cloze region without hint and increase card number."
+    (interactive)
+    (anki-editor-cloze-region my-anki-editor-cloze-number "")
+    (setq my-anki-editor-cloze-number (1+ my-anki-editor-cloze-number))
+    (forward-sexp))
+
+  (defun anki-editor-cloze-region-dont-incr (&optional arg)
+    "Cloze region without hint using the previous card number."
+    (interactive)
+    (anki-editor-cloze-region (1- my-anki-editor-cloze-number) "")
+    (forward-sexp))
+
+  (defun anki-editor-reset-cloze-number (&optional arg)
+    "Reset cloze number to ARG or 1"
+    (interactive)
+    (setq my-anki-editor-cloze-number (or arg 1)))
+
+  (defun anki-editor-push-tree ()
+    "Push all notes under a tree."
+    (interactive)
+    (anki-editor-push-notes '(4))
+    (anki-editor-reset-cloze-number))
+
+  ;; Initialize
+  (anki-editor-reset-cloze-number)
+
+  ;; Org-capture templates
+  (setq org-my-anki-file "~/org/anki.org")
+#+end_src
+* IRC
+:PROPERTIES:
+:ID:       bc85cda4-1d18-43fc-82a2-27ea968c2317
+:END:
+#+begin_src emacs-lisp
+  (setq erc-server "irc.libera.chat"
+        erc-nick "ajpkim"
+        erc-user-full-name "Alex Kim"
+        erc-kill-buffer-on-part t
+        erc-fill-column 100  ;; can always override via Olivetti
+
+        erc-fill-function 'erc-fill-static
+        erc-fill-static-center 15
+
+        erc-hide-list '("JOIN" "PART" "QUIT" "MODE" "AWAY")
+        ;; erc-track-exclude  ;; turn off notifications for specific channels
+        erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE" "AWAY")
+        erc-track-visibility nil
+        ;; erc-keywords  ;; will highlight keywords in chats
+        )
+
+  ;; Uniquely color different nicks in chat
+  (use-package erc-hl-nicks
+    :ensure t
+    :after erc
+    :config
+    (add-to-list 'erc-modules 'hl-nicks))
+
+  (use-package erc-image
+    :ensure t
+    :after erc
+    :config
+    (setq erc-image-inline-rescale 200)
+    (add-to-list 'erc-modules 'image))
+
+#+end_src
+* DONE Editing and symbol insertion keys
+#+begin_src emacs-lisp
+  ;; Simple symbol insertion functions
+  (defun insert-inverted-exclamation-point ()
+    (interactive)
+    (insert "¡"))
+
+  (defun insert-inverted-question-mark ()
+    (interactive)
+    (insert "¿"))
+
+  (defun insert-raquo ()
+    (interactive)
+    (insert "» "))
+
+  (defun insert-dots-glyph ()
+    "Use this to signal my personal voice when notetaking etc."
+    (interactive)
+    (insert "܀ "))
+
+  (defun insert-right-arrow ()
+    (interactive)
+    (insert "→ "))
+
+  (defun insert-down-right-arrow ()
+    (interactive)
+    (insert "↪ "))
+
+  (defun insert-latex-delims (arg)
+    (interactive "P")
+    (if arg
+        (insert "\\[\\]")
+      (insert "\\(\\)"))
+    (backward-char)
+    (backward-char))
+
+  (defun copy-and-comment-region (beg end &optional arg)
+    "Copy region as kill and comment-out the copied text.
+  See `comment-region' for behavior of a prefix arg."
+    (interactive "r\nP")
+    (copy-region-as-kill beg end)
+    (goto-char end)
+    (comment-or-uncomment-region beg end arg))
+
+  (defun sort-words (reverse beg end)
+    "From https://www.emacswiki.org/emacs/SortWords
+  Sort words in region alphabetically, in REVERSE if negative.
+      Prefixed with negative \\[universal-argument], sorts in reverse.
+
+      The variable `sort-fold-case' determines whether alphabetic case
+      affects the sort order.
+
+      See `sort-regexp-fields'."
+    (interactive "*P\nr")
+    (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+
+  ;; Quick keybindings
+  (global-set-key (kbd "C-c h r") 'replace-string)
+  (global-set-key (kbd "C-c h l") 'insert-latex-delims)
+  (global-set-key (kbd "C-c h ;") 'copy-and-comment-region)
+  (global-set-key (kbd "C-c h v") 'variable-pitch-mode)
+  (global-set-key (kbd "C-c h n") 'display-line-numbers-mode)
+  (global-set-key (kbd "C-c h a") 'insert-dots-glyph)
+  (global-set-key (kbd "C-c h R") 'insert-right-arrow)
+  (global-set-key (kbd "C-c h D") 'insert-down-right-arrow)
+  (global-set-key (kbd "C-c h !") 'insert-inverted-exclamation-point)
+  (global-set-key (kbd "C-c h ?") 'insert-inverted-question-mark)
+  (global-set-key (kbd "C-c h y") 'yank-from-kill-ring)
+
+  ;; gforce mouse specific
+  (global-set-key (kbd "<mouse-9>") 'display-line-numbers-mode)  ;; make this something useful and for 8
+#+end_src
 
 * DONE Minimal and functional UI
 #+begin_src emacs-lisp
@@ -155,7 +626,7 @@
      ([remap describe-key] . helpful-key)))
 #+end_src
 
-* Modeline
+* DONE Modeline
 #+begin_src emacs-lisp
   (use-package doom-modeline
     :ensure t
@@ -251,27 +722,6 @@
     ("C-c o" . olivetti-mode)
     ("C-c h o" . olivetti-set-width))
 #+end_src
-* Search completion framework (ivy, counsel, swiper)
-#+begin_src emacs-lisp
-  (use-package counsel  ;; Brings in ivy and swiper as dependencies
-    :ensure t
-    :bind
-    (("M-x" . counsel-M-x)
-     ("C-x b" . counsel-ibuffer)
-     ("C-x C-f" . counsel-find-file))
-    :init
-    (ivy-mode 1)
-    :config
-    (setq ivy-use-virtual-buffers t
-          ivy-count-format "%d/%d "))
-
-  (use-package ivy-rich
-    :ensure t
-    :init (ivy-rich-mode 1))
-
-  (use-package ivy-posframe
-    :ensure t)
-#+end_src
 * DONE avy, ace-window
 #+begin_src emacs-lisp
   (use-package avy
@@ -325,79 +775,6 @@
     (other-window 1))
   (global-set-key (kbd "C-x 3") `split-and-follow-vertically)
 #+end_src
-* Editing and symbol insertion keys
-#+begin_src emacs-lisp
-  ;; Simple symbol insertion functions
-  (defun insert-inverted-exclamation-point ()
-    (interactive)
-    (insert "¡"))
-
-  (defun insert-inverted-question-mark ()
-    (interactive)
-    (insert "¿"))
-
-  (defun insert-raquo ()
-    (interactive)
-    (insert "» "))
-
-  (defun insert-dots-glyph ()
-    "Use this to signal my personal voice when notetaking etc."
-    (interactive)
-    (insert "܀ "))
-
-  (defun insert-right-arrow ()
-    (interactive)
-    (insert "→ "))
-
-  (defun insert-down-right-arrow ()
-    (interactive)
-    (insert "↪ "))
-
-  (defun insert-latex-delims (arg)
-    (interactive "P")
-    (if arg
-        (insert "\\[\\]")
-      (insert "\\(\\)"))
-    (backward-char)
-    (backward-char))
-
-  (defun copy-and-comment-region (beg end &optional arg)
-    "Copy region as kill and comment-out the copied text.
-  See `comment-region' for behavior of a prefix arg."
-    (interactive "r\nP")
-    (copy-region-as-kill beg end)
-    (goto-char end)
-    (comment-or-uncomment-region beg end arg))
-
-  (defun sort-words (reverse beg end)
-    "From https://www.emacswiki.org/emacs/SortWords
-  Sort words in region alphabetically, in REVERSE if negative.
-      Prefixed with negative \\[universal-argument], sorts in reverse.
-
-      The variable `sort-fold-case' determines whether alphabetic case
-      affects the sort order.
-
-      See `sort-regexp-fields'."
-    (interactive "*P\nr")
-    (sort-regexp-fields reverse "\\w+" "\\&" beg end))
-
-  ;; Quick keybindings
-  (global-set-key (kbd "C-c h r") 'replace-string)
-  (global-set-key (kbd "C-c h l") 'insert-latex-delims)
-  (global-set-key (kbd "C-c h ;") 'copy-and-comment-region)
-  (global-set-key (kbd "C-c h v") 'variable-pitch-mode)
-  (global-set-key (kbd "C-c h n") 'display-line-numbers-mode)
-  (global-set-key (kbd "C-c h a") 'insert-dots-glyph)
-  (global-set-key (kbd "C-c h R") 'insert-right-arrow)
-  (global-set-key (kbd "C-c h D") 'insert-down-right-arrow)
-  (global-set-key (kbd "C-c h !") 'insert-inverted-exclamation-point)
-  (global-set-key (kbd "C-c h ?") 'insert-inverted-question-mark)
-  (global-set-key (kbd "C-c h y") 'yank-from-kill-ring)
-
-  ;; gforce mouse specific
-  (global-set-key (kbd "<mouse-9>") 'display-line-numbers-mode)  ;; make this something useful and for 8
-#+end_src
-
 * DONE drag-stuff
 #+begin_src emacs-lisp
   (use-package drag-stuff
@@ -425,7 +802,7 @@
     (define-key mc/keymap (kbd "<return>") nil))  ;; Allows us to insert new-line with <RET> and still disable multiple-cursor mode with C-g
 
 #+end_src
-* Focus, center-scroll, and hidden-modeline minor modes
+* DONE Focus, center-scroll, and hidden-modeline minor modes
 - See [[https://protesilaos.com/codelog/2020-07-16-emacs-focused-editing/][Prot "Focused editing"]]
 - [[https://two-wrongs.com/centered-cursor-mode-in-vanilla-emacs][Source (blog)]]
 #+begin_src elisp
@@ -489,7 +866,7 @@
   (global-set-key (kbd "C-c h m") 'my/hidden-mode-line-mode)
   (global-set-key (kbd "C-c z") 'my/focus-mode)
 #+end_src
-* Orgmode
+* DONE Orgmode
 #+begin_src elisp
   (use-package org
     :config
@@ -1021,436 +1398,12 @@
   ;; ❇
   ;; ❈
 #+end_src
-* ??? tree-sitter
-#+begin_src emacs-lisp
-  ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
-  ;; (use-package tree-sitter
-  ;;   :ensure t
-  ;;   :config
-  ;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
-  ;;   (global-tree-sitter-mode)
-  ;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-  ;;   ;; by switching on and off
-  ;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
-  ;; (use-package tree-sitter-langs
-  ;;   :ensure t
-  ;;   :after tree-sitter)
-#+end_src
 * DONE editorconfig
 #+begin_src emacs-lisp
   (use-package editorconfig
     :ensure t
     :config
     (editorconfig-mode 1))
-#+end_src
-* Languages
-** Python
-#+begin_src emacs-lisp
-  (use-package anaconda-mode
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'anaconda-mode))
-
-  (use-package company-anaconda
-    :ensure t
-    :init (require 'rx)
-    :after (company)
-    :config
-    (add-to-list 'company-backends 'company-anaconda))
-
-  (add-hook 'python-mode-hook (lambda () (setq tab-width 4)))
-
-  ;; Jupyter notebooks
-  (use-package ein
-    :ensure t)
-
-#+end_src
-** JavaScript
-#+begin_src emacs-lisp
-#+end_src
-** TypeScript
-#+begin_src emacs-lisp
-  (use-package typescript-mode
-    :ensure t)
-  ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
-  ;; (use-package typescript-mode
-  ;;   :ensure t
-  ;;   :after tree-sitter
-  ;;   :config
-  ;;   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
-  ;;   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
-  ;;   (define-derived-mode typescriptreact-mode typescript-mode
-  ;;     "TypeScript TSX")
-
-  ;;   ;; use our derived mode for tsx files
-  ;;   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
-  ;;   ;; by default, typescript-mode is mapped to the treesitter typescript parser
-  ;;   ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
-  ;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
-
-  ;; ;; https://github.com/orzechowskid/tsi.el/
-  ;; ;; great tree-sitter-based indentation for typescript/tsx, css, json
-  ;; (use-package tsi
-  ;;   :after tree-sitter
-  ;;   :quelpa (tsi :fetcher github :repo "orzechowskid/tsi.el")
-  ;;   ;; define autoload definitions which when actually invoked will cause package to be loaded
-  ;;   :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode)
-  ;;   :init
-  ;;   (add-hook 'typescript-mode-hook (lambda () (tsi-typescript-mode 1)))
-  ;;   (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
-  ;;   (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
-  ;;   (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1))))
-#+end_src
-** JSON
-#+begin_src emacs-lisp
-  (use-package json-mode
-    :ensure t)
-#+end_src
-** Lisps
-#+begin_src emacs-lisp
-  (require 'xscheme)  ;; Scheme
-
-  (use-package geiser
-    :ensure t)
-
-  (use-package geiser-mit
-    :ensure t)
-
-#+end_src
-** Go
-#+begin_src emacs-lisp
-  (use-package ob-go
-    :ensure t)
-
-  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
-
-  (require 'lsp-mode)
-  (add-hook 'go-mode-hook #'lsp-deferred)
-
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  (defun lsp-go-install-save-hooks ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-#+end_src
-** C#
-#+begin_src emacs-lisp
-  ;;;; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
-  ;; (defun my/csharp-mode-hook ()
-  ;;   (setq-local lsp-auto-guess-root t)
-  ;;   (lsp))
-
-  (setenv "FrameworkPathOverride" "/lib/mono/4.5")  ; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
-
-  (use-package csharp-mode
-    :ensure t
-    :mode "\\.cs\\'")
-
-#+end_src
-** CSV
-#+begin_src elisp
-  (use-package csv-mode
-    :ensure t)
-#+end_src
-** Docker
-#+begin_src emacs-lisp
-    (use-package dockerfile-mode
-      :ensure t)
-#+end_src
-** LaTeX
-#+begin_src elisp
-  (use-package auctex
-    :ensure t
-    :defer t
-    :hook (LaTeX-mode . display-line-numbers-mode))
-
-
-    ;; :hook (LaTeX-mode .
-    ;;                   (lambda ()
-    ;;                     (push (list 'output-pdf "Firefox")
-    ;;                           TeX-view-program-selection))))
-
-#+end_src
-
-#+RESULTS:
-
-** yaml
-#+begin_src emacs-lisp
-  (use-package yaml-mode
-    :ensure t)
-
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-
-  ;; Mirror python-mode newline and indent behavior
-  (add-hook 'yaml-mode-hook
-      (lambda ()
-         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
-#+end_src
-* emmet
-#+begin_src emacs-lisp
-  (use-package emmet-mode
-    :ensure t)
-#+end_src
-* TODO ? web-mode
-#+begin_src emacs-lisp
-  ;; (use-package web-mode
-  ;;   :ensure t
-  ;;   :mode (("\\.js\\'" . web-mode)
-  ;;          ("\\.jsx\\'" . web-mode)
-  ;;          ("\\.ts\\'" . web-mode)
-  ;;          ("\\.tsx\\'" . web-mode)
-  ;;          ("\\.html\\'" . web-mode))
-  ;;   :commands web-mode)
-
-  ;; (add-hook 'web-mode-hook 'emmet-mode)
-
-  ;; (setq web-mode-markup-indent-offset 2
-  ;;       web-mode-code-indent-offset 2
-  ;;       web-mode-css-indent-offset 2)
-#+end_src
-* TODO ? prettier
-#+begin_src emacs-lisp
-  ;; (use-package prettier-js
-  ;;   :ensure t)
-
-  ;; (setq prettier-js-args '(
-  ;;   "--trailing-comma" "all"
-  ;;   "--bracket-spacing" "false"
-  ;; ))
-
-  ;; ;; Not working out of the box on save so using this workaround
-  ;; ;; (add-hook 'typescript-mode 'prettier-js-mode)
-  ;; ;; (add-hook 'javascript-mode 'prettier-js-mode)
-
-  ;; (add-hook 'typescript-mode-hook
-  ;;           (lambda ()
-  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
-
-  ;; (add-hook 'javascript-mode-hook
-  ;;           (lambda ()
-  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
-#+end_src
-* LSP
-#+begin_src emacs-lisp
-  ;; Auto-complete backend (Language Server Protocol)
-  (use-package lsp-mode
-    :ensure t
-    :hook ((lsp-mode . lsp-enable-which-key-integration)
-           (csharp-mode . lsp))
-    :config (setq lsp-log-io nil
-                  lsp-restart 'auto-restart
-                  lsp-keymap-prefix "C-c v")
-    :commands (lsp-deferred))
-
-
-  (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-
-  (use-package lsp-ivy
-      :ensure t
-      :commands lsp-ivy-workspace-symbol)
-
-  (use-package lsp-tailwindcss
-    :ensure t)
-
-#+end_src
-* company
-#+begin_src emacs-lisp
-  (use-package company
-    :ensure t
-    :config
-    (setq company-idle-delay 0
-          company-show-numbers t
-          company-minimum-prefix-length 1
-          company-selection-wrap-around t)
-    :init
-    (add-hook 'prog-mode-hook 'company-mode))
-#+end_src
-
-* magit
-#+begin_src emacs-lisp
-  (use-package magit
-    :ensure t)
-#+end_src
-* projectile
-#+begin_src emacs-lisp
-  (use-package projectile
-    :ensure t
-    ;; :diminish projectile-mode
-    ;; :config (projectile-mode)
-    :custom ((projectile-completion-system 'ivy))
-    :bind-keymap
-    ("C-c p" . projectile-command-map)
-    :init
-    (when (file-directory-p "~/code")
-      (setq projectile-project-search-path '("~/code")))
-    (setq projectile-switch-project-action #'projectile-dired))
-#+end_src
-* gpg
-#+begin_src elisp
-  (use-package pinentry
-    :ensure t
-    :config
-    (setf epa-pinentry-mode 'loopback)
-    (pinentry-start))
-
-  (use-package pass
-    :ensure t
-    :config
-    (setf epa-pinentry-mode 'loopback))
-#+end_src
-* Email
-** mu4e
-#+begin_src elisp
-  (require 'mu4e)
-
-  (use-package mu4e
-    :ensure nil  ;; Installed via pacman
-    ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
-    :config
-    (require 'mu4e-org)
-    (setq mu4e-maildir "~/mail"
-          mu4e-get-mail-command "mbsync -a"
-          mu4e-change-filenames-when-moving t  ;; important
-          update-interval (* 10 60)
-          mu4e-compose-format-flowed t
-          message-kill-buffer-on-exit t
-          mu4e-compose-dont-reply-to-self t
-          mu4e-confirm-quit nil
-          mu4e-view-show-images t
-          ;; mu4e-context-policy 'pick-first
-          mu4e-attachment-dir "~/Downloads"
-
-          ;; user-mail-address "alex@ajpkim.com"
-          user-full-name "Alex Kim"
-          send-mail-function 'smtpmail-send-it
-          smtpmail-default-smtp-server "smtp.fastmail.com"
-          smtpmail-smtp-server "smtp.fastmail.com"
-          smtpmail-smtp-service 465
-          smtpmail-stream-type  'ssl
-
-          mu4e-drafts-folder "/Drafts"
-          mu4e-refile-folder "/Archive"
-          mu4e-sent-folder "/Sent"
-          mu4e-trash-folder "/Trash"
-
-          mu4e-maildir-shortcuts
-          '(("/Inbox" . ?i)
-            ("/Sent" . ?s)
-            ("/accounts" . ?a)
-            ("/Drafts" . ?d)
-            ("/fin" . ?f)
-            ("/travel" . ?t)
-            ("/health" . ?h)
-            ("/orgs" . ?o)
-            ("/me" . ?m)))
-    :bind
-    ("C-x m" . mu4e)
-    ("C-x M" . mu4e-compose-new))
-  ;; Convenient capture in mu4e ("a" brings up quick action menu in mu4e)
-  (defun my-capture-mail (msg)
-    (interactive)
-    (org-capture nil "e"))
-
-  (add-to-list 'mu4e-headers-actions
-               '("org capture mail" . my-capture-mail) t)
-  (add-to-list 'mu4e-view-actions
-               '("org capture email" . my-capture-mail) t)
-#+end_src
-
-** org-mime
-- For creating HTML formatted mail
-- Uses org html export options (can also override)
-  - We can write custom CSS (i.e. code block background, etc.)
-#+begin_src elisp
-  (use-package org-mime
-    :ensure t)
-#+end_src
-* anki-editor
-Sources:
-- [[https://yiufung.net/post/anki-org/][blog]]
-- [[https://github.com/yiufung/dot-emacs/blob/master/init.el][yiufung init.el]]
-#+begin_src elisp
-  (use-package anki-editor
-    :ensure t
-    :bind (:map org-mode-map
-                ("<f12>" . anki-editor-cloze-region-dont-incr)
-                ("<f11>" . anki-editor-cloze-region-auto-incr)
-                ("<f10>" . anki-editor-reset-cloze-number)
-                ("<f9>"  . anki-editor-push-tree))
-    :hook (org-capture-after-finalize . anki-editor-reset-cloze-number) ; Reset cloze-number after each capture.
-    :config (setq anki-editor-create-decks t
-                  anki-editor-org-tags-as-anki-tags t
-                  anki-editor-ignored-org-tags '("anki")))
-
-  (defun anki-editor-cloze-region-auto-incr (&optional arg)
-    "Cloze region without hint and increase card number."
-    (interactive)
-    (anki-editor-cloze-region my-anki-editor-cloze-number "")
-    (setq my-anki-editor-cloze-number (1+ my-anki-editor-cloze-number))
-    (forward-sexp))
-
-  (defun anki-editor-cloze-region-dont-incr (&optional arg)
-    "Cloze region without hint using the previous card number."
-    (interactive)
-    (anki-editor-cloze-region (1- my-anki-editor-cloze-number) "")
-    (forward-sexp))
-
-  (defun anki-editor-reset-cloze-number (&optional arg)
-    "Reset cloze number to ARG or 1"
-    (interactive)
-    (setq my-anki-editor-cloze-number (or arg 1)))
-
-  (defun anki-editor-push-tree ()
-    "Push all notes under a tree."
-    (interactive)
-    (anki-editor-push-notes '(4))
-    (anki-editor-reset-cloze-number))
-
-  ;; Initialize
-  (anki-editor-reset-cloze-number)
-
-  ;; Org-capture templates
-  (setq org-my-anki-file "~/org/anki.org")
-#+end_src
-* IRC
-:PROPERTIES:
-:ID:       bc85cda4-1d18-43fc-82a2-27ea968c2317
-:END:
-#+begin_src emacs-lisp
-  (setq erc-server "irc.libera.chat"
-        erc-nick "ajpkim"
-        erc-user-full-name "Alex Kim"
-        erc-kill-buffer-on-part t
-        erc-fill-column 100  ;; can always override via Olivetti
-
-        erc-fill-function 'erc-fill-static
-        erc-fill-static-center 15
-
-        erc-hide-list '("JOIN" "PART" "QUIT" "MODE" "AWAY")
-        ;; erc-track-exclude  ;; turn off notifications for specific channels
-        erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE" "AWAY")
-        erc-track-visibility nil
-        ;; erc-keywords  ;; will highlight keywords in chats
-        )
-
-  ;; Uniquely color different nicks in chat
-  (use-package erc-hl-nicks
-    :ensure t
-    :after erc
-    :config
-    (add-to-list 'erc-modules 'hl-nicks))
-
-  (use-package erc-image
-    :ensure t
-    :after erc
-    :config
-    (setq erc-image-inline-rescale 200)
-    (add-to-list 'erc-modules 'image))
-
 #+end_src
 * DONE Load ak elisp
 #+begin_src elisp
@@ -1471,48 +1424,4 @@ Sources:
 
   (global-set-key (kbd "C-c e") 'config-visit)
   (global-set-key (kbd "C-c r") 'config-reload)
-#+end_src
-* TODO JSX and TSX (Modularize correctly)
-#+begin_src emacs-lisp
-  ;; web-mode
-  (setq-default tab-width 2)
-  (setq indent-tabs-mode nil)
-  (defun my/webmode-hook ()
-          "Webmode hooks."
-          (setq web-mode-enable-comment-annotation t)
-          (setq web-mode-markup-indent-offset 2)
-          (setq web-mode-code-indent-offset 2)
-          (setq web-mode-css-indent-offset 2)
-          (setq web-mode-attr-indent-offset 0)
-          (setq web-mode-enable-auto-indentation t)
-          (setq web-mode-enable-auto-closing t)
-          (setq web-mode-enable-auto-pairing t)
-          (setq web-mode-enable-css-colorization t)
-  )
-  (use-package web-mode
-    :ensure t
-    :mode (("\\.jsx?\\'" . web-mode)
-           ("\\.tsx?\\'" . web-mode)
-           ("\\.html\\'" . web-mode))
-    :commands web-mode
-          :hook (web-mode . my/webmode-hook)
-  )
-
-  (defun enable-minor-mode (my-pair)
-    "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
-    (if (buffer-file-name)
-        (if (string-match (car my-pair) buffer-file-name)
-            (funcall (cdr my-pair)))))
-
-  (use-package prettier-js
-    :ensure t)
-  (add-hook 'web-mode-hook #'(lambda ()
-                               (enable-minor-mode
-                                '("\\.jsx?\\'" . prettier-js-mode))
-                               (enable-minor-mode
-                                '("\\.tsx?\\'" . prettier-js-mode))))
-
-  (eval-after-load 'web-mode
-    '(progn
-       (add-hook 'web-mode-hook #'prettier-js-mode)))
 #+end_src
