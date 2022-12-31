@@ -7,7 +7,7 @@ font pango:DejaVu Sans Mono 12
 
 exec [--no-startup-id] alacritty
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg
+exec_always feh --bg-scale $HOME/Pictures/bg-img/wallpaper.jpg
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+x move workspace to output right
