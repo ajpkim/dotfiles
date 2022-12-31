@@ -494,21 +494,21 @@
   (use-package org
     :config
     (setq org-startup-indented t
-          org-ellipsis " »"
-          org-hide-emphasis-markers t
-          org-startup-with-inline-images t
-          org-image-actual-width 800  ;; adjust as nec.
-          org-startup-with-latex-preview nil  ;; SLOW
-          org-format-latex-options (plist-put org-format-latex-options :scale 3.5)
-          org-pretty-entities nil
-          org-startup-folded t
-          org-extend-today-until 2
-          org-archive-location "~/org/archives/%s_archive::"
-          org-id-link-to-org-use-id 'create-if-interactive
-          org-refile-targets '((org-agenda-files :todo . "PROJECT"))
-          org-refile-use-outline-path nil
-          org-outline-path-complete-in-steps nil
-          )
+	  org-ellipsis " »"
+	  org-hide-emphasis-markers t
+	  org-startup-with-inline-images t
+	  org-image-actual-width 800  ;; adjust as nec.
+	  org-startup-with-latex-preview nil  ;; SLOW
+	  org-format-latex-options (plist-put org-format-latex-options :scale 3.5)
+	  org-pretty-entities nil
+	  org-startup-folded t
+	  org-extend-today-until 2
+	  org-archive-location "~/org/archives/%s_archive::"
+	  org-id-link-to-org-use-id 'create-if-interactive
+	  org-refile-targets '((org-agenda-files :todo . "PROJECT"))
+	  org-refile-use-outline-path nil
+	  org-outline-path-complete-in-steps nil
+	  )
     :bind
     (("C-c l" . org-store-link)
      ("C-c a" . org-agenda)
@@ -532,62 +532,62 @@
 
   ;; Prettify leading chars
   (font-lock-add-keywords `org-mode
-                          `(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "·"))))))
+			  `(("^ *\\([-]\\) "
+			     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "·"))))))
 
   ;; org-capture
   (setq org-capture-templates
-        '(
-          ;; Anki templates
-          ("a" "Anki")
-          ("aa" "Anki basic"
-           entry
-           (file+headline org-my-anki-file "New Cards")
-           "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
-          ("ac" "Anki cloze"
-           entry
-           (file+headline org-my-anki-file "New Cards")
-           "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
-          ("at" "Anki Type"
-           entry
-           (file+headline org-my-anki-file "New Cards")
-           "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
-          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-          ("c" "Task" entry (file+headline "~/org/todo.org" "Inbox")
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
-           :prepend t)
-          ("d" "Dream journal" plain (file+olp+datetree "~/org/dreams.org")
-           "%?"
-           :tree-type 'daily)
-          ("e" "Event (non-recurring)" entry (file+headline "~/org/events.org" "Non-recurring")
-           "* %?  %^g\n%^t"
-           :prepend t)
-          ("E" "Event (recurring)" entry (file+headline "~/org/events.org" "Recurring")
-           "* %?  %^g\n%^t"
-           :prepend t)
-          ("f" "Current File Link" entry (file+headline "~/org/todo.org" "Inbox")
-           "* TODO %a\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
-           :prepend t)
-          ("l" "Links" entry (file "~/org/links.org")
-           "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
-           :prepend t)
-          ("P" "Passtur" entry (file+headline "~/org/passtur.org" "Passtur Inbox")
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
-           :prepend t)
-          ("s" "Shelf" entry (file+headline "~/org/todo.org" "Shelf")
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
-           :prepend t)
-          ("w" "Writing Inbox" entry (file "~/org/notes/inbox.org")
-           "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
-           :prepend t)
-          ("W" "Current tree to writing inbox" entry (file "~/org/notes/inbox.org")
-           "* %u %a\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
-           :prepend t)
-          ))
+	'(
+	  ;; Anki templates
+	  ("a" "Anki")
+	  ("aa" "Anki basic"
+	   entry
+	   (file+headline org-my-anki-file "New Cards")
+	   "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+	  ("ac" "Anki cloze"
+	   entry
+	   (file+headline org-my-anki-file "New Cards")
+	   "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
+	  ("at" "Anki Type"
+	   entry
+	   (file+headline org-my-anki-file "New Cards")
+	   "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+	  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	  ("c" "Task" entry (file+headline "~/org/todo.org" "Inbox")
+	   "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
+	   :prepend t)
+	  ("d" "Dream journal" plain (file+olp+datetree "~/org/dreams.org")
+	   "%?"
+	   :tree-type 'daily)
+	  ("e" "Event (non-recurring)" entry (file+headline "~/org/events.org" "Non-recurring")
+	   "* %?  %^g\n%^t"
+	   :prepend t)
+	  ("E" "Event (recurring)" entry (file+headline "~/org/events.org" "Recurring")
+	   "* %?  %^g\n%^t"
+	   :prepend t)
+	  ("f" "Current File Link" entry (file+headline "~/org/todo.org" "Inbox")
+	   "* TODO %a\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
+	   :prepend t)
+	  ("l" "Links" entry (file "~/org/links.org")
+	   "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
+	   :prepend t)
+	  ("P" "Passtur" entry (file+headline "~/org/passtur.org" "Passtur Inbox")
+	   "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
+	   :prepend t)
+	  ("s" "Shelf" entry (file+headline "~/org/todo.org" "Shelf")
+	   "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
+	   :prepend t)
+	  ("w" "Writing Inbox" entry (file "~/org/notes/inbox.org")
+	   "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
+	   :prepend t)
+	  ("W" "Current tree to writing inbox" entry (file "~/org/notes/inbox.org")
+	   "* %u %a\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
+	   :prepend t)
+	  ))
 
   ;; TODO
   (setq org-todo-keywords
-        '((sequence "PROJECT(P)" "ACTIVE(a)""TODO(t)" "LATER(l)" "WAIT(w)" "SOMEDAY(s)" "|" "PASS(p)" "DONE(d)")))
+	'((sequence "PROJECT(P)" "ACTIVE(a)""TODO(t)" "LATER(l)" "WAIT(w)" "SOMEDAY(s)" "|" "PASS(p)" "DONE(d)")))
 
   ;; #ffff66
   ;; #79a8ff
@@ -596,137 +596,137 @@
   ;; #f79a46
   ;; #dfaa8e
   (setq org-todo-keyword-faces
-        '(
-          ("TODO" . (:foreground "#ffbbff" :weight bold))
-          ("ACTIVE" . (:foreground "#44ddff" :weight bold))
-          ("LATER" . (:foreground "##c4aead" :weight bold))
-          ("WAIT" . (:foreground "#ffccbc" :weight bold))
-          ("SOMEDAY" . (:foreground "#d3d3d3" :weight bold))
-          ("PROJECT" . (:foreground "#adbce6" :weight bold))
-          ("PASS" . (:foreground "#ff3d40" :weight bold))
-          ("DONE" . (:foreground "#19ffaf" :weight bold))))
+	'(
+	  ("TODO" . (:foreground "#ffbbff" :weight bold))
+	  ("ACTIVE" . (:foreground "#44ddff" :weight bold))
+	  ("LATER" . (:foreground "##c4aead" :weight bold))
+	  ("WAIT" . (:foreground "#ffccbc" :weight bold))
+	  ("SOMEDAY" . (:foreground "#d3d3d3" :weight bold))
+	  ("PROJECT" . (:foreground "#adbce6" :weight bold))
+	  ("PASS" . (:foreground "#ff3d40" :weight bold))
+	  ("DONE" . (:foreground "#19ffaf" :weight bold))))
 
   (setq org-log-done 'time)
   (setq org-log-into-drawer "LOGBOOK")
 
   ;; org-agenda
   (setq org-agenda-span 5
-        org-agenda-start-on-weekday nil
-        org-agenda-skip-deadline-if-done t
-        org-agenda-skip-scheduled-if-done t
-        org-agenda-todo-ignore-deadlines nil
-        org-agenda-todo-ignore-scheduled nil
-        org-deadline-warning-days 3
-        org-agenda-window-setup 'current-window
-        org-agenda-prefix-format " %i %-12:c%?-12t% s"
-        )
+	org-agenda-start-on-weekday nil
+	org-agenda-skip-deadline-if-done t
+	org-agenda-skip-scheduled-if-done t
+	org-agenda-todo-ignore-deadlines nil
+	org-agenda-todo-ignore-scheduled nil
+	org-deadline-warning-days 3
+	org-agenda-window-setup 'current-window
+	org-agenda-prefix-format " %i %-12:c%?-12t% s"
+	)
 
   (set-face-attribute 'org-agenda-calendar-event nil :foreground "#d6b0ff")
 
   (setq org-agenda-custom-commands
-        '(
-          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-          ("E" "Events and Deadlines" agenda ""
-           ((org-agenda-overriding-header "Week Events and Deadlines\n")
-            (org-agenda-span 30)
-            (org-agenda-start-on-weekday 1)
-            (org-agenda-time-grid nil)
-            (org-agenda-repeating-timestamp-show-all nil)
+	'(
+	  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	  ("E" "Events and Deadlines" agenda ""
+	   ((org-agenda-overriding-header "Week Events and Deadlines\n")
+	    (org-agenda-span 30)
+	    (org-agenda-start-on-weekday 1)
+	    (org-agenda-time-grid nil)
+	    (org-agenda-repeating-timestamp-show-all nil)
 
-            (org-agenda-entry-types '(:timestamp :sexp :deadline))))
+	    (org-agenda-entry-types '(:timestamp :sexp :deadline))))
 
-          ("d" "Today's Agenda"
-           ;; ((agenda
-           ((agenda "Today's Tasks"
-                    ((org-agenda-category-filter-preset '("-passtur")))
-                    ((org-agenda-span 1)))))
-          ("w" "Week Agenda"
-           ;; ((agenda
-           ((agenda "Week Tasks"
-                    ((org-agenda-category-filter-preset '("-passtur")))
-                    ((org-agenda-span 5)))))
+	  ("d" "Today's Agenda"
+	   ;; ((agenda
+	   ((agenda "Today's Tasks"
+		    ((org-agenda-category-filter-preset '("-passtur")))
+		    ((org-agenda-span 1)))))
+	  ("w" "Week Agenda"
+	   ;; ((agenda
+	   ((agenda "Week Tasks"
+		    ((org-agenda-category-filter-preset '("-passtur")))
+		    ((org-agenda-span 5)))))
 
-          ("W" "Weekly Review"
-           ((todo ""
-                  ((org-agenda-files '("~/org/todo.org"))
-                   (org-agenda-overriding-header "Unprocessed TODOs\n")
+	  ("W" "Weekly Review"
+	   ((todo ""
+		  ((org-agenda-files '("~/org/todo.org"))
+		   (org-agenda-overriding-header "Unprocessed TODOs\n")
 
-                   (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-                   (org-agenda-prefix-format "")
-                   ))
-            ;; (agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
-            (todo "ACTIVE"
-                  ((org-agenda-overriding-header "Review Active Tasks\n")
-                   (org-agenda-sorting-strategy '(priority-down))))
-            (tags-todo "+TODO=\"PROJECT\"+LEVEL=1"  ;; review top level projects
-                       ((org-agenda-overriding-header "Review Projects\n")
-                        (org-agenda-prefix-format "")))
-            ))
+		   (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
+		   (org-agenda-prefix-format "")
+		   ))
+	    ;; (agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
+	    (todo "ACTIVE"
+		  ((org-agenda-overriding-header "Review Active Tasks\n")
+		   (org-agenda-sorting-strategy '(priority-down))))
+	    (tags-todo "+TODO=\"PROJECT\"+LEVEL=1"  ;; review top level projects
+		       ((org-agenda-overriding-header "Review Projects\n")
+			(org-agenda-prefix-format "")))
+	    ))
 
-          ("P" "Passtur"
-           ((tags-todo "CATEGORY=\"passtur\"+TODO=\"PROJECT\""
-                       ((org-agenda-overriding-header "PASSTUR PROJECTs\n")
-                        (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-                        (org-agenda-prefix-format "")
-                        ))
-            (tags-todo "CATEGORY=\"passtur\"+TODO=\"ACTIVE\""
-                       ((org-agenda-overriding-header "Passtur ACTIVEs\n")
-                        (org-agenda-prefix-format "")
-                        ))
-            (tags-todo "CATEGORY=\"passtur\"+TODO=\"TODO\""
-                       ((org-agenda-overriding-header "PASSTUR TODOs\n")
-                        (org-agenda-prefix-format "")
-                        )))
-           )
+	  ("P" "Passtur"
+	   ((tags-todo "CATEGORY=\"passtur\"+TODO=\"PROJECT\""
+		       ((org-agenda-overriding-header "PASSTUR PROJECTs\n")
+			(org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
+			(org-agenda-prefix-format "")
+			))
+	    (tags-todo "CATEGORY=\"passtur\"+TODO=\"ACTIVE\""
+		       ((org-agenda-overriding-header "Passtur ACTIVEs\n")
+			(org-agenda-prefix-format "")
+			))
+	    (tags-todo "CATEGORY=\"passtur\"+TODO=\"TODO\""
+		       ((org-agenda-overriding-header "PASSTUR TODOs\n")
+			(org-agenda-prefix-format "")
+			)))
+	   )
 
 
-          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-          ("u" "Unprocessed"
-           ((todo ""
-                  ((org-agenda-files '("~/org/todo.org"))
-                   (org-agenda-overriding-header "Unprocessed TODOs\n")
-                   ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-                   (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ;; Category based views
-          ("cc" "Computing"
-           ((tags-todo "CATEGORY=\"computing\"+TODO=\"TODO\""
-                       ((org-agenda-overriding-header "Computing Inbox\n")
-                        (org-agenda-sorting-strategy '(todo-state-up priority-down))
-                        (org-agenda-prefix-format "")
-                        ))))
-          ("cb" "ajpkim.com"
-           ((tags "CATEGORY=\"mysite\""
-                  ((org-agenda-overriding-header "ajpkim.com Inbox\n")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ("ci" "Ideas"
-           ((tags "CATEGORY=\"ideas\""
-                  ((org-agenda-overriding-header "Ideas\n")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ("cm" "Money"
-           ((tags "CATEGORY=\"money\""
-                  ((org-agenda-overriding-header "Money Matters\n")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ("cp" "Programming"
-           ((tags "CATEGORY=\"prog\""
-                  ((org-agenda-overriding-header "Programming Inbox\n")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ("cs" "Shelf"
-           ((tags "CATEGORY=\"shelf\""
-                  ((org-agenda-overriding-header "Shelf Stuff\n")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-prefix-format "")
-                   ))))
-          ))
+	  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	  ("u" "Unprocessed"
+	   ((todo ""
+		  ((org-agenda-files '("~/org/todo.org"))
+		   (org-agenda-overriding-header "Unprocessed TODOs\n")
+		   ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+		   (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ;; Category based views
+	  ("cc" "Computing"
+	   ((tags-todo "CATEGORY=\"computing\"+TODO=\"TODO\""
+		       ((org-agenda-overriding-header "Computing Inbox\n")
+			(org-agenda-sorting-strategy '(todo-state-up priority-down))
+			(org-agenda-prefix-format "")
+			))))
+	  ("cb" "ajpkim.com"
+	   ((tags "CATEGORY=\"mysite\""
+		  ((org-agenda-overriding-header "ajpkim.com Inbox\n")
+		   (org-agenda-sorting-strategy '(todo-state-up))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ("ci" "Ideas"
+	   ((tags "CATEGORY=\"ideas\""
+		  ((org-agenda-overriding-header "Ideas\n")
+		   (org-agenda-sorting-strategy '(todo-state-up))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ("cm" "Money"
+	   ((tags "CATEGORY=\"money\""
+		  ((org-agenda-overriding-header "Money Matters\n")
+		   (org-agenda-sorting-strategy '(todo-state-up))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ("cp" "Programming"
+	   ((tags "CATEGORY=\"prog\""
+		  ((org-agenda-overriding-header "Programming Inbox\n")
+		   (org-agenda-sorting-strategy '(todo-state-up))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ("cs" "Shelf"
+	   ((tags "CATEGORY=\"shelf\""
+		  ((org-agenda-overriding-header "Shelf Stuff\n")
+		   (org-agenda-sorting-strategy '(todo-state-up))
+		   (org-agenda-prefix-format "")
+		   ))))
+	  ))
 
   ;; Archiving
   (defun my/org-archive-done-tasks-file ()
@@ -767,25 +767,25 @@
 
     ;;; Clean html export
   (setq org-html-head-include-scripts nil
-        org-html-head-include-default-style nil
-        org-export-headline-levels 10
-        org-html-mathjax-template ""
-        org-html-postamble nil
-        org-export-with-section-numbers nil
-        org-export-with-toc nil
-        org-export-with-tags nil
-        org-html-html5-fancy t
-        org-html-doc-type "HTML5"
-        )
+	org-html-head-include-default-style nil
+	org-export-headline-levels 10
+	org-html-mathjax-template ""
+	org-html-postamble nil
+	org-export-with-section-numbers nil
+	org-export-with-toc nil
+	org-export-with-tags nil
+	org-html-html5-fancy t
+	org-html-doc-type "HTML5"
+	)
 
   ;; https://orgmode.org/manual/Bare-HTML.html#Bare-HTML
   (setq org-html-head ""
-        org-html-head-extra ""
-        org-html-head-include-default-style nil
-        org-html-head-include-scripts nil
-        org-html-preamble nil
-        org-html-postamble nil
-        org-html-use-infojs nil)
+	org-html-head-extra ""
+	org-html-head-include-default-style nil
+	org-html-head-include-scripts nil
+	org-html-preamble nil
+	org-html-postamble nil
+	org-html-use-infojs nil)
 
   ;; IDs
   (defun my/org-get-headline-based-ids (&rest _)
@@ -794,27 +794,27 @@
       If multiple trees end-up with the same id property, issue a
       message and undo any property insertion thus far.
       E.g., ↯ We'll go on a ∀∃⇅ adventure
-         ↦  We'll-go-on-a-adventure
+	 ↦  We'll-go-on-a-adventure
       "
     (interactive)
     (let ((ids))
       (org-map-entries
        (lambda ()
-         (org-with-point-at (point)
-           (let ((id (org-entry-get nil "CUSTOM_ID")))
-             (unless id
-               (thread-last (nth 4 (org-heading-components))
-                            (s-replace-regexp "[^[:alnum:]']" "-")
-                            (s-replace-regexp "-+" "-")
-                            (s-chop-prefix "-")
-                            (s-chop-suffix "-")
-                            (setq id))
-               (if (not (member id ids))
-                   (push id ids)
-                 (message-box "Oh no, a repeated id!\n\n\t%s" id)
-                 (undo)
-                 (setq quit-flag t))
-               (org-entry-put nil "CUSTOM_ID" id))))))))
+	 (org-with-point-at (point)
+	   (let ((id (org-entry-get nil "CUSTOM_ID")))
+	     (unless id
+	       (thread-last (nth 4 (org-heading-components))
+			    (s-replace-regexp "[^[:alnum:]']" "-")
+			    (s-replace-regexp "-+" "-")
+			    (s-chop-prefix "-")
+			    (s-chop-suffix "-")
+			    (setq id))
+	       (if (not (member id ids))
+		   (push id ids)
+		 (message-box "Oh no, a repeated id!\n\n\t%s" id)
+		 (undo)
+		 (setq quit-flag t))
+	       (org-entry-put nil "CUSTOM_ID" id))))))))
 
 
   (defun my/org-uuid-custom-id-get (&optional pom create prefix)
@@ -827,15 +827,15 @@
     (interactive)
     (org-with-point-at pom
       (let ((id (org-entry-get nil "CUSTOM_ID")))
-        (cond
-         ((and id (stringp id) (string-match "\\S-" id))
-          id)
-         (create
-          ;; (setq id (org-id-new (concat prefix "h")))
-          (setq id (org-id-new))
-          (org-entry-put pom "CUSTOM_ID" id)
-          (org-id-add-location id (buffer-file-name (buffer-base-buffer)))
-          id)))))
+	(cond
+	 ((and id (stringp id) (string-match "\\S-" id))
+	  id)
+	 (create
+	  ;; (setq id (org-id-new (concat prefix "h")))
+	  (setq id (org-id-new))
+	  (org-entry-put pom "CUSTOM_ID" id)
+	  (org-id-add-location id (buffer-file-name (buffer-base-buffer)))
+	  id)))))
 
   (defun my/org-add-uudid-custom-ids-to-headlines-in-file ()
     "Add CUSTOM_ID properties to all headlines in the

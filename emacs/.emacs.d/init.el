@@ -25,6 +25,14 @@
 (require 'ak-files)
 (require 'ak-prog)
 
+;; Org-mode stuff
+(require 'ak-org)
+(require 'ak-org-roam)
+(require 'ak-org-journal)
+(require 'ak-citations)
+
+
+
 ;; Quickly access and reload config
 (defun config-visit ()
   (interactive)
