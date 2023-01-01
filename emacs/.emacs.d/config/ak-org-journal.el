@@ -21,6 +21,6 @@
          ("C-c J" . org-journal-open-current-journal-file)
          ("C-c s" . org-journal-search)
 	 :map org-journal-mode-map
-	 ("C-c b" . org-journal-previous-entry)
-	 ("C-c f" . org-journal-next-entry)
+	 ("C-c B" . org-journal-previous-entry)
+	 ("C-c F" . org-journal-next-entry)
          ))

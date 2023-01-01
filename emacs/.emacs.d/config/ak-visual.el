@@ -23,7 +23,3 @@
   :ensure t
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-
-
-(message "Loaded ak-visual.")
-
