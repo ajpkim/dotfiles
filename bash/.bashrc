@@ -84,3 +84,10 @@ SCRIPTS="~/scripts"
 
 # Remap Caps Lock to Control
 setxkbmap -layout us -option ctrl:nocaps
+
+
+######################################################################
+## Env variables
+######################################################################
+
+export MAIN_DISPLAY="eDP-1"
