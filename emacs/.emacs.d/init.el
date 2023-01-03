@@ -13,16 +13,17 @@
   (package-install `use-package))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; General
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Put all the changes made by customize into a tmp file
 (setq custom-file (make-temp-file "emacs-custom"))
 
-;; Add all my custom config dir to the load-path
-(add-to-list 'load-path "~/.emacs.d/config")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load all my configurations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/config")
 
 (require 'ak-base)
 (require 'ak-modus)
@@ -39,7 +40,16 @@
 (require 'ak-org-journal)
 (require 'ak-citations)
 
-;; Modes
+;; Important packages
+(require 'ak-ivy)
+(require 'ak-company)
+;; (require 'ak-corfu)
+(require 'ak-eglot)
+(require 'ak-magit)
+(require 'ak-projectile)
+(require 'ak-tree-sitter)
+
+;; Custom modes
 (require 'ak-focus-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

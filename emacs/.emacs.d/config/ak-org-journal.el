@@ -15,7 +15,7 @@
          org-journal-file-header "#+TITLE: %Y-%m-%d, %a\n"
          org-journal-file-format "%Y-%m-%d.org"
          org-journal-file-type 'daily
-         org-journal-carryover-items ""  ;; Default behavior is to carryover TODOs.
+         ;; org-journal-carryover-items ""  ;; Default behavior is to carryover TODOs.
          )
   :bind (("C-c j" . org-journal-new-entry)
          ("C-c J" . org-journal-open-current-journal-file)

@@ -93,11 +93,6 @@
          "* TODO %a\n%?"
          :prepend t)
 
-        ("p" "Passtur"
-	 entry (file+headline "~/org/passtur.org" "Passtur Inbox")
-         "* TODO %?\n"
-         :prepend t)
-
         ("s" "Shelf"
 	 entry (file "~/org/shelf.org")
          "* %?\n"
@@ -106,6 +101,29 @@
         ("w" "Writing Inbox"
 	 entry (file "~/org/notes/inbox.org")
          "* %?\n"
+         :prepend t)
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Passtur
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	("M" "Passtur Meeting"
+	 entry (file+headline "~/org/passtur.org" "Meetings")
+         "* %u %?
+
+*WHO*:
+
+*PREP*:
+
+*NOTES*:
+
+*ACTION ITEMS*:
+"
+         :prepend t)
+
+        ("P" "Passtur Inbox"
+	 entry (file+headline "~/org/passtur.org" "Passtur Inbox")
+         "* TODO %?\n"
          :prepend t)
         ))
 

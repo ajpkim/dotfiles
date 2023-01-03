@@ -1,7 +1,5 @@
 (provide 'ak-base)
 
-
-
 (add-hook 'before-save-hook
           'delete-trailing-whitespace)
 
@@ -13,8 +11,6 @@
       `((".*" . "~/.emacs-backups/")))
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs-backups/" t)))
-
-
 
 ;; Make cursor follow to new windows
 (defun split-and-follow-horizontally ()
