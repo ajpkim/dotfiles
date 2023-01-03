@@ -20,39 +20,6 @@
 (setq custom-file (make-temp-file "emacs-custom"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load all my configurations
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'load-path "~/.emacs.d/config")
-
-(require 'ak-base)
-(require 'ak-modus)
-(require 'ak-visual)
-(require 'ak-text)
-(require 'ak-help)
-(require 'ak-olivetti)
-(require 'ak-files)
-(require 'ak-prog)
-
-;; Org-mode stuff
-(require 'ak-org)
-(require 'ak-org-roam)
-(require 'ak-org-journal)
-(require 'ak-citations)
-
-;; Important packages
-(require 'ak-ivy)
-(require 'ak-company)
-;; (require 'ak-corfu)
-(require 'ak-eglot)
-(require 'ak-magit)
-(require 'ak-projectile)
-(require 'ak-tree-sitter)
-
-;; Custom modes
-(require 'ak-focus-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quickly access and reload config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -66,5 +33,43 @@
 
 (global-set-key (kbd "C-c e") 'config-visit)
 (global-set-key (kbd "C-c r") 'config-reload)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load all my configurations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/config")
+
+(require 'ak-base)
+(require 'ak-modus)
+(require 'ak-visual)
+(require 'ak-text)
+(require 'ak-help)
+(require 'ak-olivetti)
+(require 'ak-files)
+(require 'ak-ivy)
+(require 'ak-company)
+(require 'ak-magit)
+(require 'ak-projectile)
+
+;; Org-mode stuff
+(require 'ak-org)
+(require 'ak-org-roam)
+(require 'ak-org-journal)
+(require 'ak-citations)
+
+;; Custom modes
+(require 'ak-focus-mode)
+
+;; Languages and development
+(require 'ak-prog)
+(require 'ak-python)
+(require 'ak-prettier-js)
+
+(require 'ak-json)
+(require 'ak-csv)
+(require 'ak-latex)
+(require 'ak-yaml)
+
 
 (message "Loaded AK emacs config")

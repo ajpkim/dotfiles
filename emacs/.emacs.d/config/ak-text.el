@@ -28,7 +28,7 @@
   :ensure t
   :config
   (drag-stuff-global-mode t)
-n  (drag-stuff-define-keys)
+  (drag-stuff-define-keys)
   :bind (("M-p" . drag-stuff-up)
 	 ("M-n" . drag-stuff-down)))
 

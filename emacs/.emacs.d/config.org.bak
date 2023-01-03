@@ -2,252 +2,7 @@
 #+STARTUP: overview
 #+SETUPFILE: ~/org/assets/org-export/org-html-default.org
 
-* TODO ? web-mode
-#+begin_src emacs-lisp
-  ;; (use-package web-mode
-  ;;   :ensure t
-  ;;   :mode (("\\.js\\'" . web-mode)
-  ;;          ("\\.jsx\\'" . web-mode)
-  ;;          ("\\.ts\\'" . web-mode)
-  ;;          ("\\.tsx\\'" . web-mode)
-  ;;          ("\\.html\\'" . web-mode))
-  ;;   :commands web-mode)
-
-  ;; (add-hook 'web-mode-hook 'emmet-mode)
-
-  ;; (setq web-mode-markup-indent-offset 2
-  ;;       web-mode-code-indent-offset 2
-  ;;       web-mode-css-indent-offset 2)
-#+end_src
-* TODO ? prettier
-#+begin_src emacs-lisp
-  ;; (use-package prettier-js
-  ;;   :ensure t)
-
-  ;; (setq prettier-js-args '(
-  ;;   "--trailing-comma" "all"
-  ;;   "--bracket-spacing" "false"
-  ;; ))
-
-  ;; ;; Not working out of the box on save so using this workaround
-  ;; ;; (add-hook 'typescript-mode 'prettier-js-mode)
-  ;; ;; (add-hook 'javascript-mode 'prettier-js-mode)
-
-  ;; (add-hook 'typescript-mode-hook
-  ;;           (lambda ()
-  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
-
-  ;; (add-hook 'javascript-mode-hook
-  ;;           (lambda ()
-  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
-#+end_src
-* TODO JSX and TSX (Modularize correctly)
-#+begin_src emacs-lisp
-  ;; web-mode
-  (setq-default tab-width 2)
-  (setq indent-tabs-mode nil)
-  (defun my/webmode-hook ()
-          "Webmode hooks."
-          (setq web-mode-enable-comment-annotation t)
-          (setq web-mode-markup-indent-offset 2)
-          (setq web-mode-code-indent-offset 2)
-          (setq web-mode-css-indent-offset 2)
-          (setq web-mode-attr-indent-offset 0)
-          (setq web-mode-enable-auto-indentation t)
-          (setq web-mode-enable-auto-closing t)
-          (setq web-mode-enable-auto-pairing t)
-          (setq web-mode-enable-css-colorization t)
-  )
-  (use-package web-mode
-    :ensure t
-    :mode (("\\.jsx?\\'" . web-mode)
-           ("\\.tsx?\\'" . web-mode)
-           ("\\.html\\'" . web-mode))
-    :commands web-mode
-          :hook (web-mode . my/webmode-hook)
-  )
-
-  (defun enable-minor-mode (my-pair)
-    "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
-    (if (buffer-file-name)
-        (if (string-match (car my-pair) buffer-file-name)
-            (funcall (cdr my-pair)))))
-
-  (use-package prettier-js
-    :ensure t)
-  (add-hook 'web-mode-hook #'(lambda ()
-                               (enable-minor-mode
-                                '("\\.jsx?\\'" . prettier-js-mode))
-                               (enable-minor-mode
-                                '("\\.tsx?\\'" . prettier-js-mode))))
-
-  (eval-after-load 'web-mode
-    '(progn
-       (add-hook 'web-mode-hook #'prettier-js-mode)))
-#+end_src
-* Languages
-** Python
-#+begin_src emacs-lisp
-  (use-package anaconda-mode
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'anaconda-mode))
-
-  (use-package company-anaconda
-    :ensure t
-    :init (require 'rx)
-    :after (company)
-    :config
-    (add-to-list 'company-backends 'company-anaconda))
-
-  (add-hook 'python-mode-hook (lambda () (setq tab-width 4)))
-
-  ;; Jupyter notebooks
-  (use-package ein
-    :ensure t)
-
-#+end_src
-** JavaScript
-#+begin_src emacs-lisp
-#+end_src
-** TypeScript
-#+begin_src emacs-lisp
-  (use-package typescript-mode
-    :ensure t)
-  ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
-  ;; (use-package typescript-mode
-  ;;   :ensure t
-  ;;   :after tree-sitter
-  ;;   :config
-  ;;   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
-  ;;   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
-  ;;   (define-derived-mode typescriptreact-mode typescript-mode
-  ;;     "TypeScript TSX")
-
-  ;;   ;; use our derived mode for tsx files
-  ;;   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
-  ;;   ;; by default, typescript-mode is mapped to the treesitter typescript parser
-  ;;   ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
-  ;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
-
-  ;; ;; https://github.com/orzechowskid/tsi.el/
-  ;; ;; great tree-sitter-based indentation for typescript/tsx, css, json
-  ;; (use-package tsi
-  ;;   :after tree-sitter
-  ;;   :quelpa (tsi :fetcher github :repo "orzechowskid/tsi.el")
-  ;;   ;; define autoload definitions which when actually invoked will cause package to be loaded
-  ;;   :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode)
-  ;;   :init
-  ;;   (add-hook 'typescript-mode-hook (lambda () (tsi-typescript-mode 1)))
-  ;;   (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
-  ;;   (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
-  ;;   (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1))))
-#+end_src
-** JSON
-#+begin_src emacs-lisp
-  (use-package json-mode
-    :ensure t)
-#+end_src
-** Lisps
-#+begin_src emacs-lisp
-  (require 'xscheme)  ;; Scheme
-
-  (use-package geiser
-    :ensure t)
-
-  (use-package geiser-mit
-    :ensure t)
-
-#+end_src
-** Go
-#+begin_src emacs-lisp
-  (use-package ob-go
-    :ensure t)
-
-  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
-
-  (require 'lsp-mode)
-  (add-hook 'go-mode-hook #'lsp-deferred)
-
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  (defun lsp-go-install-save-hooks ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-#+end_src
-** C#
-#+begin_src emacs-lisp
-  ;;;; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
-  ;; (defun my/csharp-mode-hook ()
-  ;;   (setq-local lsp-auto-guess-root t)
-  ;;   (lsp))
-
-  (setenv "FrameworkPathOverride" "/lib/mono/4.5")  ; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
-
-  (use-package csharp-mode
-    :ensure t
-    :mode "\\.cs\\'")
-
-#+end_src
-** CSV
-#+begin_src elisp
-  (use-package csv-mode
-    :ensure t)
-#+end_src
-** Docker
-#+begin_src emacs-lisp
-    (use-package dockerfile-mode
-      :ensure t)
-#+end_src
-** LaTeX
-#+begin_src elisp
-  (use-package auctex
-    :ensure t
-    :defer t
-    :hook (LaTeX-mode . display-line-numbers-mode))
-
-
-    ;; :hook (LaTeX-mode .
-    ;;                   (lambda ()
-    ;;                     (push (list 'output-pdf "Firefox")
-    ;;                           TeX-view-program-selection))))
-
-#+end_src
-
-#+RESULTS:
-
-** yaml
-#+begin_src emacs-lisp
-  (use-package yaml-mode
-    :ensure t)
-
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-
-  ;; Mirror python-mode newline and indent behavior
-  (add-hook 'yaml-mode-hook
-      (lambda ()
-         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
-#+end_src
-* emmet
-#+begin_src emacs-lisp
-  (use-package emmet-mode
-    :ensure t)
-#+end_src
-* company
-#+begin_src emacs-lisp
-  (use-package company
-    :ensure t
-    :config
-    (setq company-idle-delay 0
-          company-show-numbers t
-          company-minimum-prefix-length 1
-          company-selection-wrap-around t)
-    :init
-    (add-hook 'prog-mode-hook 'company-mode))
-#+end_src
-
-* projectile
+* TODO projectile
 #+begin_src emacs-lisp
   (use-package projectile
     :ensure t
@@ -261,7 +16,7 @@
       (setq projectile-project-search-path '("~/code")))
     (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
-* gpg
+* TODO gpg
 #+begin_src elisp
   (use-package pinentry
     :ensure t
@@ -274,7 +29,7 @@
     :config
     (setf epa-pinentry-mode 'loopback))
 #+end_src
-* Email
+* TODO Email
 ** mu4e
 #+begin_src elisp
   (require 'mu4e)
@@ -341,7 +96,7 @@
   (use-package org-mime
     :ensure t)
 #+end_src
-* anki-editor
+* TODO anki-editor
 Sources:
 - [[https://yiufung.net/post/anki-org/][blog]]
 - [[https://github.com/yiufung/dot-emacs/blob/master/init.el][yiufung init.el]]
@@ -388,7 +143,7 @@ Sources:
   ;; Org-capture templates
   (setq org-my-anki-file "~/org/anki.org")
 #+end_src
-* IRC
+* TODO IRC
 :PROPERTIES:
 :ID:       bc85cda4-1d18-43fc-82a2-27ea968c2317
 :END:
@@ -424,6 +179,251 @@ Sources:
     (add-to-list 'erc-modules 'image))
 
 #+end_src
+* ACTIVE Languages
+** Lisps
+#+begin_src emacs-lisp
+  (require 'xscheme)  ;; Scheme
+
+  (use-package geiser
+    :ensure t)
+
+  (use-package geiser-mit
+    :ensure t)
+
+#+end_src
+** Go
+#+begin_src emacs-lisp
+  (use-package ob-go
+    :ensure t)
+
+  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
+
+  (require 'lsp-mode)
+  (add-hook 'go-mode-hook #'lsp-deferred)
+
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  ;; Make sure you don't have other gofmt/goimports hooks enabled.
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+#+end_src
+** C#
+#+begin_src emacs-lisp
+  ;;;; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
+  ;; (defun my/csharp-mode-hook ()
+  ;;   (setq-local lsp-auto-guess-root t)
+  ;;   (lsp))
+
+  (setenv "FrameworkPathOverride" "/lib/mono/4.5")  ; https://elizadev.medium.com/using-unity-editor-with-emacs-9316eb441411
+
+  (use-package csharp-mode
+    :ensure t
+    :mode "\\.cs\\'")
+
+#+end_src
+** Docker
+#+begin_src emacs-lisp
+    (use-package dockerfile-mode
+      :ensure t)
+#+end_src
+** DONE Python
+#+begin_src emacs-lisp
+  (use-package anaconda-mode
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'anaconda-mode))
+
+  (use-package company-anaconda
+    :ensure t
+    :init (require 'rx)
+    :after (company)
+    :config
+    (add-to-list 'company-backends 'company-anaconda))
+
+  (add-hook 'python-mode-hook (lambda () (setq tab-width 4)))
+
+  ;; Jupyter notebooks
+  (use-package ein
+    :ensure t)
+
+#+end_src
+** DONE JavaScript
+#+begin_src emacs-lisp
+#+end_src
+** DONE TypeScript
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t)
+  ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
+  ;; (use-package typescript-mode
+  ;;   :ensure t
+  ;;   :after tree-sitter
+  ;;   :config
+  ;;   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
+  ;;   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
+  ;;   (define-derived-mode typescriptreact-mode typescript-mode
+  ;;     "TypeScript TSX")
+
+  ;;   ;; use our derived mode for tsx files
+  ;;   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
+  ;;   ;; by default, typescript-mode is mapped to the treesitter typescript parser
+  ;;   ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
+  ;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
+
+  ;; ;; https://github.com/orzechowskid/tsi.el/
+  ;; ;; great tree-sitter-based indentation for typescript/tsx, css, json
+  ;; (use-package tsi
+  ;;   :after tree-sitter
+  ;;   :quelpa (tsi :fetcher github :repo "orzechowskid/tsi.el")
+  ;;   ;; define autoload definitions which when actually invoked will cause package to be loaded
+  ;;   :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode)
+  ;;   :init
+  ;;   (add-hook 'typescript-mode-hook (lambda () (tsi-typescript-mode 1)))
+  ;;   (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
+  ;;   (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
+  ;;   (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1))))
+#+end_src
+** DONE JSON
+#+begin_src emacs-lisp
+  (use-package json-mode
+    :ensure t)
+#+end_src
+** DONE CSV
+#+begin_src elisp
+  (use-package csv-mode
+    :ensure t)
+#+end_src
+** DONE LaTeX
+#+begin_src elisp
+  (use-package auctex
+    :ensure t
+    :defer t
+    :hook (LaTeX-mode . display-line-numbers-mode))
+
+
+    ;; :hook (LaTeX-mode .
+    ;;                   (lambda ()
+    ;;                     (push (list 'output-pdf "Firefox")
+    ;;                           TeX-view-program-selection))))
+
+#+end_src
+
+#+RESULTS:
+
+** DONE yaml
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+  ;; Mirror python-mode newline and indent behavior
+  (add-hook 'yaml-mode-hook
+      (lambda ()
+         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+#+end_src
+* DONE ? web-mode
+#+begin_src emacs-lisp
+  ;; (use-package web-mode
+  ;;   :ensure t
+  ;;   :mode (("\\.js\\'" . web-mode)
+  ;;          ("\\.jsx\\'" . web-mode)
+  ;;          ("\\.ts\\'" . web-mode)
+  ;;          ("\\.tsx\\'" . web-mode)
+  ;;          ("\\.html\\'" . web-mode))
+  ;;   :commands web-mode)
+
+  ;; (add-hook 'web-mode-hook 'emmet-mode)
+
+  ;; (setq web-mode-markup-indent-offset 2
+  ;;       web-mode-code-indent-offset 2
+  ;;       web-mode-css-indent-offset 2)
+#+end_src
+* DONE ? prettier
+#+begin_src emacs-lisp
+  ;; (use-package prettier-js
+  ;;   :ensure t)
+
+  ;; (setq prettier-js-args '(
+  ;;   "--trailing-comma" "all"
+  ;;   "--bracket-spacing" "false"
+  ;; ))
+
+  ;; ;; Not working out of the box on save so using this workaround
+  ;; ;; (add-hook 'typescript-mode 'prettier-js-mode)
+  ;; ;; (add-hook 'javascript-mode 'prettier-js-mode)
+
+  ;; (add-hook 'typescript-mode-hook
+  ;;           (lambda ()
+  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
+
+  ;; (add-hook 'javascript-mode-hook
+  ;;           (lambda ()
+  ;;              (add-hook 'before-save-hook prettier-js nil 'make-it-local)))
+#+end_src
+* DONE JSX and TSX (Modularize correctly)
+#+begin_src emacs-lisp
+  ;; web-mode
+  (setq-default tab-width 2)
+  (setq indent-tabs-mode nil)
+  (defun my/webmode-hook ()
+          "Webmode hooks."
+          (setq web-mode-enable-comment-annotation t)
+          (setq web-mode-markup-indent-offset 2)
+          (setq web-mode-code-indent-offset 2)
+          (setq web-mode-css-indent-offset 2)
+          (setq web-mode-attr-indent-offset 0)
+          (setq web-mode-enable-auto-indentation t)
+          (setq web-mode-enable-auto-closing t)
+          (setq web-mode-enable-auto-pairing t)
+          (setq web-mode-enable-css-colorization t)
+  )
+  (use-package web-mode
+    :ensure t
+    :mode (("\\.jsx?\\'" . web-mode)
+           ("\\.tsx?\\'" . web-mode)
+           ("\\.html\\'" . web-mode))
+    :commands web-mode
+          :hook (web-mode . my/webmode-hook)
+  )
+
+  (defun enable-minor-mode (my-pair)
+    "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
+    (if (buffer-file-name)
+        (if (string-match (car my-pair) buffer-file-name)
+            (funcall (cdr my-pair)))))
+
+  (use-package prettier-js
+    :ensure t)
+  (add-hook 'web-mode-hook #'(lambda ()
+                               (enable-minor-mode
+                                '("\\.jsx?\\'" . prettier-js-mode))
+                               (enable-minor-mode
+                                '("\\.tsx?\\'" . prettier-js-mode))))
+
+  (eval-after-load 'web-mode
+    '(progn
+       (add-hook 'web-mode-hook #'prettier-js-mode)))
+#+end_src
+* DONE emmet
+#+begin_src emacs-lisp
+  (use-package emmet-mode
+    :ensure t)
+#+end_src
+* DONE company
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0
+          company-show-numbers t
+          company-minimum-prefix-length 1
+          company-selection-wrap-around t)
+    :init
+    (add-hook 'prog-mode-hook 'company-mode))
+#+end_src
+
 * DONE LSP
 #+begin_src emacs-lisp
   ;; Auto-complete backend (Language Server Protocol)
