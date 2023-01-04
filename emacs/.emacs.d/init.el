@@ -51,6 +51,7 @@
 (require 'ak-company)
 (require 'ak-magit)
 (require 'ak-projectile)
+(require 'ak-gpg)
 
 ;; Org-mode stuff
 (require 'ak-org)
@@ -63,6 +64,7 @@
 
 ;; Languages and development
 (require 'ak-prog)
+(require 'ak-docker)
 (require 'ak-python)
 (require 'ak-prettier-js)
 

@@ -16,7 +16,7 @@
       (setq projectile-project-search-path '("~/code")))
     (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
-* TODO gpg
+* DONE gpg
 #+begin_src elisp
   (use-package pinentry
     :ensure t
@@ -96,7 +96,7 @@
   (use-package org-mime
     :ensure t)
 #+end_src
-* TODO anki-editor
+* DONE anki-editor
 Sources:
 - [[https://yiufung.net/post/anki-org/][blog]]
 - [[https://github.com/yiufung/dot-emacs/blob/master/init.el][yiufung init.el]]
@@ -179,7 +179,7 @@ Sources:
     (add-to-list 'erc-modules 'image))
 
 #+end_src
-* ACTIVE Languages
+* DONE Languages
 ** Lisps
 #+begin_src emacs-lisp
   (require 'xscheme)  ;; Scheme
@@ -222,7 +222,7 @@ Sources:
     :mode "\\.cs\\'")
 
 #+end_src
-** Docker
+** DONE Docker
 #+begin_src emacs-lisp
     (use-package dockerfile-mode
       :ensure t)
