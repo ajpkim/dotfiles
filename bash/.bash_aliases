@@ -17,7 +17,8 @@ alias gc='git commit'
 alias gch='git checkout'
 alias gbr='git branch'
 alias gp='git push'
-alias gp-ak-gh='git push ak-git && git push github'
+alias gp-iv-gh='git push iverson && git push github'
+alias gpa='git remote | xargs -L1 git push'  # Push to all remotes
 alias gl='git log'
 alias gl1='git log --oneline'
 
