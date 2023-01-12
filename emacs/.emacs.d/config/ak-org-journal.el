@@ -24,3 +24,9 @@
 	 ("C-c B" . org-journal-previous-entry)
 	 ("C-c F" . org-journal-next-entry)
          ))
+
+
+(defcustom org-journal-find-file 'find-file
+  "The function to use when opening an entry.
+  Set this to `find-file' if you don't want org-journal to split your window."
+  :type 'function)

@@ -165,8 +165,9 @@ bindsym $mod+comma exec picom-trans -c -10
 bindsym $mod+period exec picom-trans -c +10
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym F8 exec brillo -A 20
+bindsym F7 exec brillo -U 20
+
 
 ### Audio Fn Keys ###
 set $refresh_i3status killall -SIGUSR1 i3status

@@ -75,3 +75,4 @@
 
 
 (message "Loaded AK emacs config")
+(put 'downcase-region 'disabled nil)

@@ -52,7 +52,7 @@ alias ff='firefox'
 alias py='python3'
 alias ipy='ipython'
 alias jp='jupyter-notebook'
-alias besopke='cd ~/repos/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/Release && ./BespokeSynth'
+alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/Release/BespokeSynth'
 
 ######################################################################
 ## Displays
