@@ -104,27 +104,69 @@
          :prepend t)
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Passtur
+	;; Life Log - events and other stuff as it comes up
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	("M" "Passtur Meeting"
-	 entry (file+headline "~/org/passtur.org" "Meetings")
-         "* %u %?
+	("L" "Life Log"
+	 entry (file+olp+datetree "~/org/log.org")
+         "* %?\n")
 
-*WHO*:
+	("E" "Life Log"
+	 entry (file+olp+datetree "~/org/log.org")
+         "* Events
 
-*PREP*:
+*Morning*
 
-*NOTES*:
+%?
 
-*ACTION ITEMS*:
+*Afternoon*
+
+
+
+*Evening*")
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Project Specific Stuff
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	("N" "NYC Places"
+	 entry (file "~/org/notes/leaf/nyc_places.org")
+         "* %^{PROMPT}
+:PROPERTIES:\n:CREATED: %U\n:END:
+%?
+%^{BOROUGH}p
+%^{NEIGHBORHOOD}p
+%^{TYPE}p
+%^{RATING}p
 "
          :prepend t)
 
-        ("P" "Passtur Inbox"
-	 entry (file+headline "~/org/passtur.org" "Passtur Inbox")
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Passtur
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	("p" "Passtur")
+
+        ("pp" "Passtur Inbox"
+	 entry (file+headline "~/org/passtur/passtur.org" "Passtur Inbox")
          "* TODO %?\n"
          :prepend t)
+
+	("pl" "Passtur Log"
+	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
+         "* %?")
+
+	("pm" "Passtur Meeting"
+	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
+         "* Meeting - %?
+
+*Who*
+
+*Prep*
+
+*Notes*
+
+*Next Steps*")
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
