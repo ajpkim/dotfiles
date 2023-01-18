@@ -63,6 +63,9 @@ alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/
 alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
 
+## Main LG monitor
+alias lg-mon='xrandr --output DP-4-2 --mode 3840x2160 --right-of eDP-1 --set audio off'
+
 ## Portable monitor
 alias mon-port-left='xrandr --output DP1 --auto --scale 2x2 --output $MAIN_DISPLAY --auto --pos 3840x0'
 alias mon-port-left-vert='xrandr --output $MAIN_DISPLAY --auto --pos 3840x0 --output HDMI1 --auto --scale 2x2 --rotate left'
