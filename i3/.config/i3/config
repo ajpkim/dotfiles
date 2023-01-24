@@ -165,8 +165,8 @@ bindsym $mod+comma exec picom-trans -c -10
 bindsym $mod+period exec picom-trans -c +10
 
 # Sreen brightness controls
-bindsym F8 exec brillo -A 20
-bindsym F7 exec brillo -U 20
+bindsym F8 exec brillo -A 10
+bindsym F7 exec brillo -U 10
 
 
 ### Audio Fn Keys ###

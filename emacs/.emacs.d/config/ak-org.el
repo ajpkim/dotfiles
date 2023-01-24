@@ -104,26 +104,55 @@
          :prepend t)
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Life Log - events and other stuff as it comes up
+	;; Life Log and Planning
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	("L" "Life Log"
+	("l" "Life Log"
 	 entry (file+olp+datetree "~/org/log.org")
          "* %?\n")
 
-	("E" "Life Log"
+	("e" "Today's Events"
 	 entry (file+olp+datetree "~/org/log.org")
          "* Events
 
 *Morning*
-
 %?
 
 *Afternoon*
 
-
-
 *Evening*")
+
+
+("W" "Week Planning"
+	 entry (file+olp+datetree "~/org/log.org")
+         "* Week Planning
+
+** Reflection
+
+%?
+
+** Processes
+
+- [ ] Task inbox
+- [ ] Finances
+- [ ] Writing inbox
+- [ ] Review projects
+- [ ] Review upcoming agenda
+- [ ] Email
+- [ ] Texts and calls
+- [ ] Reflection
+- [ ] Set priorities
+- [ ] Set time goals
+
+** Priorities
+
+
+** Time Goals
+
+| PROJECT         | TIME GOAL |
+|-----------------+-----------|
+
+** Notes")
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Project Specific Stuff

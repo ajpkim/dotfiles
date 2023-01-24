@@ -12,8 +12,8 @@
         (find-file-other-frame file))))
 
 (global-set-key (kbd "C-c f a") (lambda () (interactive) (ak-file-shortcut "~/org/anki.org")))
-(global-set-key (kbd "C-c f L") (lambda () (interactive) (ak-file-shortcut "~/org/log.org")))
-(global-set-key (kbd "C-c f l") (lambda () (interactive) (ak-file-shortcut "~/org/lists.org")))
+(global-set-key (kbd "C-c f l") (lambda () (interactive) (ak-file-shortcut "~/org/log.org")))
+(global-set-key (kbd "C-c f L") (lambda () (interactive) (ak-file-shortcut "~/org/lists.org")))
 (global-set-key (kbd "C-c f n") (lambda () (interactive) (ak-file-shortcut "~/org/notes/inbox.org")))
 (global-set-key (kbd "C-c f t") (lambda () (interactive) (ak-file-shortcut "~/org/todo.org")))
 (global-set-key (kbd "C-c f P") (lambda () (interactive) (ak-file-shortcut "~/org/passtur/passtur.org")))
