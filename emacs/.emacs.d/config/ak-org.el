@@ -34,6 +34,8 @@
 ;; org-tempo enables expanding structs like code blocks from "<s + TAB"
 (require 'org-tempo)
 
+
+(set-face-attribute 'org-verbatim nil :foreground "#f9bfee")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Maintain fixed pitch faces for specific faces in org mode.
 ;; See: https://github.com/daviwil/emacs-from-scratch/blob/c55d0f5e309f7ed8ffa3c00bc35c75937a5184e4/init.el
@@ -109,7 +111,8 @@
 
 	("l" "Life Log"
 	 entry (file+olp+datetree "~/org/log.org")
-         "* %?\n")
+         "* %?\n"
+	 :jump-to-captured t)
 
 	("e" "Today's Events"
 	 entry (file+olp+datetree "~/org/log.org")
@@ -120,12 +123,13 @@
 
 *Afternoon*
 
-*Evening*")
+*Evening*"
+	 :jump-to-captured t)
 
 
-("W" "Week Planning"
+	("W" "Week Planning"
 	 entry (file+olp+datetree "~/org/log.org")
-         "* Week Planning
+         "* 2023 WXXX Week Planning
 
 ** Reflection
 
@@ -142,17 +146,10 @@
 - [ ] Texts and calls
 - [ ] Reflection
 - [ ] Set priorities
-- [ ] Set time goals
 
 ** Priorities
-
-
-** Time Goals
-
-| PROJECT         | TIME GOAL |
-|-----------------+-----------|
-
-** Notes")
+"
+	 :jump-to-captured t)
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Project Specific Stuff
@@ -183,7 +180,8 @@
 
 	("pl" "Passtur Log"
 	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
-         "* %?")
+         "* %?"
+	 :jump-to-captured t)
 
 	("pm" "Passtur Meeting"
 	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
@@ -195,7 +193,8 @@
 
 *Notes*
 
-*Next Steps*")
+*Next Steps*"
+	 :jump-to-captured t)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -228,11 +227,12 @@
       org-agenda-prefix-format " %i %-12:c%?-12t% s"
       )
 
-;; (set-face-attribute 'org-agenda-calendar-event nil :foreground "#d6b0ff")
+(set-face-attribute 'org-scheduled-previously nil :foreground "#ff471a")
+(set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
+(set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
 (setq org-agenda-files '("~/org/todo.org"
 			 "~/org/shelf.org"
-			 "~/org/passtur.org"
 			 "~/org/projects.org"
 			 "~/org/lists.org"
 			 ))
@@ -254,55 +254,29 @@
                   ((org-agenda-span 5)))))
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Weekly Review
-	;; TODO
+	;; Work
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-        ;; ("W" "Weekly Review"
-        ;;  ((todo ""
-        ;;         ((org-agenda-files '("~/org/todo.org"))
-        ;;          (org-agenda-overriding-header "Unprocessed TODOs\n")
-
-        ;;          (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-        ;;          (org-agenda-prefix-format "")
-        ;;          ))
-        ;;   ;; (agenda "" ((org-agenda-span 7))); review upcoming deadlines and appointments
-        ;;   (todo "ACTIVE"
-        ;;         ((org-agenda-overriding-header "Review Active Tasks\n")
-        ;;          (org-agenda-sorting-strategy '(priority-down))))
-        ;;   (tags-todo "+TODO=\"PROJECT\"+LEVEL=1"  ;; review top level projects
-        ;;              ((org-agenda-overriding-header "Review Projects\n")
-        ;;               (org-agenda-prefix-format "")))
-        ;;   ))
-
-        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Projects
-	;; TODO: make this list all the projects and then their todos underneath
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-	("p" "projects"
-	 ((tags-todo "+TODO=\"PROJECT\""
-                     ((org-agenda-overriding-header "PROJECTs\n")
-                      (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-                      (org-agenda-prefix-format "")
-                      ))))
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Passtur
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	("p" "Passtur Week Agenda"
+         ((agenda "Passtur Week Agenda"
+                  ((org-agenda-files '("~/org/passtur/passtur.org"))
+                   (org-agenda-span 5)))))
 
         ("P" "Passtur"
          ((tags-todo "CATEGORY=\"passtur\"+TODO=\"PROJECT\""
-                     ((org-agenda-overriding-header "PASSTUR PROJECTs\n")
+                     ((org-agenda-files '("~/org/passtur/passtur.org"))
+		      (org-agenda-overriding-header "PASSTUR PROJECTs\n")
                       (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
                       (org-agenda-prefix-format "")
                       ))
           (tags-todo "CATEGORY=\"passtur\"+TODO=\"ACTIVE\""
-                     ((org-agenda-overriding-header "Passtur ACTIVEs\n")
+                     ((org-agenda-files '("~/org/passtur/passtur.org"))
+		      (org-agenda-overriding-header "Passtur ACTIVEs\n")
                       (org-agenda-prefix-format "")
                       ))
           (tags-todo "CATEGORY=\"passtur\"+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "PASSTUR TODOs\n")
+                     ((org-agenda-files '("~/org/passtur/passtur.org"))
+		      (org-agenda-overriding-header "PASSTUR TODOs\n")
                       (org-agenda-prefix-format "")
                       )))
          )

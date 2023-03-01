@@ -32,3 +32,6 @@
   :ensure t
   :config (setq aw-keys `(?a ?s ?d ?f ?j ?k ?l))
   :bind ("C-x o" . ace-window))
+
+
+(global-set-key (kbd "C-t") 'shell)

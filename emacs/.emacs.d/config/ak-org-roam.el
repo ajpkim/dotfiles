@@ -12,10 +12,7 @@
    ("C-c n i" . org-roam-node-insert))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; TODO: Do I need this node type stuff, it adds complexity I don't want to maintain...
-  ;; https://jethrokuan.github.io/org-roam-guide/
   ;; We add a note type so that we can display it when we display the notes in UI
-
   :config
   (cl-defmethod org-roam-node-type ((node org-roam-node))
     "Return the TYPE of NODE."
@@ -72,9 +69,9 @@
                        '(("s" "source" plain "%?" :if-new
                           (file+head "ref/${citekey}.org"
                                      ":PROPERTIES:
-  :ROAM_REFS: [cite:@${citekey}]
-  :END:
-  #+title: ${title}\n#+created: %U\n")
+:ROAM_REFS: [cite:@${citekey}]
+:END:
+#+title: ${title}\n#+created: %U\n")
                           :immediate-finish t
                           :unnarrowed t))
                        :info (list :citekey citation)

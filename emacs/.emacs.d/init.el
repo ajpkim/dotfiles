@@ -49,6 +49,7 @@
 (require 'ak-files)
 (require 'ak-ivy)
 (require 'ak-company)
+(require 'ak-treesitter)
 (require 'ak-magit)
 (require 'ak-projectile)
 (require 'ak-gpg)
@@ -57,7 +58,7 @@
 (require 'ak-org)
 (require 'ak-org-roam)
 (require 'ak-org-journal)
-(require 'ak-citations)
+;; (require 'ak-citations)
 
 ;; Custom modes
 (require 'ak-focus-mode)
@@ -76,3 +77,4 @@
 
 (message "Loaded AK emacs config")
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

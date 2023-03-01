@@ -9,20 +9,21 @@
 (require 'oc-biblatex)
 (require 'oc-csl)
 
-(use-package citeproc
-  :ensure t)
+;; (use-package citeproc
+;;   :ensure t)
 
 (use-package citar
-  :ensure t
-  ;; :bind (("C-c b" . citar-insert-citation)
-  ;;        :map minibuffer-local-map
-  ;;        ("M-b" . citar-insert-preset))
+  :no-require
   :custom
-  (citar-bibliography '("~/org/notes/refs.bib")))
+  (org-cite-global-bibliography '("~/org/notes/refs.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
+  ;; optional: org-cite-insert is also bound to C-c C-x C-@
+  :bind
+  (:map org-mode-map :package org ("C-c b" . #'org-cite-insert)))
 
-
-(setq org-cite-export-processors '((t csl))  ;; can add a 3rd arg for a specific style file
-      org-cite-global-bibliography '("~/org/notes/refs.bib"))
 
 (set-face-attribute 'org-cite nil :foreground "#00cc99")
 (set-face-attribute 'org-cite-key nil :foreground "#00cc99")
