@@ -67,10 +67,10 @@ alias home-monitors='. ~/scripts/home-monitors.sh'
 alias lg-mon='xrandr --output DP-4-2 --mode 3840x2160 --right-of eDP-1 --set audio off'
 
 ## Portable monitor
-alias mon-port-left='xrandr --output DP1 --auto --scale 2x2 --output $MAIN_DISPLAY --auto --pos 3840x0'
-alias mon-port-left-vert='xrandr --output $MAIN_DISPLAY --auto --pos 3840x0 --output HDMI1 --auto --scale 2x2 --rotate left'
-alias mon-port-right='xrandr --output DP1 --auto --scale 2x2 --right-of $MAIN_DISPLAY'
-alias mon-port-right-vert='xrandr --output DP1 --auto --scale 2x2 --right-of $MAIN_DISPLAY --rotate left'
+alias mon-port-left='xrandr --output DP-1 --auto --output $MAIN_DISPLAY --auto --pos 3840x0'
+alias mon-port-left-vert='xrandr --output $MAIN_DISPLAY --auto --pos 3840x0 --output DP-1 --auto --rotate left'
+alias mon-port-right='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY'
+alias mon-port-right-vert='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY --rotate left'
 
 ######################################################################
 ## Scripts
