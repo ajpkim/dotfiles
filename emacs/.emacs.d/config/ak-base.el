@@ -35,3 +35,7 @@
 
 
 (global-set-key (kbd "C-t") 'shell)
+
+;; Allow Emacs to access content from clipboard.
+(setq select-enable-clipboard t
+      select-enable-primary t)

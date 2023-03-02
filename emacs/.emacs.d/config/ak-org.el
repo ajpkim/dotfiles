@@ -21,6 +21,7 @@
         org-refile-targets '((org-agenda-files :todo . "PROJECT"))
         org-refile-use-outline-path nil
         org-outline-path-complete-in-steps nil
+	org-toggle-pretty-entities nil
         )
   :bind
   (("C-c l" . org-store-link)
@@ -55,31 +56,26 @@
 
 (setq org-capture-templates
       '(
-
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;; Anki templates
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
         ("a" "Anki")
 
         ("aa" "Anki basic"
-         entry (file+headline org-my-anki-file "New Cards")
+         entry (file+headline org-my-anki-file "Dispatch")
          "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
 
         ("ac" "Anki cloze"
-         entry
-         (file+headline org-my-anki-file "New Cards")
+         entry (file+headline org-my-anki-file "Dispatch")
          "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
 
         ("at" "Anki Type"
-         entry
-         (file+headline org-my-anki-file "New Cards")
+         entry (file+headline org-my-anki-file "Dispatch")
          "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Common capture sequences
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
         ("c" "Task"
 	 entry (file "~/org/todo.org")
          "* TODO %?\n"
@@ -108,7 +104,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Life Log and Planning
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 	("l" "Life Log"
 	 entry (file+olp+datetree "~/org/log.org")
          "* %?\n"
@@ -154,7 +149,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Project Specific Stuff
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 	("N" "NYC Places"
 	 entry (file "~/org/notes/leaf/nyc_places.org")
          "* %^{PROMPT}
@@ -170,7 +164,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Passtur
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 	("p" "Passtur")
 
         ("pp" "Passtur Inbox"
@@ -200,7 +193,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org TODO
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (setq org-todo-keywords
       '((sequence "PROJECT(p)" "TODO(t)" "ACTIVE(a)" "LATER(l)" "|" "DONE(d)")))
 
@@ -213,9 +205,8 @@
         ("DONE" . (:foreground "#6ae4b9" :weight bold))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org agenda
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; Org agenda
 (setq org-agenda-span 5
       org-agenda-start-on-weekday nil
       org-agenda-skip-deadline-if-done t
@@ -242,7 +233,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Day and Week views
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
         ("d" "Today's Agenda"
          ((agenda "Today's Agenda"
                   ((org-agenda-category-filter-preset '("-passtur")))
@@ -256,7 +246,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Work
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 	("p" "Passtur Week Agenda"
          ((agenda "Passtur Week Agenda"
                   ((org-agenda-files '("~/org/passtur/passtur.org"))
@@ -286,7 +275,6 @@
 ;; Org Archiving
 ;; Functions for quicklky archiving all Done tasks in a tree or a file.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun ak-org-archive-done-tasks-file ()
   (interactive)
   (org-map-entries
@@ -309,7 +297,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Babel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
 ;;  '((emacs-lisp . t)
@@ -325,7 +312,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exporting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (require 'ox-html)
 
 (use-package htmlize
