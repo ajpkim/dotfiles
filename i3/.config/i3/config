@@ -188,7 +188,8 @@ smart_borders on
 hide_edge_borders smart_no_gaps
 
 set $gapincr 15
-gaps outer -15
+# gaps outer was -15 but this causes an issue with polybar i3 module, until this fix gets merged and available: https://github.com/polybar/polybar/pull/2889
+gaps outer 0
 gaps inner 15
 
 bindsym $mod+b gaps inner current plus $gapincr
