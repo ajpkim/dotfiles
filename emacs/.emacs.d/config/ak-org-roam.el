@@ -46,6 +46,16 @@
          :immediate-finish t
          :unnarrowed t)
 
+	("p" "personal" plain "%?"
+         :if-new (file+head "leaf/${slug}.org" "#+title: ${title}\n#+created: %U\n#+filetags: :private:")
+         :immediate-finish t
+         :unnarrowed t)
+
+	("P" "project" plain "%?"
+         :if-new (file+head "projects/${slug}.org" "#+title: ${title}\n#+created: %U\n#+filetags: :project:")
+         :immediate-finish t
+         :unnarrowed t)
+
         ("m" "main" plain "%?"
          :if-new (file+head "main/${slug}.org" "#+title: ${title}\n#+created: %U\n")
          :immediate-finish t

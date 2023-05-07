@@ -58,7 +58,7 @@
 (require 'ak-org)
 (require 'ak-org-roam)
 (require 'ak-org-journal)
-;; (require 'ak-citations)
+(require 'ak-citations)
 
 ;; Custom modes
 (require 'ak-focus-mode)

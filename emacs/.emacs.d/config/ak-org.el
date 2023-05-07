@@ -21,7 +21,7 @@
         org-refile-targets '((org-agenda-files :todo . "PROJECT"))
         org-refile-use-outline-path nil
         org-outline-path-complete-in-steps nil
-	org-toggle-pretty-entities nil
+	org-toggle-pretty-entities -1
         )
   :bind
   (("C-c l" . org-store-link)
@@ -62,15 +62,15 @@
         ("a" "Anki")
 
         ("aa" "Anki basic"
-         entry (file+headline "~/org/anki.org" "Dispatch")
+         entry (file+headline "~/org/notes/anki.org" "Dispatch")
          "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
 
         ("ac" "Anki cloze"
-         entry (file+headline "~/org/anki.org" "Dispatch")
+         entry (file+headline "~/org/notes/anki.org" "Dispatch")
          "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
 
         ("at" "Anki Type"
-         entry (file+headline "~/org/anki.org" "Dispatch")
+         entry (file+headline "~/org/notes/anki.org" "Dispatch")
          "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -92,7 +92,7 @@
          :prepend t)
 
         ("s" "Shelf"
-	 entry (file "~/org/shelf.org")
+	 entry (file "~/org/notes/leaf/shelf.org")
          "* %?\n"
          :prepend t)
 
@@ -105,44 +105,39 @@
 	;; Life Log and Planning
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	("l" "Life Log"
-	 entry (file+olp+datetree "~/org/log.org")
+	 entry (file+olp+datetree "~/org/life-log.org")
          "* %?\n"
 	 :jump-to-captured t)
 
 	("e" "Today's Events"
-	 entry (file+olp+datetree "~/org/log.org")
-         "* Events
-
-*Morning*
-%?
-
-*Afternoon*
-
-*Evening*"
+	 entry (file+olp+datetree "~/org/life-log.org")
+         "* Happenings"
 	 :jump-to-captured t)
 
+	("W" "Week"
+	 entry (file+olp+datetree "~/org/life-log.org")
+         "* 2023 WXXX Week Planning and Review
 
-	("W" "Week Planning"
-	 entry (file+olp+datetree "~/org/log.org")
-         "* 2023 WXXX Week Planning
+** Focus Areas
+** Week Goals
+** Projects & Poms
+|---------+------+-----------|
+| Project | Goal | Completed |
+|---------+------+-----------|
+|         |      |           |
 
-** Reflection
-
-%?
-
-** Processes
-
+** Review
+*** Tasks
 - [ ] Task inbox
-- [ ] Finances
 - [ ] Writing inbox
 - [ ] Review projects
-- [ ] Review upcoming agenda
+- [ ] Finances
 - [ ] Email
 - [ ] Texts and calls
-- [ ] Reflection
-- [ ] Set priorities
-
-** Priorities
+*** How did the week go?
+*** What am I feeling?
+*** What did I learn?
+*** Who did I interact with?
 "
 	 :jump-to-captured t)
 
@@ -160,34 +155,6 @@
 %^{RATING}p
 "
          :prepend t)
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Passtur
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	("p" "Passtur")
-
-        ("pp" "Passtur Inbox"
-	 entry (file+headline "~/org/passtur/passtur.org" "Passtur Inbox")
-         "* TODO %?\n"
-         :prepend t)
-
-	("pl" "Passtur Log"
-	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
-         "* %?"
-	 :jump-to-captured t)
-
-	("pm" "Passtur Meeting"
-	 entry (file+olp+datetree "~/org/passtur/passtur-log.org")
-         "* Meeting - %?
-
-*Who*
-
-*Prep*
-
-*Notes*
-
-*Next Steps*"
-	 :jump-to-captured t)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -222,11 +189,7 @@
 (set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
 (set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
-(setq org-agenda-files '("~/org/todo.org"
-			 "~/org/shelf.org"
-			 "~/org/projects.org"
-			 "~/org/lists.org"
-			 ))
+(setq org-agenda-files '("~/org/todo.org"))
 
 (setq org-agenda-custom-commands
       '(
@@ -235,41 +198,11 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ("d" "Today's Agenda"
          ((agenda "Today's Agenda"
-                  ((org-agenda-category-filter-preset '("-passtur")))
                   ((org-agenda-span 1)))))
 
         ("w" "Week Agenda"
          ((agenda "Week Agenda"
-                  ((org-agenda-category-filter-preset '("-passtur")))
-                  ((org-agenda-span 5)))))
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Work
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	("p" "Passtur Week Agenda"
-         ((agenda "Passtur Week Agenda"
-                  ((org-agenda-files '("~/org/passtur/passtur.org"))
-                   (org-agenda-span 5)))))
-
-        ("P" "Passtur"
-         ((tags-todo "CATEGORY=\"passtur\"+TODO=\"PROJECT\""
-                     ((org-agenda-files '("~/org/passtur/passtur.org"))
-		      (org-agenda-overriding-header "PASSTUR PROJECTs\n")
-                      (org-agenda-sorting-strategy '(timestamp-up tag-up priority-down))
-                      (org-agenda-prefix-format "")
-                      ))
-          (tags-todo "CATEGORY=\"passtur\"+TODO=\"ACTIVE\""
-                     ((org-agenda-files '("~/org/passtur/passtur.org"))
-		      (org-agenda-overriding-header "Passtur ACTIVEs\n")
-                      (org-agenda-prefix-format "")
-                      ))
-          (tags-todo "CATEGORY=\"passtur\"+TODO=\"TODO\""
-                     ((org-agenda-files '("~/org/passtur/passtur.org"))
-		      (org-agenda-overriding-header "PASSTUR TODOs\n")
-                      (org-agenda-prefix-format "")
-                      )))
-         )
-        ))
+                  ((org-agenda-span 5)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Archiving
