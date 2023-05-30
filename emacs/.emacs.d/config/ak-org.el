@@ -117,7 +117,6 @@
 	("W" "Week"
 	 entry (file+olp+datetree "~/org/life-log.org")
          "* 2023 WXXX Week Planning and Review
-
 ** Focus Areas
 ** Week Goals
 ** Projects & Poms
@@ -125,7 +124,13 @@
 | Project | Goal | Completed |
 |---------+------+-----------|
 |         |      |           |
+|---------+------+-----------|
+| Total   |      |           |
+|---------+------+-----------|
+#+TBLFM: @>$2=vsum(@II..@III)
+#+TBLFM: @>$3=vsum(@II..@III)
 
+** Daily Sketch
 ** Review
 *** Tasks
 - [ ] Task inbox
@@ -189,7 +194,8 @@
 (set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
 (set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
-(setq org-agenda-files '("~/org/todo.org"))
+(setq org-agenda-files (append '("~/org/todo.org")
+                               (file-expand-wildcards "~/org/notes/projects/*.org")))
 
 (setq org-agenda-custom-commands
       '(

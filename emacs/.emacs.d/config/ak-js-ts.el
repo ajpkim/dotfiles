@@ -5,6 +5,9 @@
 
 (provide 'ak-js-ts)
 
+(setq js-indent-level 2)
+(setq typescript-indent-level 2)
+
 ;; Formatting with prettier
 (add-hook 'js-mode-hook 'prettier-js-mode)
 (add-hook 'js-ts-mode-hook 'prettier-js-mode)

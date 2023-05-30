@@ -3,7 +3,7 @@
 (use-package company
   :ensure t
   :config
-    (setq company-idle-delay 0
+    (setq company-idle-delay 0.2
           company-show-numbers t
           company-minimum-prefix-length 1
           company-selection-wrap-around t)

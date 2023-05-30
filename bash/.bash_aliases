@@ -72,6 +72,9 @@ alias mon-port-left-vert='xrandr --output $MAIN_DISPLAY --auto --pos 3840x0 --ou
 alias mon-port-right='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY'
 alias mon-port-right-vert='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY --rotate left'
 
+## Luer WeWork setup
+alias mon-ww='xrandr --output DP-3 --auto --right-of eDP-1 && xrandr --output DP-1 --auto --right-of DP-3'
+
 ######################################################################
 ## Scripts
 ######################################################################

@@ -52,7 +52,15 @@
          :unnarrowed t)
 
 	("P" "project" plain "%?"
-         :if-new (file+head "projects/${slug}.org" "#+title: ${title}\n#+created: %U\n#+filetags: :project:")
+         :if-new (file+head "projects/${slug}.org" "#+title: ${title}
+#+created: %U
+#+filetags: :project:
+
+*Current Goal*:
+
+* PROJECT Tasks
+* Notes
+")
          :immediate-finish t
          :unnarrowed t)
 

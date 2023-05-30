@@ -65,8 +65,10 @@
 
 ;; Languages and development
 (require 'ak-prog)
+(require 'ak-eglot)
 (require 'ak-docker)
 (require 'ak-python)
+(require 'ak-js-ts)
 (require 'ak-prettier-js)
 
 (require 'ak-json)
