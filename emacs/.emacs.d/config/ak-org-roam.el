@@ -41,13 +41,18 @@
 
 (setq org-roam-capture-templates
       '(
+	("a" "Alex" plain "%?"
+         :if-new (file+head "alex/${slug}.org" "#+title: ${title}\n#+created: %U\n#+filetags: :alex:")
+         :immediate-finish t
+         :unnarrowed t)
+
         ("l" "leaf" plain "%?"
          :if-new (file+head "leaf/${slug}.org" "#+title: ${title}\n#+created: %U\n")
          :immediate-finish t
          :unnarrowed t)
 
-	("p" "personal" plain "%?"
-         :if-new (file+head "leaf/${slug}.org" "#+title: ${title}\n#+created: %U\n#+filetags: :private:")
+        ("m" "main" plain "%?"
+         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n#+created: %U\n")
          :immediate-finish t
          :unnarrowed t)
 
@@ -61,11 +66,6 @@
 * PROJECT Tasks
 * Notes
 ")
-         :immediate-finish t
-         :unnarrowed t)
-
-        ("m" "main" plain "%?"
-         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n#+created: %U\n")
          :immediate-finish t
          :unnarrowed t)
 

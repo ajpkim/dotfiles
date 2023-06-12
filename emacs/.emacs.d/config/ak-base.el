@@ -39,3 +39,5 @@
 ;; Allow Emacs to access content from clipboard.
 (setq select-enable-clipboard t
       select-enable-primary t)
+
+(electric-pair-mode 1)
