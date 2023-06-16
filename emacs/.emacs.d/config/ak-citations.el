@@ -13,6 +13,7 @@
 ;;   :ensure t)
 
 (use-package citar
+  :ensure t
   :no-require
   :custom
   (org-cite-global-bibliography '("~/org/notes/refs.bib"))
