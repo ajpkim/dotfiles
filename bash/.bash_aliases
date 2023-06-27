@@ -64,7 +64,7 @@ alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
 
 ## Main LG monitor
-alias lg-mon='xrandr --output DP-4-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/Pictures/bg-img/wallpaper.jpg'
+alias lg-mon='xrandr --output DP-4-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
 
 ## Portable monitor
 alias mon-port-left='xrandr --output DP-1 --auto --output $MAIN_DISPLAY --auto --pos 3840x0'
