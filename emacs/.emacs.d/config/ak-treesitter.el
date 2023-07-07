@@ -1,6 +1,6 @@
 (provide 'ak-treesitter)
 
-(setq treesit-extra-load-path '("~/builds/emacs/emacs-29-build-with-tree-sitter/tree-sitter-module/dist"))
+(setq treesit-extra-load-path '("~/builds/tree-sitter-module/dist"))
 
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)

@@ -34,6 +34,9 @@
 (global-set-key (kbd "C-c e") 'config-visit)
 (global-set-key (kbd "C-c r") 'config-reload)
 
+;; Otherwise we get a TON of warning buffers when building with native comp
+(setq warning-minimum-level :error)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load all my configurations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
