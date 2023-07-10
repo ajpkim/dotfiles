@@ -13,7 +13,7 @@
         org-image-actual-width 800  ;; adjust as nec.
         org-startup-with-latex-preview nil  ;; SLOW
         org-format-latex-options (plist-put org-format-latex-options :scale 3.5)
-        org-pretty-entities t
+        org-pretty-entities nil
         org-startup-folded t
         org-extend-today-until 2
         org-archive-location "~/org/archives/%s_archive::"
