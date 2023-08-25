@@ -61,17 +61,25 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ("a" "Anki")
 
-        ("aa" "Anki basic"
-         entry (file+headline "~/org/notes/anki.org" "Dispatch")
-         "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+	("aa" "Anki TODO"
+	  entry (file "~/org/anki/todo.org")
+          "* TODO %?")
+	("al" "Anki headline link TODO"
+	  entry (file "~/org/anki/todo.org")
+         "* TODO %a")
 
-        ("ac" "Anki cloze"
-         entry (file+headline "~/org/notes/anki.org" "Dispatch")
-         "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
 
-        ("at" "Anki Type"
-         entry (file+headline "~/org/notes/anki.org" "Dispatch")
-         "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+        ;; ("aa" "Anki basic"
+        ;;  entry (file+headline "~/org/notes/anki.org" "Dispatch")
+        ;;  "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+
+        ;; ("ac" "Anki cloze"
+        ;;  entry (file+headline "~/org/notes/anki.org" "Dispatch")
+        ;;  "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
+
+        ;; ("at" "Anki Type"
+        ;;  entry (file+headline "~/org/notes/anki.org" "Dispatch")
+        ;;  "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Common capture sequences
@@ -97,7 +105,7 @@
          :prepend t)
 
         ("w" "Writing Inbox"
-	 entry (file "~/org/notes/inbox.org")
+	 entry (file "~/org/notes/writing_inbox.org")
          "* %?\n"
          :prepend t)
 
@@ -236,19 +244,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Babel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((emacs-lisp . t)
-;;    (haskell    . t)
-;;    (python     . t)
-;;    (sql        . t)
-;;    ;; (go        . t)
-;;    (latex      . t)
-;;    (json . t)
-;;    (js         . t)
-;;    (shell      . t)
-;;    (scheme     . t)))
 
+(require 'ob-python)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (emacs-lisp . t)
+   (python     . t)
+   (js         . t)
+   (sql        . t)
+   (haskell    . t)
+   (shell      . t)
+   (scheme     . t)
+   ))
+
+   ;; (go        . t)
+   ;; (latex      . t)
+   ;; (json . t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exporting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

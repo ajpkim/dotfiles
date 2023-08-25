@@ -52,6 +52,7 @@ setxkbmap -layout us -option ctrl:nocaps
 export TERMINAL=alacritty
 export BRIGHTNESS='/sys/class/backlight/intel_backlight/brightness'
 export MAIN_DISPLAY="eDP-1"
+export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 
 ##################################################
 ## Aliases

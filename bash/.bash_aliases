@@ -32,6 +32,7 @@ alias pyve='python3 -m venv venv && source venv/bin/activate'
 alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias logout='pkill -KILL -u $USER'
+alias sd='cd ~/projects/self-data && npm run dev'
 
 ######################################################################
 ## Emacs
