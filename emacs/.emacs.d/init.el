@@ -68,7 +68,6 @@
 
 (require 'ak-json)
 ;; (require 'ak-csv)
-(require 'ak-latex)
 (require 'ak-yaml)
 
 
