@@ -59,7 +59,6 @@
 (require 'ak-treesitter)
 (require 'ak-magit)
 (require 'ak-projectile)
-(require 'ak-gpg)
 
 ;; Org-mode stuff
 (require 'ak-org)
