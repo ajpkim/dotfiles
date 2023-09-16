@@ -9,15 +9,15 @@
 (scroll-bar-mode -1)
 (set-face-attribute 'default nil :height 220)
 
-(use-package beacon
-  :ensure t
-  :init
-  (beacon-mode 1))
+;; (use-package beacon
+;;   :ensure t
+;;   :init
+;;   (beacon-mode 1))
 
-(use-package rainbow-mode
-  :ensure t
-  :init
-  (rainbow-mode 1))
+;; (use-package rainbow-mode
+;;   :ensure t
+;;   :init
+;;   (rainbow-mode 1))
 
 (use-package rainbow-delimiters
   :ensure t
