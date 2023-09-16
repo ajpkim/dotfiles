@@ -43,23 +43,8 @@ shopt -s checkwinsize
 setxkbmap -layout us -option ctrl:nocaps
 
 ##################################################
-## Shell variables
-##################################################
-export TERMINAL=alacritty
-export BRIGHTNESS='/sys/class/backlight/intel_backlight/brightness'
-export MAIN_DISPLAY="eDP-1"
-export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
-
-##################################################
 ## Aliases
 ##################################################
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-##################################################
-## Python pyenv
-##################################################
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
