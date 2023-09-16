@@ -40,9 +40,6 @@ HISTFILESIZE=20000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Remap Caps Lock to Control
-setxkbmap -layout us -option ctrl:nocaps
-
 ##################################################
 ## Aliases
 ##################################################
