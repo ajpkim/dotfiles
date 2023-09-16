@@ -7,7 +7,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 220)
 
 (use-package beacon
   :ensure t

@@ -32,9 +32,10 @@
   (org-mode . visual-line-mode)
   (org-mode . olivetti-mode))
 
+;; Recursively add all the files at org/projects/ level
+
 ;; org-tempo enables expanding structs like code blocks from "<s + TAB"
 (require 'org-tempo)
-
 
 (set-face-attribute 'org-verbatim nil :foreground "#f9bfee")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -62,12 +63,11 @@
         ("a" "Anki")
 
 	("aa" "Anki TODO"
-	  entry (file "~/org/anki/todo.org")
-          "* TODO %?")
+	 entry (file "~/org/anki/todo.org")
+         "* TODO %?")
 	("al" "Anki headline link TODO"
-	  entry (file "~/org/anki/todo.org")
+	 entry (file "~/org/anki/todo.org")
          "* TODO %a")
-
 
         ;; ("aa" "Anki basic"
         ;;  entry (file+headline "~/org/notes/anki.org" "Dispatch")
@@ -125,8 +125,8 @@
 	("W" "Week"
 	 entry (file+olp+datetree "~/org/life-log.org")
          "* 2023 WXXX Week Planning and Review
+** Reflection
 ** Focus Areas
-** Week Goals
 ** Projects & Poms
 |---------+------+-----------|
 | Project | Goal | Completed |
@@ -139,35 +139,10 @@
 #+TBLFM: @>$3=vsum(@II..@III)
 
 ** Daily Sketch
-** Review
-*** Tasks
-- [ ] Task inbox
-- [ ] Writing inbox
-- [ ] Review projects
-- [ ] Finances
-- [ ] Email
-- [ ] Texts and calls
-*** How did the week go?
-*** What am I feeling?
-*** What did I learn?
-*** Who did I interact with?
+** Upcoming Events and Planning
+** Week Goals
 "
 	 :jump-to-captured t)
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Project Specific Stuff
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	("N" "NYC Places"
-	 entry (file "~/org/notes/leaf/nyc_places.org")
-         "* %^{PROMPT}
-:PROPERTIES:\n:CREATED: %U\n:END:
-%?
-%^{BOROUGH}p
-%^{NEIGHBORHOOD}p
-%^{TYPE}p
-%^{RATING}p
-"
-         :prepend t)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -258,9 +233,9 @@
    (scheme     . t)
    ))
 
-   ;; (go        . t)
-   ;; (latex      . t)
-   ;; (json . t)
+;; (go        . t)
+;; (latex      . t)
+;; (json . t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exporting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

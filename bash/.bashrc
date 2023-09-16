@@ -4,7 +4,6 @@
 ##################################################
 ## TERMINAL PROMPT
 ##################################################
-
 BLACK='\[\033[00;30m\]'
 BLUE='\[\033[00;34m\]'
 CLEAR="\[\033[0m\]"
@@ -24,7 +23,6 @@ export PS1="$PURPLE\w$GREEN\$(parse_git_branch)$CLEAR\`if [ \$? = 0 ]; then echo
 ##################################################
 ## Bash History
 ##################################################
-
 HISTCONTROL="ignoreboth":"erasedups"
 
 # Append to history file, don't overwite.
@@ -37,7 +35,6 @@ HISTFILESIZE=20000
 ##################################################
 ## General Settings
 ##################################################
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -48,7 +45,6 @@ setxkbmap -layout us -option ctrl:nocaps
 ##################################################
 ## Shell variables
 ##################################################
-
 export TERMINAL=alacritty
 export BRIGHTNESS='/sys/class/backlight/intel_backlight/brightness'
 export MAIN_DISPLAY="eDP-1"
@@ -57,7 +53,13 @@ export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 ##################################################
 ## Aliases
 ##################################################
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+##################################################
+## Python pyenv
+##################################################
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

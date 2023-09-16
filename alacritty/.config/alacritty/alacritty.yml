@@ -21,19 +21,36 @@ scrolling:
   multiplier: 3
 
 font:
-  size: 10
+  # The normal (roman) font face to use.
   normal:
-    family: DejaVu Sans Mono
+    family: "Noto Sans Mono" # Replace this with the exact name from the fc-list output
     style: Regular
+
+  # Bold font face
   bold:
-    family: DejaVu Sans Mono
+    family: "Noto Sans Mono"
     style: Bold
+
+  # Italic font face
   italic:
-    family: DejaVu Sans Mono
-    style: Oblique
-  bold_italic:
-    family: DejaVu Sans Mono
-    style: Bold Oblique
+    family: "Noto Sans Mono"
+    style: Italic
+
+
+# font:
+#   size: 10
+#   normal:
+#     family: DejaVu Sans Mono
+#     style: Regular
+#   bold:
+#     family: DejaVu Sans Mono
+#     style: Bold
+#   italic:
+#     family: DejaVu Sans Mono
+#     style: Oblique
+#   bold_italic:
+#     family: DejaVu Sans Mono
+#     style: Bold Oblique
 
 draw_bold_text_with_bright_colors: false
 

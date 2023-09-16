@@ -30,3 +30,25 @@
   "The function to use when opening an entry.
   Set this to `find-file' if you don't want org-journal to split your window."
   :type 'function)
+
+
+;; Weekly planning
+(defun insert-weekly-planning-template ()
+  (interactive)
+  (insert "** 2023 WXXX Week Planning and Review
+*** Reflection
+*** Focus Areas
+*** Project Time Allocation
+|---------+------+-----------|
+| Project | Goal | Completed |
+|---------+------+-----------|
+|         |      |           |
+|---------+------+-----------|
+| Total   |      |           |
+|---------+------+-----------|
+#+TBLFM: @>$2=vsum(@II..@III)
+#+TBLFM: @>$3=vsum(@II..@III)
+
+*** Daily Sketch
+*** Upcoming Events and Planning
+*** Week Goals"))
