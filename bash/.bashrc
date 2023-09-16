@@ -13,12 +13,13 @@ PURPLE='\[\033[00;35m\]'
 RED='\[\033[00;31m\]'
 WHITE='\[\033[00;37m\]'
 YELLOW='\[\033[00;33m\]'
+ORANGE='\[\033[00;33m\]'
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/'
 }
 
-export PS1="$PURPLE\w$GREEN\$(parse_git_branch)$CLEAR\`if [ \$? = 0 ]; then echo ' $PURPLE\n\$ '; else echo '$RED\n\$ '; fi\`$CLEAR"
+export PS1="$ORANGE\u@$ORANGE\h \w$GREEN\$(parse_git_branch)$CLEAR\`if [ \$? = 0 ]; then echo ' $ORANGE\n\$ '; else echo '$RED\n\$ '; fi\`$CLEAR"
 
 ##################################################
 ## Bash History
