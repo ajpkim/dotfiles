@@ -180,6 +180,10 @@
 (setq org-agenda-files (append '("~/org/todo.org")
                                (file-expand-wildcards "~/org/notes/projects/*.org")))
 
+(setq org-agenda-files
+      (append org-agenda-files
+              (directory-files "~/org/projects" t "\\.org\\'")))
+
 (setq org-agenda-custom-commands
       '(
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -232,6 +236,8 @@
    (shell      . t)
    (scheme     . t)
    ))
+
+
 
 ;; (go        . t)
 ;; (latex      . t)

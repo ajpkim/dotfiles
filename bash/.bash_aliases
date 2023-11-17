@@ -25,19 +25,17 @@ alias gl1='git log --oneline'
 ######################################################################
 ## Utilities
 ######################################################################
-
 alias bt='bluetoothctl'
 alias xcc='xclip -selection clipboard'
 alias pyve='python3 -m venv venv && source venv/bin/activate'
 alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias logout='pkill -KILL -u $USER'
-alias sd='cd ~/projects/self-data && npm run dev'
+alias fin='libreoffice $HOME/fin/outflows.csv'
 
 ######################################################################
 ## Emacs
 ######################################################################
-
 alias e='emacsclient --create-frame'
 alias et='emacsclient -nw'
 alias ke='emacsclient -e "(kill-emacs)"'
@@ -48,7 +46,6 @@ alias de='find . -name "*~" -type f -delete'
 ######################################################################
 ## Applications
 ######################################################################
-
 alias ss='flameshot gui'
 alias ff='firefox'
 alias py='python3'
@@ -59,7 +56,6 @@ alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/
 ######################################################################
 ## Displays
 ######################################################################
-
 ## Base scripts for common cases
 alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
@@ -79,7 +75,7 @@ alias mon-ww='xrandr --output DP-3 --auto --right-of eDP-1 && xrandr --output DP
 ######################################################################
 ## Scripts
 ######################################################################
-
+alias fixnames='. $HOME/scripts/clean_filenames.sh'
 alias chimes='. ~/scripts/chimes.sh'
 alias lines='. ~/scripts/lines.sh'
 alias timer='. ~/scripts/timer.sh'

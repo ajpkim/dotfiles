@@ -40,4 +40,5 @@
 (setq select-enable-clipboard t
       select-enable-primary t)
 
+(column-number-mode 1)
 (electric-pair-mode 1)

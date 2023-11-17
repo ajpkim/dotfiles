@@ -1,6 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bootstrap straight and use-package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'package) ; Initialize package sources
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -16,6 +18,8 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -71,17 +75,19 @@
 (require 'ak-focus-mode)
 
 ;; Languages and development
-(require 'ak-prog)
 (require 'ak-css)
-(require 'ak-eglot)
-(require 'ak-docker)
-(require 'ak-python)
-(require 'ak-js-ts)
-(require 'ak-prettier-js)
-
-(require 'ak-json)
 (require 'ak-csv)
+(require 'ak-docker)
+(require 'ak-eglot)
+(require 'ak-js-ts)
+(require 'ak-json)
 (require 'ak-latex)
+(require 'ak-lua)
+(require 'ak-prettier-js)
+(require 'ak-prog)
+(require 'ak-python)
+(require 'ak-haskell)
+(require 'ak-scheme)
 (require 'ak-yaml)
 
 
