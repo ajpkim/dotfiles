@@ -99,50 +99,15 @@
          "* TODO %a\n%?"
          :prepend t)
 
-        ("s" "Shelf"
-	 entry (file "~/org/notes/leaf/shelf.org")
-         "* %?\n"
+	("f" "File Link"
+	 entry (file+headline "~/org/todo.org" "Inbox")
+         "* TODO %a\n%?"
          :prepend t)
 
         ("w" "Writing Inbox"
 	 entry (file "~/org/notes/writing_inbox.org")
          "* %?\n"
          :prepend t)
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Life Log and Planning
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	("l" "Life Log"
-	 entry (file+olp+datetree "~/org/life-log.org")
-         "* %?\n"
-	 :jump-to-captured t)
-
-	("e" "Today's Events"
-	 entry (file+olp+datetree "~/org/life-log.org")
-         "* Happenings"
-	 :jump-to-captured t)
-
-	("W" "Week"
-	 entry (file+olp+datetree "~/org/life-log.org")
-         "* 2023 WXXX Week Planning and Review
-** Reflection
-** Focus Areas
-** Projects & Poms
-|---------+------+-----------|
-| Project | Goal | Completed |
-|---------+------+-----------|
-|         |      |           |
-|---------+------+-----------|
-| Total   |      |           |
-|---------+------+-----------|
-#+TBLFM: @>$2=vsum(@II..@III)
-#+TBLFM: @>$3=vsum(@II..@III)
-
-** Daily Sketch
-** Upcoming Events and Planning
-** Week Goals
-"
-	 :jump-to-captured t)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -70,6 +70,8 @@
 (require 'ak-org-roam)
 (require 'ak-org-journal)
 (require 'ak-citations)
+(require 'ak-time-tracking)
+
 
 ;; Custom modes
 (require 'ak-focus-mode)
