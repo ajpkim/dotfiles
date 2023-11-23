@@ -3,16 +3,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'ak-time-tracking)
 
+(setq projects-file (concat org-directory "/projects.org"))
+
 (defun my-org-select-project ()
-  "Select a project from a specific Org file, excluding certain headings."
-  (with-current-buffer (find-file-noselect (concat org-directory "/projects/project_time.org"))
-    (let ((excluded-headings '("TIME REPORTS" "DAY" "WEEK" "MONTH"))
-          (projects '()))
+  "Select a project with the TODO keyword 'PROJECT' from Org projects file."
+  (with-current-buffer (find-file-noselect projects-file)
+    (let (projects)
       (org-map-entries
        (lambda ()
-         (let ((heading (org-get-heading t t)))
-           (unless (member heading excluded-headings)
-             (push heading projects)))))
+         (when (string= (org-get-todo-state) "PROJECT")
+           (push (org-get-heading t t) projects)))
+       nil 'file) ; Search in the entire file
       (ivy-read "Select Project: " (nreverse projects)))))
 
 (defun my-select-logbook-entry ()
@@ -26,9 +27,9 @@
   (interactive)
   (let ((project (my-org-select-project))
 	(logbook-entry (my-select-logbook-entry)))
-    (with-current-buffer (find-file-noselect (concat org-directory "/projects/project_time.org"))
+    (with-current-buffer (find-file-noselect projects-file)
       (goto-char (point-min))
-      (re-search-forward (format "^*+\\s-+%s\\s-*$" (regexp-quote project)))
+      (re-search-forward (format "^*+\\s-+PROJECT %s\\s-*$" (regexp-quote project)))
       (forward-line)
       (if (looking-at ":LOGBOOK:")
 	  (progn

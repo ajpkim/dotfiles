@@ -61,6 +61,7 @@
 - [ ] Read
 - [ ] Code
 - [ ] Journal
+- [ ] Events
 *** EVENTS
 "))
 

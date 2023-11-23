@@ -142,12 +142,7 @@
 (set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
 (set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
-(setq org-agenda-files (append '("~/org/todo.org")
-                               (file-expand-wildcards "~/org/notes/projects/*.org")))
-
-(setq org-agenda-files
-      (append org-agenda-files
-              (directory-files "~/org/projects" t "\\.org\\'")))
+(setq org-agenda-files (append '("~/org/todo.org" "~/org/projects.org")))
 
 (setq org-agenda-custom-commands
       '(

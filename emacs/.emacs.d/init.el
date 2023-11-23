@@ -19,18 +19,15 @@
 
 (straight-use-package 'use-package)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; Put all the changes made by customize into a tmp file
 (setq custom-file (make-temp-file "emacs-custom"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quickly access and reload config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun config-visit ()
   (interactive)
   (find-file "~/dotfiles/emacs/.emacs.d/init.el"))
@@ -72,7 +69,6 @@
 (require 'ak-citations)
 (require 'ak-time-tracking)
 
-
 ;; Custom modes
 (require 'ak-focus-mode)
 
@@ -91,7 +87,6 @@
 (require 'ak-haskell)
 (require 'ak-scheme)
 (require 'ak-yaml)
-
 
 (message "Loaded AK emacs config")
 (put 'downcase-region 'disabled nil)
