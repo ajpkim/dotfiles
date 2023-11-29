@@ -108,6 +108,20 @@
 	 entry (file "~/org/notes/writing_inbox.org")
          "* %?\n"
          :prepend t)
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Reading and Watch list entries
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	("l" "Reading & Watch List")
+
+	("lr" "Reading" entry
+	 (file "~/org/notes/alex/reading.org")
+         "* TODO %^{Title} %^g\n:PROPERTIES:\n:Author: %^{Author}\n:Added: %U\n:Rating:\n:END:\n%?"
+         :prepend t)
+
+	("lw" "Watching" entry
+	 (file "~/org/notes/alex/watching.org")
+         "* TODO %^{Title} %^g\n:PROPERTIES:\n:Added: %U\n:Rating:\n:END:\n%?"
+         :prepend t)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
