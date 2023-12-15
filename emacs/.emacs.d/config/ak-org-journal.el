@@ -45,6 +45,20 @@
 #+TBLFM: @>$3=vsum(@II..@III)
 "))
 
+(defun my-insert-day-plan-template ()
+  (interactive)
+  (insert "- Awake:
+- Morning Routine:
+- Morning Reading:
+- Block 1:
+- Lunch:
+- Block 2:
+- Block 3:
+- Dinner:
+- Evening Activity:
+- Bed:
+"))
+
 (defun my-org-journal-entry-template ()
   "Inserts custom template text for new org-journal entries."
   (interactive)
@@ -61,7 +75,6 @@
 - [ ] Read
 - [ ] Code
 - [ ] Journal
-- [ ] Events
 *** EVENTS
 "))
 
