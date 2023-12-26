@@ -69,6 +69,7 @@
 *** HABITS
 - [ ] Sleep
 - [ ] Meditate
+- [ ] Mobility
 - [ ] Exercise
 - [ ] Socialize
 - [ ] Nutrition

@@ -232,6 +232,7 @@
       org-export-with-section-numbers nil
       org-export-with-tags nil
       org-export-with-toc nil
+      org-export-with-broken-links t
       org-html-doc-type "HTML5"
       org-html-head-extra ""
       org-html-head-include-default-style nil
