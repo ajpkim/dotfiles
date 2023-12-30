@@ -1,0 +1,61 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "#595959"
+blue = "#79a8ff"
+cyan = "#00d3d0"
+green = "#00c06f"
+magenta = "#d5b1ff"
+red = "#fe6060"
+white = "#ffffff"
+yellow = "#d0bc00"
+
+[colors.normal]
+black = "#000000"
+blue = "#82b0ec"
+cyan = "#00d8b4"
+green = "#6ae4b9"
+magenta = "#fbd6f4"
+red = "#ff8059"
+white = "#e0e6f0"
+yellow = "#cabf77"
+
+[colors.primary]
+background = "#161129"
+foreground = "#e0e6f0"
+
+[env]
+TERM = "xterm-256color"
+
+[font.bold]
+family = "Noto Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "Noto Sans Mono"
+style = "Italic"
+
+[font.normal]
+family = "Noto Sans Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 20
+y = 20
