@@ -22,7 +22,7 @@ white = "#e0e6f0"
 yellow = "#cabf77"
 
 [colors.primary]
-background = "#161129"
+background = "#000000"
 foreground = "#e0e6f0"
 
 [env]
@@ -57,5 +57,5 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 20
-y = 20
+x = 10
+y = 10

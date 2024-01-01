@@ -7,7 +7,7 @@
   (mode-line ((t (:height 1.0))))
   (mode-line-inactive ((t (:height 0.75))))
   :custom
-  ((doom-modeline-height 20)))
+  ((doom-modeline-height 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hidden modeline mode

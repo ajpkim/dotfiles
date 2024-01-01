@@ -50,6 +50,7 @@
   (insert "- Awake:
 - Morning Routine:
 - Morning Reading:
+- Morning Study:
 - Block 1:
 - Lunch:
 - Block 2:
@@ -59,24 +60,24 @@
 - Bed:
 "))
 
-(defun my-org-journal-entry-template ()
-  "Inserts custom template text for new org-journal entries."
-  (interactive)
-  (goto-char (point-max))
-  (insert "
-** TODAY
-*** PLAN
-*** HABITS
-- [ ] Sleep
-- [ ] Meditate
-- [ ] Mobility
-- [ ] Exercise
-- [ ] Socialize
-- [ ] Nutrition
-- [ ] Read
-- [ ] Code
-- [ ] Journal
-*** EVENTS
-"))
+;; (defun my-org-journal-entry-template ()
+;;   "Inserts custom template text for new org-journal entries."
+;;   (interactive)
+;;   (goto-char (point-max))
+;;   (insert "
+;; ** TODAY
+;; *** PLAN
+;; *** HABITS
+;; - [ ] Sleep
+;; - [ ] Meditate
+;; - [ ] Mobility
+;; - [ ] Exercise
+;; - [ ] Socialize
+;; - [ ] Nutrition
+;; - [ ] Read
+;; - [ ] Code
+;; - [ ] Journal
+;; *** EVENTS
+;; "))
 
-(add-hook 'org-journal-after-header-create-hook 'my-org-journal-entry-template)
+;; (add-hook 'org-journal-after-header-create-hook 'my-org-journal-entry-template)
