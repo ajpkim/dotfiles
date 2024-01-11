@@ -61,6 +61,7 @@
 (require 'ak-magit)
 (require 'ak-projectile)
 (require 'ak-gpg)
+(require 'ak-anki)
 ;; (require 'ak-modeline)
 
 ;; Org-mode stuff

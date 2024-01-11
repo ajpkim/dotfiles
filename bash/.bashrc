@@ -60,3 +60,4 @@ fi
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+source /usr/share/nvm/init-nvm.sh
