@@ -31,7 +31,7 @@ alias pyve='python3 -m venv venv && source venv/bin/activate'
 alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias logout='pkill -KILL -u $USER'
-alias fin='libreoffice $HOME/fin/outflows.csv'
+alias habits='$SCRIPTS/habits.sh'
 
 ######################################################################
 ## Emacs
@@ -82,5 +82,5 @@ alias timer='. ~/scripts/timer.sh'
 alias stopwatch='. ~/scripts/stopwatch.sh'
 
 ## Self processes
-alias tt=". ~/scripts/track-time.sh"
+alias tt="firefox https://track.toggl.com/timer"
 alias hs="nmcli device wifi connect iPhone"
