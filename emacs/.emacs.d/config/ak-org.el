@@ -83,7 +83,7 @@
 
 	("as" "Anki Spanish"
          entry (file+headline "~/org/notes/anki.org" "New Cards")
-         "* %U   :spanish:\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
+         "* %U   :spanish:\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS: spanish\n:END:\n** Front\n%?\n** Back\n\n")
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Common capture sequences
@@ -160,7 +160,7 @@
 (set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
 (set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
-(setq org-agenda-files (append '("~/org/todo.org" "~/org/projects.org")))
+(setq org-agenda-files (append '("~/org/todo.org" "~/org/projects.org" "~/org/notes/writing_inbox.org")))
 
 (setq org-agenda-custom-commands
       '(
@@ -235,7 +235,7 @@
       org-export-headline-levels 10
       org-export-with-section-numbers nil
       org-export-with-tags nil
-      org-export-with-toc nil
+      ;; org-export-with-toc nil
       org-export-with-broken-links t
       org-html-doc-type "HTML5"
       org-html-head-extra ""

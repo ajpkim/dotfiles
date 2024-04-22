@@ -10,7 +10,8 @@
          org-journal-date-format "%Y-%m-%d, %a"
          org-journal-date-prefix "* "
          org-journal-time-prefix "** "
-         org-journal-file-header "#+TITLE: %Y-%m-%d, %a"
+         org-journal-file-header "#+TITLE: %Y-%m-%d, %a
+#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org-export/org-html-default-styles.css\">"
          org-journal-file-format "%Y-%m-%d.org"
          org-journal-file-type 'daily
          )
@@ -29,7 +30,7 @@
 
 (defun my-insert-weekly-planning-template ()
   (interactive)
-  (insert "2023 WXXX WEEK PLANNING
+  (insert "2024 WXX WEEK PLANNING
 *** Feelings and Thoughts
 *** Focus Areas and Week Goals
 *** Upcoming Events

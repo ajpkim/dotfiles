@@ -2,8 +2,12 @@
 
 (use-package python-ts-mode
   :hook
-  (python-mode-hook . python-ts-mode)
-  (python-mode-hook . (lambda () (setq tab-width 4))))
+  ((python-ts-mode . eglot-ensure)
+   (python-ts-mode . blacken-mode)
+   (python-ts-mode . (lambda () (setq tab-width 4))))
+  ;; :bind (:map python-ts-mode-map
+  ;; 	      ("<f5>" . recompile))
+  :mode (("\\.py\\'" . python-ts-mode)))
 
 ;; Jupyter notebooks
 (use-package ein
@@ -11,5 +15,3 @@
 
 (use-package blacken
   :ensure t)
-
-(add-hook 'python-mode-hook 'blacken-mode)

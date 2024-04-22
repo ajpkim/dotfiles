@@ -56,13 +56,15 @@
 (require 'ak-olivetti)
 (require 'ak-files)
 (require 'ak-ivy)
+
 (require 'ak-company)
 (require 'ak-treesitter)
+
 (require 'ak-magit)
 (require 'ak-projectile)
 (require 'ak-gpg)
 (require 'ak-anki)
-;; (require 'ak-modeline)
+(require 'ak-modeline)
 
 ;; Org-mode stuff
 (require 'ak-org)
@@ -89,6 +91,8 @@
 (require 'ak-haskell)
 (require 'ak-scheme)
 (require 'ak-yaml)
+;; Experimental
+(require 'ak-test)
 
 (message "Loaded AK emacs config")
 (put 'downcase-region 'disabled nil)
