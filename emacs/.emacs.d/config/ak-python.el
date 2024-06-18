@@ -14,4 +14,7 @@
   :ensure t)
 
 (use-package blacken
-  :ensure t)
+  :ensure t
+  :config
+  (setq blacken-line-length 100)
+)

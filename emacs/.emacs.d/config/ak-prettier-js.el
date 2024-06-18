@@ -11,4 +11,5 @@
 			 "--bracket-spacing" "true"
 			 "--semi" "false"
 			 "--singleQuote" "true"
+			 "--print-width" "110"
 			 ))

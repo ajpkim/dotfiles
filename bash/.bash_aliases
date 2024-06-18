@@ -1,4 +1,4 @@
-######################################################################
+#####################################################################
 ## ls aliases
 ######################################################################
 
@@ -32,6 +32,7 @@ alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias logout='pkill -KILL -u $USER'
 alias habits='$SCRIPTS/habits.sh'
+alias genreport='$SCRIPTS/gen_report.sh'
 
 ######################################################################
 ## Emacs
@@ -60,6 +61,9 @@ alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/
 alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
 
+## NH monitors
+alias mon-nh='xrandr --output DP-1-1 --mode 3840x2160 --left-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --mode 3840x2160 --left-of DP-1-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+
 ## Main LG monitor
 alias lg-mon='xrandr --output DP-4-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
 
@@ -72,6 +76,9 @@ alias mon-port-right-vert='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY 
 ## Luer WeWork setup
 alias mon-ww='xrandr --output DP-3 --auto --right-of eDP-1 && xrandr --output DP-1 --auto --right-of DP-3'
 
+## Dad desk (plug main hdmi into laptop)
+alias mon-dad='xrandr --output DP-4 --auto --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --auto --right-of DP-4 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+
 ######################################################################
 ## Scripts
 ######################################################################
@@ -82,5 +89,5 @@ alias timer='. ~/scripts/timer.sh'
 alias stopwatch='. ~/scripts/stopwatch.sh'
 
 ## Self processes
-alias tt="firefox https://track.toggl.com/timer"
+alias tt="et ~/work/tracking/data/hours.csv"
 alias hs="nmcli device wifi connect iPhone"

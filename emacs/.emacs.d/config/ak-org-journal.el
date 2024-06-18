@@ -28,22 +28,23 @@
   Set this to `find-file' if you don't want org-journal to split your window."
   :type 'function)
 
-(defun my-insert-weekly-planning-template ()
+(defun my-insert-weekly-reflection-template ()
   (interactive)
-  (insert "2024 WXX WEEK PLANNING
-*** Feelings and Thoughts
-*** Focus Areas and Week Goals
-*** Upcoming Events
-*** Project Time
-|---------+------|
-| Project | Goal |
-|---------+------|
-|         |      |
-|---------+------|
-| Total   |      |
-|---------+------|
-#+TBLFM: @>$2=vsum(@II..@III)
-#+TBLFM: @>$3=vsum(@II..@III)
+  (insert "2024 WXX Week reflection    :reflection:
+*** Tasks
+- [ ] Reflection
+- [ ] Growth Review
+- [ ] Project Review
+- [ ] Work Review
+- [ ] Financial Review
+- [ ] Task Inbox
+- [ ] Social Responses
+
+*** Reflection
+*** Growth
+*** Projects
+*** Work
+*** Finances
 "))
 
 (defun my-insert-day-plan-template ()
@@ -60,25 +61,3 @@
 - Evening Activity:
 - Bed:
 "))
-
-;; (defun my-org-journal-entry-template ()
-;;   "Inserts custom template text for new org-journal entries."
-;;   (interactive)
-;;   (goto-char (point-max))
-;;   (insert "
-;; ** TODAY
-;; *** PLAN
-;; *** HABITS
-;; - [ ] Sleep
-;; - [ ] Meditate
-;; - [ ] Mobility
-;; - [ ] Exercise
-;; - [ ] Socialize
-;; - [ ] Nutrition
-;; - [ ] Read
-;; - [ ] Code
-;; - [ ] Journal
-;; *** EVENTS
-;; "))
-
-;; (add-hook 'org-journal-after-header-create-hook 'my-org-journal-entry-template)

@@ -153,14 +153,14 @@
       org-agenda-todo-ignore-scheduled nil
       org-deadline-warning-days 3
       org-agenda-window-setup 'current-window
-      org-agenda-prefix-format " %i %-12:c%?-12t% s"
+      org-agenda-prefix-format " %i %-15:c%?-12t% s"
       )
 
 (set-face-attribute 'org-scheduled-previously nil :foreground "#ff471a")
 (set-face-attribute 'org-scheduled-today nil :foreground "#b3fff0")
 (set-face-attribute 'org-scheduled nil :foreground "#d3d3d3")
 
-(setq org-agenda-files (append '("~/org/todo.org" "~/org/projects.org" "~/org/notes/writing_inbox.org")))
+(setq org-agenda-files (append '("~/org/todo.org" "~/org/projects.org" "~/org/work.org" "~/org/notes/writing_inbox.org")))
 
 (setq org-agenda-custom-commands
       '(
