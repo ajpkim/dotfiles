@@ -61,8 +61,9 @@ alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/
 alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
 
-## NH monitors
-alias mon-nh='xrandr --output DP-1-1 --mode 3840x2160 --left-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --mode 3840x2160 --left-of DP-1-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+## NH monitors & Desk
+alias mon-nh='xrandr --output DP-1-1 --mode 3840x2160 --left-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-4 --mode 3840x2160 --left-of DP-1-1 --set audio off --rotate left && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+alias desk='no-monitors && mon-nh && source ~/.xinitrc'
 
 ## Main LG monitor
 alias lg-mon='xrandr --output DP-4-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'

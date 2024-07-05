@@ -48,6 +48,13 @@ export MAIN_DISPLAY="eDP-1"
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 export SCRIPTS="$HOME/scripts"
 
+
+source $SCRIPTS/gpt_files.sh
+
+# for script in ~/scripts/*.sh; do
+#   source "$script"
+# done
+
 ##################################################
 ## Aliases
 ##################################################
