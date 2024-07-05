@@ -57,34 +57,6 @@
 
 (setq org-capture-templates
       '(
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ;; Anki templates
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ("a" "Anki")
-
-	;; ("aa" "Anki TODO"
-	;;  entry (file "~/org/anki/todo.org")
-        ;;  "* TODO %?")
-	;; ("al" "Anki headline link TODO"
-	;;  entry (file "~/org/anki/todo.org")
-        ;;  "* TODO %a")
-
-        ("aa" "Anki basic"
-         entry (file+headline "~/org/notes/anki.org" "New Cards")
-         "* %U %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
-
-        ("ac" "Anki cloze"
-         entry (file+headline "~/org/notes/anki.org" "New Cards")
-         "* %U  %^g \n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Text\n%?\n** Extra\n\n")
-
-        ("at" "Anki Type"
-         entry (file+headline "~/org/notes/anki.org" "New Cards")
-         "* %U  %^g\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Type\n:ANKI_DECK: main\n:ANKI_TAGS:\n:END:\n** Front\n%?\n** Back\n\n")
-
-	("as" "Anki Spanish"
-         entry (file+headline "~/org/notes/anki.org" "New Cards")
-         "* %U   :spanish:\n:PROPERTIES:\n:CREATED: %U\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: main\n:ANKI_TAGS: spanish\n:END:\n** Front\n%?\n** Back\n\n")
-
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Common capture sequences
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

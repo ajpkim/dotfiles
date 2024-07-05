@@ -37,6 +37,7 @@
 - [ ] Project Review
 - [ ] Work Review
 - [ ] Financial Review
+- [ ] Exercise
 - [ ] Task Inbox
 - [ ] Social Responses
 
@@ -45,6 +46,7 @@
 *** Projects
 *** Work
 *** Finances
+*** Exercise
 "))
 
 (defun my-insert-day-plan-template ()
