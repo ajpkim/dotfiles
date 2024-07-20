@@ -30,23 +30,19 @@
 
 (defun my-insert-weekly-reflection-template ()
   (interactive)
-  (insert "2024 WXX Week reflection    :reflection:
+  (insert "2024 WXX Week reflection                                      :reflection:
 *** Tasks
 - [ ] Reflection
-- [ ] Growth Review
-- [ ] Project Review
 - [ ] Work Review
 - [ ] Financial Review
-- [ ] Exercise
+- [ ] Project Review
 - [ ] Task Inbox
 - [ ] Social Responses
 
 *** Reflection
-*** Growth
-*** Projects
 *** Work
 *** Finances
-*** Exercise
+*** Projects
 "))
 
 (defun my-insert-day-plan-template ()

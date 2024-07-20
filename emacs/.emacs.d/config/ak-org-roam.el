@@ -99,9 +99,23 @@
 (global-set-key (kbd "C-c n s") 'ak-org-roam-node-from-cite)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org roam buffer customization
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Defaults from for manual
+(setq org-roam-mode-sections
+      '((org-roam-backlinks-section :unique t)
+        org-roam-reflinks-section))
+
+(add-to-list 'display-buffer-alist
+             '("\\*org-roam\\*"
+               (display-buffer-in-direction)
+               (direction . right)
+               (window-width . 0.33)
+               (window-height . fit-window-to-buffer)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-roam-ui
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package org-roam-ui
   :ensure t
   :after org-roam
@@ -110,3 +124,35 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Note publishing
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defun ak/org-publish-sitemap (title list)
+;;   "Custom sitemap generation function."
+;;   (concat "#+TITLE: " title "\n\n"
+;;           (org-list-to-subtree list)))
+
+;; don't interpret '_' and '^' as sub and superscripts
+(setq org-export-with-sub-superscripts '{})
+
+(setq org-publish-project-alist
+      '(("org-note-files"
+         :base-directory "~/org/notes/"
+         :publishing-directory "~/org/notes/exports/"
+         :publishing-function org-html-publish-to-html
+         :recursive t
+	 :with-tags t
+	 :exclude "refs.bib\\|^alex/.*"
+         :exclude-tags ("noexport")
+         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/css/simple.css\" />")
+        ("org-note-assets"
+         :base-directory "~/org/notes/assets/"
+         :publishing-directory "~/org/notes/exports/assets/"
+         :base-extension "png\\|jpg\\|gif\\|pdf\\|css\\|js"
+         :publishing-function org-publish-attachment
+         :recursive t)
+        ("org-notes"
+         :components ("org-note-files" "org-note-assets"))))
+
+(org-publish-all t)
