@@ -143,7 +143,8 @@
          :publishing-function org-html-publish-to-html
          :recursive t
 	 :with-tags t
-	 :exclude "refs.bib\\|^alex/.*"
+	 ;; :exclude "refs.bib\\|^alex/.*"
+	 :exclude "refs.bib"
          :exclude-tags ("noexport")
          :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/css/simple.css\" />")
         ("org-note-assets"
@@ -156,3 +157,20 @@
          :components ("org-note-files" "org-note-assets"))))
 
 (org-publish-all t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Open exported version of current note in firefox
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun open-exported-html-in-firefox ()
+  "Open the exported HTML version of the current Org file in Firefox."
+  (interactive)
+  (let* ((org-file (buffer-file-name))
+         (export-dir "~/org/notes/exports/")
+         (html-file (concat (expand-file-name export-dir)
+                            (file-relative-name (file-name-sans-extension org-file) (expand-file-name "~/org/notes/"))
+                            ".html")))
+    (if (file-exists-p html-file)
+        (browse-url-firefox (concat "file://" (expand-file-name html-file)))
+      (message "Exported HTML file does not exist: %s" html-file))))
+
+(global-set-key (kbd "C-c h h") 'open-exported-html-in-firefox)
