@@ -55,6 +55,10 @@ source $SCRIPTS/gpt_files.sh
 #   source "$script"
 # done
 
+# Other stuff we need in the shell
+export FLYCTL_INSTALL="/home/ajpkim/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 ##################################################
 ## Aliases
 ##################################################
@@ -69,3 +73,10 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 source /usr/share/nvm/init-nvm.sh
+
+##################################################
+## Keyboard remapping
+##################################################
+# swap ctrl and all caps + toggle between us and es
+# keyboards by hitting both ctrl keys
+setxkbmap -layout us,es -option "ctrl:nocaps,grp:ctrls_toggle"
