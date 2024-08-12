@@ -156,7 +156,7 @@
         ("org-notes"
          :components ("org-note-files" "org-note-assets"))))
 
-(org-publish-all t)
+;; (org-publish-all t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Open exported version of current note in firefox
