@@ -79,7 +79,7 @@ alias mon-port-right-vert='xrandr --output DP-1 --auto --right-of $MAIN_DISPLAY 
 alias mon-ww='xrandr --output DP-3 --auto --right-of eDP-1 && xrandr --output DP-1 --auto --right-of DP-3'
 
 ## Dad desk (plug main hdmi into laptop)
-alias mon-dad='xrandr --output DP-4 --auto --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --auto --right-of DP-4 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+alias mon-dad='xrandr --output DP-1-1 --auto --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --auto --right-of DP-4 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
 
 ######################################################################
 ## Scripts

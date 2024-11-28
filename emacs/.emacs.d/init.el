@@ -81,6 +81,7 @@
 (require 'ak-csv)
 (require 'ak-docker)
 (require 'ak-eglot)
+(require 'ak-haskell)
 (require 'ak-js-ts)
 (require 'ak-json)
 (require 'ak-latex)
@@ -88,9 +89,10 @@
 (require 'ak-prettier-js)
 (require 'ak-prog)
 (require 'ak-python)
-(require 'ak-haskell)
 (require 'ak-scheme)
+(require 'ak-terraform)
 (require 'ak-yaml)
+
 ;; Experimental
 (require 'ak-test)
 

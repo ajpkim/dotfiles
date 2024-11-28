@@ -75,10 +75,15 @@
          "* TODO %a\n%?"
          :prepend t)
 
-	("f" "File Link"
-	 entry (file+headline "~/org/todo.org" "Inbox")
-         "* TODO %a\n%?"
-         :prepend t)
+	("h" "Health Log"
+	 plain (file+olp+datetree "~/org/notes/alex/health_log.org")
+         "%U\n%?"
+         :tree-type 'daily)
+
+	("p" "Poker Log"
+	 plain (file+olp+datetree "~/org/notes/alex/poker_log.org")
+         "%U\n%?"
+         :tree-type 'daily)
 
         ("w" "Writing Inbox"
 	 entry (file "~/org/notes/writing_inbox.org")
