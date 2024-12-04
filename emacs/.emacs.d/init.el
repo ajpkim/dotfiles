@@ -77,6 +77,7 @@
 (require 'ak-focus-mode)
 
 ;; Languages and development
+(require 'ak-common-lisp)
 (require 'ak-css)
 (require 'ak-csv)
 (require 'ak-docker)
