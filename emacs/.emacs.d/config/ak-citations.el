@@ -1,5 +1,6 @@
 ;; Citation related tools that integrate with Zotero and org-roam,
-;; specifically the "ref" notes in org-roam.
+;; specifically the "ref" notes in org-roam. Zotero must be running
+;; for some features.
 
 (provide 'ak-citations)
 
@@ -8,9 +9,6 @@
 (require 'oc-basic)
 (require 'oc-biblatex)
 (require 'oc-csl)
-
-;; (use-package citeproc
-;;   :ensure t)
 
 (use-package citar
   :ensure t

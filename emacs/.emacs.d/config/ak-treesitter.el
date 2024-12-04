@@ -16,4 +16,4 @@
 	(yaml-mode . yaml-ts-mode)))
 
 ;; ;; Explicit hooks here since the major-mode-remap doesn't work for JS modes...
-(add-hook 'js-mode-hook 'js-ts-mode)
+;; (add-hook 'js-mode-hook 'js-ts-mode)

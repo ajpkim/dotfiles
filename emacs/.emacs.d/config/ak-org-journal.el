@@ -7,14 +7,13 @@
   (setq org-journal-prefix-key "")
   :config
   (setq  org-journal-dir "~/org/journal/"
+         org-journal-file-type 'daily
+         org-journal-file-format "%Y-%m-%d.org"
          org-journal-date-format "%Y-%m-%d, %a"
+	 ;; File structure and header
          org-journal-date-prefix "* "
          org-journal-time-prefix "** "
-         org-journal-file-header "#+TITLE: %Y-%m-%d, %a
-#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org-export/org-html-default-styles.css\">"
-         org-journal-file-format "%Y-%m-%d.org"
-         org-journal-file-type 'daily
-         )
+	 org-journal-file-header "#+TITLE: %Y-%m-%d, %a")
   :bind (("C-c j" . org-journal-new-entry)
          ("C-c J" . org-journal-open-current-journal-file)
          ("C-c s" . org-journal-search)
@@ -28,34 +27,19 @@
   Set this to `find-file' if you don't want org-journal to split your window."
   :type 'function)
 
-(defun my-insert-weekly-reflection-template ()
-  (interactive)
-  (insert "2024 WXX Week reflection                                      :reflection:
-*** Tasks
-- [ ] Reflection
-- [ ] Work Review
-- [ ] Financial Review
-- [ ] Project Review
-- [ ] Task Inbox
-- [ ] Social Responses
+;; #+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org-export/org-html-default-styles.css\">"
 
-*** Reflection
+
+(defun insert-weekly-overview ()
+  (interactive)
+  (insert " Weekly Overview          :reflection:
+*** Top of Mind
 *** Work
-*** Finances
 *** Projects
-"))
-
-(defun my-insert-day-plan-template ()
-  (interactive)
-  (insert "- Awake:
-- Morning Routine:
-- Morning Reading:
-- Morning Study:
-- Block 1:
-- Lunch:
-- Block 2:
-- Block 3:
-- Dinner:
-- Evening Activity:
-- Bed:
+*** Health
+*** Goals
+*** Tasks
+- [ ] Email
+- [ ] Text Messages
+- [ ] Financial Review
 "))

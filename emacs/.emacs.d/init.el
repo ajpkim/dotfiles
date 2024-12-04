@@ -48,55 +48,55 @@
 
 (add-to-list 'load-path "~/.emacs.d/config")
 
+;; Core functionality
 (require 'ak-base)
-(require 'ak-modus)
-(require 'ak-visual)
-(require 'ak-text)
-(require 'ak-help)
-(require 'ak-olivetti)
-(require 'ak-files)
-(require 'ak-ivy)
-
-(require 'ak-company)
-(require 'ak-treesitter)
-
+(require 'ak-modus-themes)
+(require 'ak-text)  ;; custom text insert insertions e.g. "→"
+(require 'ak-files)  ;; personal file shortcuts
+(require 'ak-ivy)  ;; search
+(require 'ak-company)  ;; auto-complete
+(require 'ak-eglot)  ;; inteface with LSP servers
+(require 'ak-treesitter)  ;; syntax highlighting + structured editing
 (require 'ak-magit)
 (require 'ak-projectile)
-(require 'ak-gpg)
-(require 'ak-anki)
 (require 'ak-modeline)
 
-;; Org-mode stuff
+;; ;; Org-mode stuff
 (require 'ak-org)
 (require 'ak-org-roam)
 (require 'ak-org-journal)
 (require 'ak-citations)
-(require 'ak-time-tracking)
 
-;; Custom modes
+;; ;; Custom modes
 (require 'ak-focus-mode)
 
-;; Languages and development
+;; ;; Languages and programming
 (require 'ak-common-lisp)
 (require 'ak-css)
 (require 'ak-csv)
 (require 'ak-docker)
-(require 'ak-eglot)
 (require 'ak-haskell)
-(require 'ak-js-ts)
+(require 'ak-javascript-typescript)
 (require 'ak-json)
 (require 'ak-latex)
 (require 'ak-lua)
-(require 'ak-prettier-js)
 (require 'ak-prog)
 (require 'ak-python)
 (require 'ak-scheme)
 (require 'ak-terraform)
 (require 'ak-yaml)
 
-;; Experimental
-(require 'ak-test)
+;; ;; Experimental
+;; (require 'ak-test)
 
-(message "Loaded AK emacs config")
+;; Not using
+;; (require 'ak-gpg)
+;; (require 'ak-anki)
+;; (require 'ak-time-tracking)
+
+
+;; Random stuff that emacs prompts us for that we need to configure
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(message "Loaded AK emacs config")
