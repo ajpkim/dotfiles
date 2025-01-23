@@ -217,6 +217,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-refile-targets
       `((nil . (:maxlevel . 2))  ;; current buffer
+	("~/org/todo.org" . (:maxlevel . 1))
+	("~/org/someday.org" . (:maxlevel . 1))
 	("~/org/projects.org" . (:maxlevel . 3))
         ("~/org/work.org" . (:maxlevel . 2))))
 

@@ -1,4 +1,6 @@
 (provide 'ak-csv)
 
+
 (use-package csv-mode
-    :ensure t)
+  :ensure t
+  :hook (csv-mode . csv-align-mode))

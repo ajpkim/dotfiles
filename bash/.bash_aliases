@@ -32,7 +32,7 @@ alias pyve='python3 -m venv venv && source venv/bin/activate'
 alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias logout='pkill -KILL -u $USER'
-alias habits='$SCRIPTS/habits.sh'
+alias habits='et ~/data/habits/habits.csv'
 alias genreport='$SCRIPTS/gen_report.sh'
 
 ######################################################################
@@ -54,6 +54,7 @@ alias py='python3'
 alias ipy='ipython'
 alias jp='jupyter-notebook'
 alias bespoke='~/builds/BespokeSynth/ignore/build/Source/BespokeSynth_artefacts/Release/BespokeSynth'
+alias toggl='ff https://track.toggl.com/timer'
 
 ######################################################################
 ## Displays
@@ -63,7 +64,7 @@ alias no-monitors='. ~/scripts/turn-off-monitors.sh'
 alias home-monitors='. ~/scripts/home-monitors.sh'
 
 ## NH monitors & Desk
-alias mon-nh='xrandr --output DP-1-1 --mode 3840x2160 --left-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-2 --mode 3840x2160 --left-of DP-1-1 --set audio off --rotate left && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+alias mon-nh='xrandr --output DP-3 --mode 3840x2160 --left-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg && xrandr --output DP-1-1 --mode 3840x2160 --left-of DP-3 --set audio off --rotate left && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
 alias desk='no-monitors && mon-nh && source ~/.xinitrc'
 
 ## Main LG monitor

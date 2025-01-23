@@ -34,9 +34,11 @@
   (interactive)
   (insert " Weekly Overview          :reflection:
 *** Top of Mind
+*** Priorities
 *** Work
 *** Projects
 *** Health
+*** Routine
 *** Goals
 *** Tasks
 - [ ] Email
