@@ -85,6 +85,7 @@
 (require 'ak-scheme)
 (require 'ak-terraform)
 (require 'ak-yaml)
+(require 'ak-go)
 
 ;; ;; Experimental
 ;; (require 'ak-test)

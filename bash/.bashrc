@@ -47,6 +47,9 @@ export BRIGHTNESS='/sys/class/backlight/intel_backlight/brightness'
 export MAIN_DISPLAY="eDP-1"
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 export SCRIPTS="$HOME/scripts"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
 
 
 source $SCRIPTS/gpt_files.sh
