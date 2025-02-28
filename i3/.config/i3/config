@@ -181,8 +181,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Disable window titlebars (necessary for gaps and can be nonzero)
 for_window [class=".*"] border pixel 5
-# Only enable outer gaps when there is exactly one container.
-smart_gaps inverse_outer
+# Enable outer gaps when there is exactly one container with "smart_gaps inverse_outer"
+smart_gaps on
 # Smart borders will draw borders on windows only if there is more than one window in a workspace
 smart_borders on
 # Hide edge borders only if there is one window with no gaps

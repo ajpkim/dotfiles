@@ -94,3 +94,9 @@ alias stopwatch='. ~/scripts/stopwatch.sh'
 ## Self processes
 alias tt="et ~/work/tracking/data/hours.csv"
 alias hs="nmcli device wifi connect iPhone"
+
+######################################################################
+## Work
+######################################################################
+alias hawks='cd ~/work/hawks'
+alias hawks-c='cd ~/work/hawks/code'

@@ -19,6 +19,7 @@
 (setq visible-bell 1)
 (setq scroll-conservatively 0)  ;; Dictates whether scrolling beyond page recenters the point or not
 (setq scroll-preserve-screen-position t)
+(setq vc-follow-symlinks t)
 
 ;; Store all emacs backup files in ~/.emacs-backups
 (setq backup-directory-alist
