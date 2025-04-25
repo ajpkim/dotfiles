@@ -68,7 +68,7 @@ alias mon-nh='xrandr --output DP-3 --mode 3840x2160 --left-of eDP-1 --set audio 
 alias desk='no-monitors && mon-nh && source ~/.xinitrc'
 
 ## Main LG monitor
-alias lg-mon='xrandr --output DP-4-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
+alias lg-mon='xrandr --output DP-1 --mode 3840x2160 --right-of eDP-1 --set audio off && feh --bg-scale $HOME/pictures/bg-img/wallpaper.jpg'
 
 ## Portable monitor
 alias mon-port-left='xrandr --output DP-1 --auto --output $MAIN_DISPLAY --auto --pos 3840x0'
@@ -94,9 +94,3 @@ alias stopwatch='. ~/scripts/stopwatch.sh'
 ## Self processes
 alias tt="et ~/work/tracking/data/hours.csv"
 alias hs="nmcli device wifi connect iPhone"
-
-######################################################################
-## Work
-######################################################################
-alias hawks='cd ~/work/hawks'
-alias hawks-c='cd ~/work/hawks/code'

@@ -4,7 +4,7 @@
 
 (provide 'ak-citations)
 
-(require 'citar)
+;; (require 'citar)
 (require 'oc-basic)
 (require 'oc-basic)
 (require 'oc-biblatex)

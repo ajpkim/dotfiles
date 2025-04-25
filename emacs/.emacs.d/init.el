@@ -50,6 +50,7 @@
 
 ;; Core functionality
 (require 'ak-base)
+(require 'ak-eldoc)
 (require 'ak-modus-themes)
 (require 'ak-text)  ;; custom text insert insertions e.g. "→"
 (require 'ak-files)  ;; personal file shortcuts
@@ -60,6 +61,7 @@
 (require 'ak-magit)
 (require 'ak-projectile)
 (require 'ak-modeline)
+(require 'ak-work)
 
 ;; ;; Org-mode stuff
 (require 'ak-org)

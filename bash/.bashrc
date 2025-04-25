@@ -24,13 +24,12 @@ export PS1="$PURPLE\$(date +%H:%M) \w$GREEN\$(parse_git_branch)$CLEAR\`if [ \$? 
 ## Bash History
 ##################################################
 HISTCONTROL="ignoreboth":"erasedups"
-
+export HISTSIZE=
+export HISTFILESIZE=
 # Append to history file, don't overwite.
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+# empty (or negative) = no limit
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 ##################################################
 ## General Settings
@@ -47,10 +46,6 @@ export BRIGHTNESS='/sys/class/backlight/intel_backlight/brightness'
 export MAIN_DISPLAY="eDP-1"
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 export SCRIPTS="$HOME/scripts"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-
-
 
 source $SCRIPTS/gpt_files.sh
 
@@ -75,7 +70,6 @@ fi
 # eval "$(pyenv init --path)"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
-# source /usr/share/nvm/init-nvm.sh
 
 ##################################################
 ## Keyboard remapping
@@ -83,3 +77,37 @@ fi
 # swap ctrl and all caps + toggle between us and es
 # keyboards by hitting both ctrl keys
 setxkbmap -layout us,es -option "ctrl:nocaps,grp:ctrls_toggle"
+
+##################################################
+## NVM install script additions
+##################################################
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+######################################################################
+## Work
+######################################################################
+if [ -f ~/work/.workrc  ]; then
+    . ~/work/.workrc
+fi
+
+if [ -f ~/work/hawks/hawks-dev/.hawksrc  ]; then
+    . ~/work/hawks/hawks-dev/.hawksrc
+fi
+
+######################################################################
+## GCP CLI
+######################################################################
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ajpkim/google-cloud-sdk/path.bash.inc' ]; then . '/home/ajpkim/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ajpkim/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ajpkim/google-cloud-sdk/completion.bash.inc'; fi
+
+######################################################################
+## FZF
+######################################################################
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/completion.bash ]  && source /usr/share/fzf/completion.bash
+# export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"

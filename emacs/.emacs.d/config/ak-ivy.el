@@ -32,12 +32,14 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Lesser used functions
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ("C-c C-f" . counsel-fzf)
   ("C-c C-i f" . counsel-describe-function)
   ("C-c C-i v" . counsel-describe-variable)
   ("C-c C-i l" . counsel-find-library)
   ("C-c C-i i" . counsel-info-lookup-symbol)
   ("C-c C-i u" . counsel-unicode-char)
   ("C-c C-i j" . counsel-set-variable))
+
 
 ;; TODO: try these
 ;; (global-set-key (kbd "C-c v") 'ivy-push-view)
