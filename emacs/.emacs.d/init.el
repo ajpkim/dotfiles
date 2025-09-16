@@ -103,3 +103,4 @@
 (put 'upcase-region 'disabled nil)
 
 (message "Loaded AK emacs config")
+(put 'narrow-to-region 'disabled nil)

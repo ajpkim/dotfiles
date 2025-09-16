@@ -67,9 +67,9 @@ fi
 ##################################################
 ## Python pyenv
 ##################################################
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
 
 ##################################################
 ## Keyboard remapping
@@ -111,3 +111,5 @@ if [ -f '/home/ajpkim/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ajp
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 [ -f /usr/share/fzf/completion.bash ]  && source /usr/share/fzf/completion.bash
 # export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+
+source '/home/ajpkim/.bash_completions/typer.sh'

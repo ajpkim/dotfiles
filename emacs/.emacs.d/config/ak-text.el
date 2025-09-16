@@ -23,6 +23,21 @@ p      The variable `sort-fold-case' determines whether alphabetic case
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; string-inflection for converting cases
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package string-inflection
+  :ensure t
+  :bind (("C-c i t" . string-inflection-cycle)
+         ("C-c i s" . string-inflection-underscore)   ;; snake_case
+         ("C-c i k" . string-inflection-kebab-case)   ;; kebab-case
+         ("C-c i c" . string-inflection-camelcase)    ;; lowerCamelCase
+         ("C-c i p" . string-inflection-pascal-case)  ;; UpperCamelCase
+         ("C-c i u" . string-inflection-upcase)       ;; SCREAMING_SNAKE
+         ("C-c i l" . string-inflection-downcase)))   ;; lowercase
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quick text insertions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
