@@ -29,8 +29,9 @@ alias xcc='xclip -selection clipboard'
 alias pyve='python3 -m venv venv && source venv/bin/activate'
 alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
+alias csv='~/builds/table-cruncher/tablecruncher-linux/Tablecruncher'
 alias logout='pkill -KILL -u $USER'
-alias habits='et ~/data/habits/habits.csv'
+alias habits='csv ~/data/habits/habits.csv'
 alias genreport='$SCRIPTS/gen_report.sh'
 
 ######################################################################

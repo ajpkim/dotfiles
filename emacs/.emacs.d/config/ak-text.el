@@ -63,6 +63,21 @@ p      The variable `sort-fold-case' determines whether alphabetic case
   (backward-char)
   (backward-char))
 
+(defun ak-insert-day-checklist ()
+  (interactive)
+  (insert "- [ ] Habits
+- [ ] Plan tomorrow
+- [ ] Reflect"))
+
+(defun ak-insert-week-checklist ()
+  (interactive)
+  (insert "- [ ] Last week's events
+- [ ] Projects
+- [ ] Messages
+- [ ] Finances
+- [ ] Priorities
+- [ ] Feelings and Thoughts"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
