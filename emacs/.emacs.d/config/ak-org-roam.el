@@ -38,7 +38,6 @@
 
 (setq org-roam-capture-templates
       (list
-       (ak-org-roam-template "a" "alex" ":alex:")
        (ak-org-roam-template "l" "leaf" nil)
        (ak-org-roam-template "m" "main" nil)
        (ak-org-roam-template "r" "ref" nil)))
@@ -98,3 +97,14 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org-roam file search
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun ak-org-roam-rg ()
+  "Ripgrep search over `org-roam-directory` using Ivy/Counsel."
+  (interactive)
+  (require 'counsel)
+  (counsel-rg nil "~/org/notes/"))
+
+(global-set-key (kbd "C-c n /") #'ak-org-roam-rg)

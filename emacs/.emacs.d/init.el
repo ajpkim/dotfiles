@@ -94,9 +94,6 @@
 
 ;; Not using
 ;; (require 'ak-gpg)
-;; (require 'ak-anki)
-;; (require 'ak-time-tracking)
-
 
 ;; Random stuff that emacs prompts us for that we need to configure
 (put 'downcase-region 'disabled nil)
