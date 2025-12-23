@@ -42,11 +42,11 @@
        (ak-org-roam-template "m" "main" nil)
        (ak-org-roam-template "r" "ref" nil)))
 
-;; Automatically tag new nodes as "draft"
-(defun ak-tag-new-node-as-draft ()
-  "Add 'draft' tag to new Org-roam nodes."
-  (org-roam-tag-add '("draft")))
-(add-hook 'org-roam-capture-new-node-hook #'ak-tag-new-node-as-draft)
+;; ;; Automatically tag new nodes as "new"
+(defun ak-tag-new-node ()
+  "Add 'new' tag to new Org-roam nodes."
+  (org-roam-tag-add '("new")))
+(add-hook 'org-roam-capture-new-node-hook #'ak-tag-new-node)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Citing papers and source materials
