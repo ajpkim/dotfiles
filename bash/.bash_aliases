@@ -31,7 +31,7 @@ alias ve='source venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias csv='~/builds/table-cruncher/tablecruncher-linux/Tablecruncher'
 alias logout='pkill -KILL -u $USER'
-alias habits='csv ~/data/habits/habits.csv'
+alias habits='libreoffice ~/data/habits/habits.csv'
 alias genreport='$SCRIPTS/gen_report.sh'
 
 ######################################################################

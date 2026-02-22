@@ -98,7 +98,24 @@
         ("rl" "Listen" entry
          (file+headline "~/org/rwl.org" "Listening")
          "* %?     :listen:\n"
-         :prepend t)))
+         :prepend t)
+
+
+	;; Anki templates
+	("a" "Anki")
+	;; Basic (and reversed) short form
+	("ab" "Anki: Basic reversed" entry
+	 (file "~/org/anki.org")
+	 "* %^{Front}\n:PROPERTIES:\n:ANKI_DECK: main\n:ANKI_NOTE_TYPE: Basic (and reversed card)\n:ANKI_TAGS: %^{Tags|}\n:CREATED: %U\n:END:\n%?\n")
+
+	("as" "Anki: Basic reversed (Spanish)" entry
+	 (file "~/org/anki.org")
+	 "* %^{Front}\n:PROPERTIES:\n:ANKI_DECK: main\n:ANKI_NOTE_TYPE: Basic (and reversed card)\n:ANKI_TAGS: spanish\n:CREATED: %U\n:END:\n%?\n")
+
+	("ac" "Anki: Cloze" entry
+	 (file "~/org/anki.org")
+	 "* %^{Front}\n:PROPERTIES:\n:ANKI_DECK: main\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_TAGS: %^{Tags|}\n:CREATED: %U\n:END:\n%?\n")))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Agenda

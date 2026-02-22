@@ -67,6 +67,7 @@
 (require 'ak-org)
 (require 'ak-org-roam)
 (require 'ak-org-journal)
+(require 'ak-anki)
 (require 'ak-citations)
 
 ;; ;; Custom modes
