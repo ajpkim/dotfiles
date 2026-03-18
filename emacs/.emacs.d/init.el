@@ -78,6 +78,7 @@
 (require 'ak-css)
 (require 'ak-csv)
 (require 'ak-docker)
+(require 'ak-flymake)
 (require 'ak-haskell)
 (require 'ak-javascript-typescript)
 (require 'ak-json)
