@@ -84,6 +84,7 @@
 (require 'ak-json)
 (require 'ak-latex)
 (require 'ak-lua)
+(require 'ak-markdown)
 (require 'ak-prog)
 (require 'ak-python)
 (require 'ak-scheme)

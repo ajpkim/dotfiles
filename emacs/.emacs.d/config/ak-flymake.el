@@ -1,4 +1,4 @@
-(provide 'ak-base)
+(provide 'ak-flymake)
 
 (use-package flymake
   :bind (:map flymake-mode-map
