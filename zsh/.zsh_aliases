@@ -1,0 +1,54 @@
+#####################################################################
+## ls aliases
+######################################################################
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+######################################################################
+## git aliases
+######################################################################
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gd='git diff'
+alias gch='git checkout'
+alias gbr='git branch'
+alias gp='git push'
+alias gl='git log'
+alias gl1='git log --oneline'
+
+######################################################################
+## Utilities
+######################################################################
+alias pyve='python3 -m venv venv && source venv/bin/activate'
+alias ve='source venv/bin/activate'
+
+######################################################################
+## Emacs
+######################################################################
+alias e='emacsclient --create-frame'
+alias et='emacsclient -nw'
+alias ke='emacsclient -e "(kill-emacs)"'
+alias se='emacs --daemon'
+alias de='find . -name "*~" -type f -delete'  # remove emacs backups
+
+######################################################################
+## Applications
+######################################################################
+alias ff='firefox'
+alias py='python3'
+alias ipy='ipython'
+alias jp='jupyter-notebook'
+
+######################################################################
+## Navigation
+######################################################################
+alias bbauth='cd ~/code/bbauth'
+alias bbcli='cd ~/code/bbcli'
+alias bbops='cd ~/code/bbops'
+alias bbpy='cd ~/code/bbpy'
+alias dx='cd ~/code/draft-express'
+alias realgm='cd ~/code/realgm'
+alias ss='cd ~/code/second-spectrum'
