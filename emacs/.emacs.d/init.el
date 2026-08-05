@@ -1,18 +1,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Bootstrap straight and use-package
+;; Bootstrap straight.el and use-package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'package) ; Initialize package sources
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/")
+             t)
 
 (defvar bootstrap-version)
+
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        user-emacs-directory))
       (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+         'silent
+         'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -22,85 +30,125 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Put all the changes made by customize into a tmp file
-(setq custom-file (make-temp-file "emacs-custom"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Quickly access and reload config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun config-visit ()
-  (interactive)
-  (find-file "~/dotfiles/emacs/.emacs.d/init.el"))
+;; Put changes made through Customize into a temporary file.
+(setq custom-file (make-temp-file "emacs-custom-"))
 
-(defun config-reload ()
-  (interactive)
-  (org-babel-load-file (expand-file-name "~//dotfiles/emacs/.emacs.d/init.el")))
-
-(global-set-key (kbd "C-c e") 'config-visit)
-(global-set-key (kbd "C-c r") 'config-reload)
-
-;; Otherwise we get a TON of warning buffers when building with native comp
+;; Suppress most native-compilation warning buffers.
 (setq warning-minimum-level :error)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load all my configurations
+;; Access and reload configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/config")
+(defun config-visit ()
+  "Visit the active Emacs init file."
+  (interactive)
+  (find-file user-init-file))
+
+(defun config-reload ()
+  "Reload the active Emacs init file."
+  (interactive)
+  (load-file user-init-file)
+  (message "Reloaded %s" user-init-file))
+
+(global-set-key (kbd "C-c e") #'config-visit)
+(global-set-key (kbd "C-c r") #'config-reload)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configuration modules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list
+ 'load-path
+ (expand-file-name "config" user-emacs-directory))
 
 ;; Core functionality
 (require 'ak-base)
 (require 'ak-eldoc)
 (require 'ak-modus-themes)
-(require 'ak-text)  ;; custom text insert insertions e.g. "→"
-(require 'ak-files)  ;; personal file shortcuts
-(require 'ak-ivy)  ;; search
-(require 'ak-company)  ;; auto-complete
-(require 'ak-eglot)  ;; inteface with LSP servers
-(require 'ak-treesitter)  ;; syntax highlighting + structured editing
+(require 'ak-text)
+;; (require 'ak-files)
+(require 'ak-ivy)
+(require 'ak-company)
+(require 'ak-eglot)
+(require 'ak-treesitter)
 (require 'ak-magit)
 (require 'ak-projectile)
 (require 'ak-modeline)
-(require 'ak-work)
+;; (require 'ak-work)
 
-;; ;; Org-mode stuff
-(require 'ak-org)
-(require 'ak-org-roam)
-(require 'ak-org-journal)
-(require 'ak-anki)
-(require 'ak-citations)
+;; Org-mode
+;; (require 'ak-org)
+;; (require 'ak-org-roam)
+;; (require 'ak-org-journal)
+;; (require 'ak-anki)
+;; (require 'ak-citations)
 
-;; ;; Custom modes
-(require 'ak-focus-mode)
+;; Custom modes
+;; (require 'ak-focus-mode)
 
-;; ;; Languages and programming
-(require 'ak-common-lisp)
-(require 'ak-css)
-(require 'ak-csv)
+;; Languages and programming
+;; (require 'ak-common-lisp)
+;; (require 'ak-css)
+;; (require 'ak-csv)
 (require 'ak-docker)
 (require 'ak-flymake)
-(require 'ak-haskell)
-(require 'ak-javascript-typescript)
-(require 'ak-json)
-(require 'ak-latex)
-(require 'ak-lua)
-(require 'ak-markdown)
+;; (require 'ak-haskell)
+;; (require 'ak-javascript-typescript)
+;; (require 'ak-json)
+;; (require 'ak-latex)
+;; (require 'ak-lua)
+;; (require 'ak-markdown)
 (require 'ak-prog)
 (require 'ak-python)
-(require 'ak-scheme)
-(require 'ak-terraform)
-(require 'ak-yaml)
+;; (require 'ak-scheme)
+;; (require 'ak-terraform)
+;; (require 'ak-yaml)
 (require 'ak-go)
 
-;; ;; Experimental
+;; Experimental
 ;; (require 'ak-test)
 
-;; Not using
+;; Not currently used
 ;; (require 'ak-gpg)
 
-;; Random stuff that emacs prompts us for that we need to configure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; macOS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (eq system-type 'darwin)
+
+  ;; GUI applications launched from Finder, Spotlight, or the Dock may
+  ;; not inherit the same PATH as an interactive shell. This also covers
+  ;; `emacs --daemon': it always starts with no frame at all (so
+  ;; `display-graphic-p' is nil at init time regardless of how clients
+  ;; later connect, -nw included), and here it's launched via AeroSpace's
+  ;; exec-and-forget rather than a login shell, so it needs this too.
+  (use-package exec-path-from-shell
+    :straight t
+    :config
+    (exec-path-from-shell-initialize))
+
+  ;; Native GNU Emacs macOS builds generally use the ns-* variables.
+  ;; Keep Option as Meta and expose Command as Super.
+  (when (boundp 'ns-option-modifier)
+    (setq ns-option-modifier 'meta
+          ns-command-modifier 'super))
+
+  ;; Emacs Mac Port uses the mac-* equivalents.
+  (when (boundp 'mac-option-modifier)
+
+
+    (setq mac-option-modifier 'meta
+          mac-command-modifier 'super)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Enable normally disabled commands
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
-(message "Loaded AK emacs config")
 (put 'narrow-to-region 'disabled nil)
+
+(message "Loaded AK Emacs config from %s" user-init-file)
