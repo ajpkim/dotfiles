@@ -9,7 +9,8 @@ config-version = 2
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-   'exec-and-forget emacs --daemon'
+   'exec-and-forget emacs --daemon',
+   'exec-and-forget ~/.local/bin/arrange-monitor-workspaces.sh'
 ]
 
 # Start AeroSpace at login
@@ -206,6 +207,10 @@ gaps.outer.right =      5
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
+
+    # Re-lay workspace N onto monitor N for every connected monitor.
+    # Run this after hot-plugging/unplugging an external monitor.
+    m = ['exec-and-forget ~/.local/bin/arrange-monitor-workspaces.sh', 'mode main']
 
 
 [mode.launch.binding]
