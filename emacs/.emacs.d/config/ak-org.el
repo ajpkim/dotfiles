@@ -65,41 +65,8 @@
 (setq org-capture-templates
       '(("c" "Task"
 	 entry (file "~/org/todo.org")
-         "* TODO %?\n"
+         "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"
          :prepend t)
-
-        ("d" "Dream journal"
-	 plain (file+olp+datetree "~/org/dreams.org")
-         "%?"
-         :tree-type 'daily)
-
-        ("f" "File Link"
-	 entry (file+headline "~/org/todo.org" "Inbox")
-         "* TODO %a\n%?"
-         :prepend t)
-
-        ("w" "Writing Inbox"
-	 entry (file "~/org/notes/writing_inbox.org")
-         "* %?\n"
-         :prepend t)
-
-	;; Read/Watch/Listen templates
-        ("r" "Read, Watch, Listen")
-        ("rr" "Read" entry
-         (file+headline "~/org/rwl.org" "Reading")
-         "* %?\     :read:\n"
-         :prepend t)
-
-        ("rw" "Watch" entry
-         (file+headline "~/org/rwl.org" "Watching")
-         "* %?     :watch:\n"
-         :prepend t)
-
-        ("rl" "Listen" entry
-         (file+headline "~/org/rwl.org" "Listening")
-         "* %?     :listen:\n"
-         :prepend t)
-
 
 	;; Anki templates
 	("a" "Anki")
@@ -141,60 +108,8 @@
                :not (:scheduled t :deadline t))))
 
 
-(setq org-agenda-custom-commands
-      '(("t" "Today (Time-Blocked)"
-         ((agenda ""
-                  ((org-agenda-span 1)
-                   (org-super-agenda-groups org-super-agenda-groups)))))
 
-	("w" "Week View"
-         ((agenda ""
-                  ((org-agenda-span 7)
-                   (org-super-agenda-groups org-super-agenda-groups)))))
-
-	("W" "Work Projects"
-         ((alltodo ""
-                   ((org-agenda-files '("~/org/work.org"))
-                    (org-agenda-max-level 2)
-                    (org-super-agenda-groups
-                     '((:name "By Category"
-                              :auto-category t)))))))
-
-        ("p" "Personal Projects"
-         ((alltodo ""
-                   ((org-agenda-files '("~/org/projects.org"))
-                    (org-agenda-max-level 2)
-                    (org-super-agenda-groups
-                     '((:name "By Category"
-                              :auto-category t)))))))
-
-        ("5" "Quick Tasks (5m)"
-         ((alltodo ""
-                   ((org-super-agenda-groups
-                     '((:name "Quick Tasks"
-                              :tag "5m")
-                       (:discard (:anything t))))))))
-
-	("r" "Read, Watch, Listen"
-	 ((tags "+read|+watch|+listen"
-		((org-super-agenda-groups
-		  '((:name "Read" :tag "read")
-		    (:name "Watch" :tag "watch")
-		    (:name "Listen" :tag "listen")
-		    (:discard (:anything t))))))))
-
-        ("g" "General Tasks (Scheduled and Unscheduled)"
-         ((alltodo ""
-                   ((org-agenda-files '("~/org/todo.org"))
-                    (org-super-agenda-groups
-                     '((:name "Scheduled Generic Tasks"
-                              :scheduled t)
-                       (:name "Unscheduled Generic Tasks"
-                              :not (:scheduled t :deadline t))
-                       (:discard (:anything t))))))))))
-
-
-(setq org-agenda-files '("~/org/todo.org" "~/org/projects.org" "~/org/work.org" "~/org/rwl.org"))
+(setq org-agenda-files '("~/org/todo.org"))
 (setq org-extend-today-until 3)
 (setq org-agenda-span 7)
 (setq org-agenda-start-on-weekday nil)
@@ -295,37 +210,6 @@
   (setq org-html-htmlize-output-type 'css))
 
 (setq org-export-with-broken-links t)
-
-;; ;; Clean the html export
-;; (setq org-html-head ""
-;;       org-export-headline-levels 10
-;;       org-export-with-section-numbers nil
-;;       org-export-with-tags nil
-;;       ;; org-export-with-toc nil
-;;       org-export-with-broken-links t
-;;       org-html-doc-type "HTML5"
-;;       org-html-head-extra ""
-;;       org-html-head-include-default-style nil
-;;       org-html-head-include-scripts nil
-;;       org-html-html5-fancy t
-;;       org-html-mathjax-template ""
-;;       org-html-postamble nil
-;;       org-html-preamble nil
-;;       org-html-use-infojs nil
-;;       org-html-head-include-scripts nil
-;;       )
-
-;; (use-package toc-org
-;;   :ensure t
-;;   :config
-;;   (setq toc-org-max-depth 3
-;;         toc-org-hrefify-default "org"))  ;; Options are org or gh (github)
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;; TODO
-;; ;; Org IDs
-;; ;; Have stable IDs for exporting
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode modules
