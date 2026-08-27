@@ -1,3 +1,4 @@
+;;; ak-hawks.el --- Hawks work org-mode configuration -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hawks work org-mode configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -16,10 +17,11 @@
    ;; org-image-actual-width 800
    ;; org-startup-with-latex-preview nil  ;; slow when enabled
    org-archive-location (concat (expand-file-name "archive/" org-directory) "%s_archive::")
-   org-todo-keywords '((sequence "PROJECT(p)" "TODO(t)" "ACTIVE(a)" "|" "DONE(d)"))
+   org-todo-keywords '((sequence "PROJECT(p)" "TODO(t)" "ACTIVE(a)" "WAITING(w)" "|" "DONE(d)"))
    org-todo-keyword-faces '(("PROJECT" . (:foreground "steel blue1" :weight bold))
-                            ("ACTIVE" . (:foreground "cyan" :weight bold))
 			    ("TODO" . (:foreground "orchid" :weight bold))
+                            ("ACTIVE" . (:foreground "cyan" :weight bold))
+			    ("WAITING" . (:foreground "powder blue" :weight bold))
 			    ))
   :bind
   (("C-c l" . org-store-link)
@@ -53,11 +55,30 @@
 ;; Agenda
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-agenda-files (list (expand-file-name "todo.org" org-directory)))
-;; (setq org-agenda-span 7)
-;; (setq org-agenda-start-on-weekday nil)
-;; (setq org-agenda-skip-deadline-if-done nil)
-;; (setq org-agenda-skip-scheduled-if-done nil)
-;; (setq org-deadline-warning-days 3)
+(setq org-agenda-span 7)
+(setq org-agenda-start-on-weekday nil)
+(setq org-agenda-skip-deadline-if-done nil)
+(setq org-agenda-skip-scheduled-if-done nil)
+(setq org-deadline-warning-days 3)
+
+
+(defun ak-hawks-org-agenda-set-faces ()
+  "Set Org agenda faces based on whether the active theme is light or dark."
+  (if (member (car custom-enabled-themes) '(modus-vivendi modus-vivendi-tinted modus-vivendi-tritanopia))
+      ;; Dark mode settings
+      (custom-set-faces
+       '(org-scheduled ((t (:foreground "#c4c3d0"))))
+       '(org-scheduled-today ((t (:foreground "#c0d8f8" :weight bold))))
+       '(org-scheduled-previously ((t (:foreground "#ff5f5f" :slant italic)))))
+    ;; Light mode settings
+    (custom-set-faces
+     '(org-scheduled ((t (:foreground "#707070"))))
+     '(org-scheduled-today ((t (:foreground "#3a6ea5" :weight bold))))
+     '(org-scheduled-previously ((t (:foreground "#af0000" :slant italic)))))))
+
+
+(add-hook 'modus-themes-after-load-theme-hook #'ak-hawks-org-agenda-set-faces)
+(ak-hawks-org-agenda-set-faces)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-roam
@@ -118,3 +139,6 @@
 
 (global-set-key (kbd "C-c f t") (lambda () (interactive) (ak-hawks-file-shortcut (expand-file-name "todo.org" org-directory))))
 (global-set-key (kbd "C-c f l") (lambda () (interactive) (ak-hawks-file-shortcut (expand-file-name "log.org" org-directory))))
+
+
+(require 'org-tempo)

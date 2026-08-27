@@ -1,3 +1,4 @@
+;;; ak-citations.el --- Citation tools (Zotero, org-roam) -*- lexical-binding: t -*-
 ;; Citation related tools that integrate with Zotero and org-roam,
 ;; specifically the "ref" notes in org-roam. Zotero must be running
 ;; for some features.

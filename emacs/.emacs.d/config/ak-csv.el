@@ -1,3 +1,4 @@
+;;; ak-csv.el --- CSV configuration -*- lexical-binding: t -*-
 (provide 'ak-csv)
 
 

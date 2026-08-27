@@ -1,3 +1,4 @@
+;;; ak-common-lisp.el --- Common Lisp configuration -*- lexical-binding: t -*-
 (provide 'ak-common-lisp)
 
 (use-package slime

@@ -1,3 +1,4 @@
+;;; ak-ivy.el --- Search framework with Ivy, Swiper, and Counsel -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Search framework with Ivy, Swiper, and Counsel
 ;; Documentation: http://oremacs.com/

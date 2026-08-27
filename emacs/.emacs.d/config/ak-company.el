@@ -1,3 +1,4 @@
+;;; ak-company.el --- Company completion configuration -*- lexical-binding: t -*-
 (provide 'ak-company)
 
 (use-package company

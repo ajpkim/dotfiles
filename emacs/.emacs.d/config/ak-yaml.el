@@ -1,3 +1,4 @@
+;;; ak-yaml.el --- YAML configuration -*- lexical-binding: t -*-
 (provide 'ak-yaml)
 
 (use-package yaml-mode

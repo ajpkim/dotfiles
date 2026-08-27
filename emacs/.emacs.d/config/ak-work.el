@@ -1,3 +1,4 @@
+;;; ak-work.el --- Work configuration -*- lexical-binding: t -*-
 (provide 'ak-work)
 
 (defun open-hawks-narrow ()

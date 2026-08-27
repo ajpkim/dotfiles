@@ -1,3 +1,4 @@
+;;; ak-anki.el --- Anki editing in Emacs -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Anki editing in Emacs
 ;; Inspiration sources

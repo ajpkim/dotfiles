@@ -1,3 +1,4 @@
+;;; ak-projectile.el --- Projectile configuration -*- lexical-binding: t -*-
 (provide 'ak-projectile)
 
 (use-package projectile

@@ -1,3 +1,4 @@
+;;; ak-scheme.el --- Scheme configuration -*- lexical-binding: t -*-
 (provide 'ak-scheme)
 
 (require 'xscheme)  ;; Scheme

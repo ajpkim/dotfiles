@@ -1,3 +1,4 @@
+;;; ak-org-journal.el --- Org journal configuration -*- lexical-binding: t -*-
 (provide 'ak-org-journal)
 
 (use-package org-journal

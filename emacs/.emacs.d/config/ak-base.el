@@ -1,3 +1,4 @@
+;;; ak-base.el --- Base configuration -*- lexical-binding: t -*-
 (provide 'ak-base)
 
 ;; Quality of life minor modes, hooks, vars, keys

@@ -1,3 +1,4 @@
+;;; ak-eglot.el --- Eglot (LSP) -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Eglot (LSP)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -5,11 +6,15 @@
 
 (use-package eglot
   :ensure t
-  ;; start Eglot automatically in Python buffers
-  :hook ((python-ts-mode . eglot-ensure)
-         (python-mode    . eglot-ensure))
+  :hook ((python-mode        . eglot-ensure)
+         (python-ts-mode     . eglot-ensure)
+         (go-ts-mode          . eglot-ensure)
+         (js-ts-mode          . eglot-ensure)
+         (typescript-ts-mode  . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs
-               '(python-ts-mode . ("pyright-langserver" "--stdio")))
+               '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio")))
   (add-to-list 'eglot-server-programs
-               '(python-mode . ("pyright-langserver" "--stdio"))))
+               '(go-ts-mode . ("gopls")))
+  (add-to-list 'eglot-server-programs
+               '((js-ts-mode typescript-ts-mode) . ("typescript-language-server" "--stdio"))))

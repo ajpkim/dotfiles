@@ -1,3 +1,4 @@
+;;; ak-web-dev.el --- Web dev configuration -*- lexical-binding: t -*-
 (provide 'ak-web-dev)
 
 ;; (use-package typescript-mode

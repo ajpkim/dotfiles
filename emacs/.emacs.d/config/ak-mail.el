@@ -1,3 +1,4 @@
+;;; ak-mail.el --- Mail configuration -*- lexical-binding: t -*-
 (provide 'ak-mail)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,3 +1,4 @@
+;;; ak-focus-mode.el --- Focus mode configuration -*- lexical-binding: t -*-
 (provide 'ak-focus-mode)
 
 (define-minor-mode ak-scroll-center-cursor-mode

@@ -1,3 +1,4 @@
+;;; ak-files.el --- Quick access to high-use files -*- lexical-binding: t -*-
 ;; Quick access to high use files.
 ;; See for details on keybinding: https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 

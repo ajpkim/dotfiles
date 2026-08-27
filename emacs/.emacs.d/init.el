@@ -1,3 +1,4 @@
+;;; init.el --- Bootstrap straight.el and use-package -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bootstrap straight.el and use-package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -91,11 +92,11 @@
 ;; Languages and programming
 ;; (require 'ak-common-lisp)
 ;; (require 'ak-css)
-;; (require 'ak-csv)
+(require 'ak-csv)
 (require 'ak-docker)
 (require 'ak-flymake)
 ;; (require 'ak-haskell)
-;; (require 'ak-javascript-typescript)
+(require 'ak-javascript-typescript)
 ;; (require 'ak-json)
 ;; (require 'ak-latex)
 ;; (require 'ak-lua)

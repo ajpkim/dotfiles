@@ -1,3 +1,4 @@
+;;; ak-help.el --- Help configuration -*- lexical-binding: t -*-
 (provide 'ak-help)
 
 (use-package which-key

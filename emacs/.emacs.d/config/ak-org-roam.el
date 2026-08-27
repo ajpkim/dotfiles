@@ -1,3 +1,4 @@
+;;; ak-org-roam.el --- Org-roam configuration -*- lexical-binding: t -*-
 (provide 'ak-org-roam)
 
 (use-package org-roam

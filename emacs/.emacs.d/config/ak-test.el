@@ -1,3 +1,4 @@
+;;; ak-test.el --- Test configuration -*- lexical-binding: t -*-
 (provide 'ak-test)
 
 ;; (use-package debbugs

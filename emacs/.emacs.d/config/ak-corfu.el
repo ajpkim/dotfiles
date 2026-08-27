@@ -1,3 +1,4 @@
+;;; ak-corfu.el --- Corfu completion configuration -*- lexical-binding: t -*-
 (provide 'ak-corfu)
 
 (use-package corfu

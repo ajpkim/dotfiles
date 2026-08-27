@@ -1,3 +1,4 @@
+;;; ak-flymake.el --- Flymake configuration -*- lexical-binding: t -*-
 (provide 'ak-flymake)
 
 (use-package flymake

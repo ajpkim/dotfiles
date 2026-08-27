@@ -1,3 +1,4 @@
+;;; ak-gpg.el --- GPG configuration -*- lexical-binding: t -*-
 (provide 'ak-gpg)
 
 (use-package pinentry

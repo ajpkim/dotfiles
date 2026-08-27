@@ -1,3 +1,4 @@
+;;; ak-modus-themes.el --- Modus themes configuration -*- lexical-binding: t -*-
 (provide 'ak-modus-themes)
 
 (use-package emacs

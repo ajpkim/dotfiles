@@ -1,3 +1,4 @@
+;;; ak-visual.el --- Visual/UI configuration -*- lexical-binding: t -*-
 (provide 'ak-visual)
 
 (setq inhibit-startup-message t)

@@ -1,3 +1,4 @@
+;;; ak-modeline.el --- Hidden modeline mode -*- lexical-binding: t -*-
 (provide 'ak-modeline)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hidden modeline mode
