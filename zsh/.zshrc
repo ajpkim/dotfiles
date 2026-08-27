@@ -24,6 +24,19 @@ PROMPT='%F{13}%D{%H:%M}%f %F{14}%~%f${vcs_info_msg_0_}%(?.. %F{9}[exit:%?]%f)
 %# '
 
 ##################################################
+# History
+##################################################
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY       # append to HISTFILE instead of overwriting on exit
+setopt SHARE_HISTORY        # sync history live across concurrent sessions
+setopt HIST_IGNORE_ALL_DUPS # erase older duplicate entries (like bash's erasedups)
+setopt HIST_IGNORE_SPACE    # skip space-prefixed commands (like bash's ignorespace)
+
+##################################################
 # Scripts
 ##################################################
 export SCRIPTS="$HOME/scripts"
@@ -64,3 +77,8 @@ fi
 ##################################################
 
 [[ -d "$HOME/go/bin" ]] && export PATH="$PATH:$HOME/go/bin"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/akim/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

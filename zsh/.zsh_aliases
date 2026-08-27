@@ -18,12 +18,14 @@ alias gbr='git branch'
 alias gp='git push'
 alias gl='git log'
 alias gl1='git log --oneline'
+alias gdc='git diff --cached'
 
 ######################################################################
 ## Utilities
 ######################################################################
-alias pyve='python3 -m venv venv && source venv/bin/activate'
-alias ve='source venv/bin/activate'
+alias pyve='python3 -m venv .venv && source .venv/bin/activate'
+alias ve='source .venv/bin/activate'
+alias mon="$HOME/.local/bin/arrange-monitor-workspaces.sh"
 
 ######################################################################
 ## Emacs
@@ -37,18 +39,32 @@ alias de='find . -name "*~" -type f -delete'  # remove emacs backups
 ######################################################################
 ## Applications
 ######################################################################
-alias ff='firefox'
+alias ff='open -a Firefox'
+alias excel='open -a "Microsoft Excel"'
 alias py='python3'
 alias ipy='ipython'
 alias jp='jupyter-notebook'
 
 ######################################################################
-## Navigation
+## Hawks
 ######################################################################
-alias bbauth='cd ~/code/bbauth'
-alias bbcli='cd ~/code/bbcli'
-alias bbops='cd ~/code/bbops'
-alias bbpy='cd ~/code/bbpy'
-alias dx='cd ~/code/draft-express'
-alias realgm='cd ~/code/realgm'
-alias ss='cd ~/code/second-spectrum'
+alias 404='cd $HOME/code/hawks404'
+alias bbadmin='cd $HOME/code/bbadmin'
+alias bbauth='cd $HOME/code/bbauth'
+alias bbcli='cd $HOME/code/bbcli'
+alias bbops='cd $HOME/code/bbops'
+alias bbpy='cd $HOME/code/bbpy'
+alias bbr='cd $HOME/code/bbr'
+alias catapult='cd $HOME/code/catapult'
+alias contracts='cd $HOME/code/nbacontracts'
+alias dev='cd $HOME/dev'
+alias dx='cd $HOME/code/draft-express'
+alias nbastats='cd $HOME/code/nbastats'
+alias noah='cd $HOME/code/noah'
+alias notebooks='cd $HOME/code/notebooks'
+alias realgm='cd $HOME/code/realgm'
+alias ss='cd $HOME/code/second-spectrum'
+alias vald='cd $HOME/code/vald'
+
+alias gcp-cred="$HOME/dev/gcp-cred.sh"
+alias mongo="cd $HOME/data/mongodb"

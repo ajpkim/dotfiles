@@ -26,8 +26,8 @@ alias gl1='git log --oneline'
 ######################################################################
 alias bt='bluetoothctl'
 alias xcc='xclip -selection clipboard'
-alias pyve='python3 -m venv venv && source venv/bin/activate'
-alias ve='source venv/bin/activate'
+alias pyve='python3 -m venv .venv && source .venv/bin/activate'
+alias ve='source .venv/bin/activate'
 alias chime='paplay $CHIME'  # defined in .bashrc
 alias csv='~/builds/table-cruncher/tablecruncher-linux/Tablecruncher'
 alias logout='pkill -KILL -u $USER'
