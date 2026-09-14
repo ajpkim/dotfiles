@@ -2,6 +2,10 @@
 (provide 'ak-r)
 
 (use-package ess
-  :ensure t)
-
-(define-key ess-mode-map (kbd "M--") "<-")
+  :ensure t
+  :init
+  (require 'ess-site)
+  :config
+  (setq ess-style 'RStudio)
+  :bind (:map ess-r-mode-map
+              ("M--" . ess-insert-assign)))

@@ -72,7 +72,7 @@
         ("d" "Dream journal"
 	 plain (file+olp+datetree "~/org/dreams.org")
          "%?"
-         :tree-type 'daily)
+         :tree-type day)
 
         ("f" "File Link"
 	 entry (file+headline "~/org/todo.org" "Inbox")

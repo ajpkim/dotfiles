@@ -48,7 +48,7 @@
         ("l" "Log"
          entry (file+olp+datetree ,(expand-file-name "log.org" org-directory))
          "* %<%H:%M> %?\n"
-         :tree-type 'daily)))
+         :tree-type day)))
 
 (setq org-refile-targets '((org-agenda-files :todo . "PROJECT")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

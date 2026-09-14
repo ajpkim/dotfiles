@@ -1,6 +1,6 @@
-;;; init.el --- Bootstrap straight.el and use-package -*- lexical-binding: t -*-
+;;; init.el --- Bootstrap package.el and use-package -*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Bootstrap straight.el and use-package
+;; Bootstrap package.el and use-package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
@@ -9,24 +9,9 @@
              '("melpa" . "https://melpa.org/packages/")
              t)
 
-(defvar bootstrap-version)
-
-(let ((bootstrap-file
-       (expand-file-name
-        "straight/repos/straight.el/bootstrap.el"
-        user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent
-         'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'use-package)
+;; use-package has shipped built into Emacs core since 29, so it
+;; doesn't need a package manager to bootstrap it.
+(require 'use-package)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General
@@ -103,10 +88,12 @@
 ;; (require 'ak-markdown)
 (require 'ak-prog)
 (require 'ak-python)
+(require 'ak-r)
 ;; (require 'ak-scheme)
 ;; (require 'ak-terraform)
 ;; (require 'ak-yaml)
 (require 'ak-go)
+;; (require 'ak-sql)
 
 ;; Experimental
 ;; (require 'ak-test)
@@ -130,7 +117,7 @@
   ;; later connect, -nw included), and here it's launched via AeroSpace's
   ;; exec-and-forget rather than a login shell, so it needs this too.
   (use-package exec-path-from-shell
-    :straight t
+    :ensure t
     :config
     (exec-path-from-shell-initialize))
 
